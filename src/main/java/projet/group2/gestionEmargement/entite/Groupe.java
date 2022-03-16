@@ -1,4 +1,4 @@
-package models;
+package projet.group2.gestionEmargement.entite;
 
 public enum Groupe {
 

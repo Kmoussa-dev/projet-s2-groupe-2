@@ -1,8 +1,4 @@
-package models;
-
-
-import lombok.Data;
-import lombok.Getter;
+package projet.group2.gestionEmargement.entite;
 
 
 public class Etudiant {
