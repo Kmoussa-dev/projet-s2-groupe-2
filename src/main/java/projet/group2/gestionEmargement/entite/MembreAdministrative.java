@@ -1,4 +1,5 @@
 package projet.group2.gestionEmargement.entite;
+//doit etre un document
 
 public class MembreAdministrative {
 
