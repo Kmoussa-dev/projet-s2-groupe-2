@@ -8,16 +8,15 @@ public class Etudiant {
     private String prenomEtudiant;
     private String adresseMail;
     private Promotion promo;
-    private Groupe groupe;
+    private Emerge emerge;
 
-
-    public Etudiant(String numeroEtudiant, String nomEtudiant, String prenomEtudiant, String adresseMail, Promotion promo, Groupe groupe) {
+    public Etudiant(String numeroEtudiant, String nomEtudiant, String prenomEtudiant, String adresseMail, Promotion promo) {
         this.numeroEtudiant = numeroEtudiant;
         this.nomEtudiant = nomEtudiant;
         this.prenomEtudiant = prenomEtudiant;
         this.adresseMail = adresseMail;
         this.promo = promo;
-        this.groupe = groupe;
+        this.emerge=Emerge.ABSENT;
     }
 
     public String getNumeroEtudiant() {
@@ -40,10 +39,6 @@ public class Etudiant {
         return promo;
     }
 
-    public Groupe getGroupe() {
-        return groupe;
-    }
-
     public void setNumeroEtudiant(String numeroEtudiant) {
         this.numeroEtudiant = numeroEtudiant;
     }
@@ -64,7 +59,11 @@ public class Etudiant {
         this.promo = promo;
     }
 
-    public void setGroupe(Groupe groupe) {
-        this.groupe = groupe;
+    public Emerge getEmerge() {
+        return emerge;
+    }
+
+    public void setEmerge(Emerge emerge) {
+        this.emerge = emerge;
     }
 }

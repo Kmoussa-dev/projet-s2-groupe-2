@@ -1,7 +1,6 @@
 package projet.group2.gestionEmargement.repository;
 
 import projet.group2.gestionEmargement.entite.Etudiant;
-import projet.group2.gestionEmargement.entite.Groupe;
 import projet.group2.gestionEmargement.entite.Promotion;
 import org.springframework.data.mongodb.repository.MongoRepository;
 

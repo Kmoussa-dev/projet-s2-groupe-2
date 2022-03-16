@@ -4,12 +4,12 @@ public class MembreAdministrative {
 
     private String idMembre;
     private String nomMembre;
-    private String prenomMenbre;
+    private String prenomMembre;
 
-    public MembreAdministrative(String idMembre, String nomMembre, String prenomMenbre) {
+    public MembreAdministrative(String idMembre, String nomMembre, String prenomMembre) {
         this.idMembre = idMembre;
         this.nomMembre = nomMembre;
-        this.prenomMenbre = prenomMenbre;
+        this.prenomMembre = prenomMembre;
     }
 
     public String getIdMembre() {
@@ -20,8 +20,8 @@ public class MembreAdministrative {
         return nomMembre;
     }
 
-    public String getPrenomMenbre() {
-        return prenomMenbre;
+    public String getPrenomMembre() {
+        return prenomMembre;
     }
 
     public void setIdMembre(String idMembre) {
@@ -32,7 +32,7 @@ public class MembreAdministrative {
         this.nomMembre = nomMembre;
     }
 
-    public void setPrenomMenbre(String prenomMenbre) {
-        this.prenomMenbre = prenomMenbre;
+    public void setPrenomMembre(String prenomMembre) {
+        this.prenomMembre = prenomMembre;
     }
 }
