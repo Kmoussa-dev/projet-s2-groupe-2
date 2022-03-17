@@ -6,7 +6,7 @@ import java.util.List;
 // doit etre un document
 public class Seance {
 
-    private long id;
+    private long idSeance;
     private String discipline;
     private Enseignant enseignant;
     private TypeSeance typeSeance;
@@ -14,24 +14,29 @@ public class Seance {
     private List<Etudiant> etudiantsPresent;
     private LocalDateTime heureDebut;
     private LocalDateTime heureFin;
+    private Promotion promotion;
+    private StatutSeance statutSeance;
 
-    public Seance(long id, String discipline, Enseignant enseignant, TypeSeance typeSeance, List<Etudiant> etudiants, LocalDateTime heureDebut, LocalDateTime heureFin) {
-        this.id = id;
+    public Seance(long idSeance, String discipline, Enseignant enseignant, TypeSeance typeSeance, List<Etudiant> etudiants,
+                  LocalDateTime heureDebut, LocalDateTime heureFin, Promotion promotion, StatutSeance statutSeance) {
+        this.idSeance = idSeance;
         this.discipline = discipline;
         this.enseignant = enseignant;
         this.typeSeance = typeSeance;
         this.etudiants = etudiants;
+        this.etudiantsPresent = new ArrayList<>();
         this.heureDebut = heureDebut;
         this.heureFin = heureFin;
-        this.etudiantsPresent=new ArrayList<>();
+        this.promotion = promotion;
+        this.statutSeance = StatutSeance.NonValidee;
     }
 
-    public long getId() {
-        return id;
+    public long getIdSeance() {
+        return idSeance;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setIdSeance(long idSeance) {
+        this.idSeance = idSeance;
     }
 
     public String getDiscipline() {
@@ -88,5 +93,21 @@ public class Seance {
 
     public void setHeureFin(LocalDateTime heureFin) {
         this.heureFin = heureFin;
+    }
+
+    public Promotion getPromotion() {
+        return promotion;
+    }
+
+    public void setPromotion(Promotion promotion) {
+        this.promotion = promotion;
+    }
+
+    public StatutSeance getStatutSeance() {
+        return statutSeance;
+    }
+
+    public void setStatutSeance(StatutSeance statutSeance) {
+        this.statutSeance = statutSeance;
     }
 }

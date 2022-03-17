@@ -10,6 +10,6 @@ public interface EtudiantRepository extends MongoRepository<Etudiant,String> {
 
     Etudiant findByNumeroEtudiant(String numeroEtudiant);
     List<Etudiant>  findAllByPromo(Promotion promotion);
-    List<Etudiant> findAllByGroupe(Groupe groupe);
+
 
 }

@@ -1,0 +1,19 @@
+=== Compte Rendu du 16/03/2022
+
+=====  Réalisations :
+
+PREMIERE PARTIE
+
+- Durée : 1h
+- Initialisation et configuration du projet : maven, java17, Spring Web
+- Mise en place squelette architectural : 4 packages => models, controller, services, repository
+- Création des classes principales du modèle : Enseignant, Etudiant, MembreAdministratif, Promotion, Groupe
+- Ajout du repository Etudiant
+
+DEUXIEME PARTIE
+
+- Durée : 1h30
+- Refactoring de la structure du projet : ajouts des classes Séance, Type de Séance, Emerge, Etudiant Service,EtudiantControlleur
+
+===== Tâches à faire :
+=> to be continued demain à 20h30

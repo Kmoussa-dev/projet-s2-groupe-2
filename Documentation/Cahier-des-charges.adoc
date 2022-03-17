@@ -1,0 +1,115 @@
+
+== Présentation du sujet
+
+*Projet M1 MIAGE Semestre 2 – Annéee 2021-2022*
+
+*Sujet : gestion des émargements*
+
+
+== Cahier des charges
+
+==== Contexte
+
+Dans le cadre de certaines formations universitaires, il est nécessaire de disposer d’un émargement précis des étudiants présents à chacune des séances d’enseignement.
+
+Actuellement, une ou plusieurs listes d’émargement, au format papier, sont fournies chaque jour ou semaine aux étudiants. Selon le format, ces listes peuvent concerner tout ou partie des étudiants d’une promotion, et concerner un ou plusieurs enseignements.
+
+*Ce fonctionnement pose plusieurs difficultés :*
+
+- Son remplissage est fastidieux, et réalisé à la main par les personnes concernées : étudiants, enseignants, membres du personnel administratif.
+- Il n’apporte aucune garantie quant la validité et l’exhaustivité des informations saisies :
+    * Un étudiant présent peut ne pas émarger, par oubli ou non accès à la feuille.
+    * Un étudiant non présent peut émarger pour une séance passée ou future.
+    * Un enseignant peut ne pas compléter et signer la feuille, par oubli ou non accès à la feuille.
+- Il n’y a aucun historique disponible, ni aucun moyen simple d’accéder aux listes d’émargement en cours de circulation.
+
+==== Objectifs du projet et besoins
+
+L’objectif de ce projet est d’informatiser et sécuriser la gestion des émargements. Le projet se concentre sur la création, l’alimentation et la consultation des émargements.
+
+Pour les besoins de ce projet, trois acteurs sont identifiés :
+
+- Un étudiant, qui participe à une séance d’enseignement, et qui doit émarger pour signifier qu’il était bien présent.
+- Un enseignant, qui assure la séance d’enseignement, et qui doit valider les émargements.
+- Un membre du personnel administratif, qui crée et consulte les listes d’émargements.
+
+*Les émargements doivent se faire à l’aide de QR-Codes.*
+
+À vous de proposer une solution facile à utiliser, et garantissant l’authenticité, l’intégrité et l’authentification des émargements. Vous devez notamment décider de la manière dont sont utilisés les QR-Codes (qui les génère, qui les scanne et par quel moyen).
+
+==== Exigences
+
+===== Contraintes fonctionnelles
+
+*Pour le service back-end :*
+
+La forme, le nommage et la manière d'utiliser vos points d'entrée doivent être cohérents et pertinents, au regard des besoins fonctionnels exprimés.
+
+*Pour l'application front-end (uniquement les groupes FI):*
+
+ L’application front-end doit être utilisable sur ordinateur ou sur smartphone. En particulier, il doit être possible de scanner les QR-Codes à l’aide de la caméra de son smartphone.
+ Vous pouvez proposer des solutions alternatives (par exemple pour favoriser l'accessibilité), en plus de celle demandée. Ces solutions alternatives devront assurer les mêmes garanties d’authenticité, intégrité et authentification des émargements.
+
+===== Contraintes techniques
+
+Chaque partie du projet doit pouvoir être déployée facilement sur un serveur Web. En particulier, le déploiement et l’exécution de chacune des parties du projet ne doivent pas dépendre d’un IDE.
+
+Pour la réalisation du projet, vous devez utiliser les technologies suivantes :
+
+*Pour le service back-end (tous les groupes de projet) :*
+
+- Service Web : SpringBoot REST API
+- Documentation : Spring REST Docs (avec génération de snippets de tests)
+- Base de données : MongoDB
+- Déploiement : Docker
+
+*Pour l’application front-end (uniquement les groupes FI) :*
+
+ - Vues : HTML5, CSS3, Bootstrap
+ - Contrôleur(s) et modèle(s) : Angular 2+
+
+
+==== Livrables attendus
+
+===== Rapport global du projet
+
+Le rapport, sous format PDF, doit contenir a minima
+
+. Présentation métier de la solution proposée
+. Organisation de l’équipe et gestion du projet : identification des tâches à réaliser, diagramme de Gantt, matrice RACI,...
+. Documentation technique
+    .. Où se trouvent les sources du projet, et comment elles s’organisent
+    .. Comment déployer les différentes parties du projet
+    .. Le cas échéant, configurations requises (p.ex. versions minimales)
+. Pour le service back-end (tous les groupes de projet) :
+    .. Résumé du service sous la forme d’un tableau des URIs ; les détails seront fournis via la documentation “Spring REST Docs”
+. Pour l’application front-end (uniquement les groupes FI) :
+    .. Diagramme(s) de séquence, décrivant le(s) scénario(s) d’utilisation de l’interface, avec précisions écrites si besoin
+
+
+==== Informations complémentaires :
+
+===== Date de rendu :
+*Dernier jour de la semaine d'examen de première session du S2 - 13 Mai 20h*
+
+===== Précisions sur l'attendu pour la section "2. Organisation de l'équipe et gestion du projet" :
+
+L'évaluation sera souple sur le contenu de cette section.
+
+L'objectif est avant tout de vous encourager à chercher et découvrir des outils et méthodes d'organisation d'équipe et gestion de projet, qui sont essentiels voire indispensables à la réussite de tout projet.
+
+Quelques références, pour en savoir plus sur certains outils et méthodes :
+
+    Google : https://google.fr/
+    Wikipedia : https://fr.wikipedia.org/
+    Diagramme de Gantt : http://www.diagramme-de-gantt.fr/
+    Matrice RACI : https://systemproject.fr/matrice-raci/ ; https://fr.wikipedia.org/wiki/RACI
+
+===== Pour le service back-end (tous les groupes de projet) :
+
+Vous devez fournir une documentation technique, réalisée à l'aide de “Spring REST Docs”, à destination de l'utilisateur de votre service.
+
+Cette documentation doit notamment fournir des exemples d'utilisation des différents points d'entrée du service, à l'aide de snippets, qui doivent également faire office de tests fonctionnels du service (fonctionnalité proposée par Spring REST Docs).
+Pour l’application front-end (uniquement les groupes FI)
+
+Vous réaliserez une vidéo filmée de démonstration d’une utilisation réelle de l’application. Il s'agit donc bien de vous filmer dans un scénario-type d'utilisation de l'application.

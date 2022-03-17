@@ -1,0 +1,27 @@
+
+=== Compte Rendu du 09/03/2022
+
+- *Points hebdomadaires :* _mercredi_ (20h~20h30) et _vendredi_ (après-midi ou soirée)
+- *Documentation :* -> choix d'_asciidoc_ pour tenir la doc (à valider par tout le monde)
+
+Lien utile mémo asciidoc : https://tech.sgra.co.jp/memo/asciidoc/
+
+- *Tâches à accomplir au point suivant* :
+* Définir les URLs de l'api
+* Modéliser le système d'information
+* Penser la configuration de docker
+* Se renseigner sur les solutions technique du QR-Code
+
+====== Modélisation SI version 0
+
+- UTILISATEUR  -> ROLE (étudiant, enseignant, agent administratif)
+- CRENEAU
+
+Un utilisateur possède un rôle. Le rôle est un attribut. => on part sur une composition plutôt que l'héritage pour nous faciliter la sécurisation de l'api (avec les filtres).
+
+
+
+
+
+
+

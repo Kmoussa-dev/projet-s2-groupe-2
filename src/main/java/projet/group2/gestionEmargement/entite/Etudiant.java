@@ -16,7 +16,7 @@ public class Etudiant {
         this.prenomEtudiant = prenomEtudiant;
         this.adresseMail = adresseMail;
         this.promo = promo;
-        this.emerge=Emerge.ABSENT;
+        this.emerge = Emerge.ABSENT;
     }
 
     public String getNumeroEtudiant() {
