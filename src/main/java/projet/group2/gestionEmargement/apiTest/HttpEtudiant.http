@@ -1,3 +1,9 @@
+
+
+GET http://localhost:8080/api/getById/62354c1892a4b501b2ca9e51
+Accept: application/json
+
+###
 POST http://localhost:8080/api/creerEtudiant
 Content-Type: application/json
 
