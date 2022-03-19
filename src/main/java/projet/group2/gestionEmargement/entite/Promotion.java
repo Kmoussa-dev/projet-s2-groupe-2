@@ -1,24 +1,25 @@
 package projet.group2.gestionEmargement.entite;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 
 public class Promotion {
-    @Field(name = "idPromotion")
-    private String idPromotion;
+//    @Id
+//    private String idPromotion;
 
     private Niveau niveau;
 
     @Field(name = "annee")
     private String annee;
 
-    public String getIdPromotion() {
-        return idPromotion;
-    }
-
-    public void setIdPromotion(String idPromotion) {
-        this.idPromotion = idPromotion;
-    }
+//    public String getIdPromotion() {
+//        return idPromotion;
+//    }
+//
+//    public void setIdPromotion(String idPromotion) {
+//        this.idPromotion = idPromotion;
+//    }
 
     public Niveau getNiveau() {
         return niveau;

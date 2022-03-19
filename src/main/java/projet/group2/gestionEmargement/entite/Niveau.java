@@ -1,11 +1,14 @@
 package projet.group2.gestionEmargement.entite;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 public enum Niveau {
 
     M1("MASTER 1"), M2("MASTER 2");
 
+//    @Id
+//    private String id;
     @Field(name = "niveau")
     private String abreviation;
 

@@ -1,6 +1,7 @@
 package projet.group2.gestionEmargement.entite;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -8,6 +9,8 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class Etudiant {
 
     @Id
+    private String id;
+    @Field(name = "numeroEtudiant")
     private String numeroEtudiant;
     @Field(name = "nomEtudiant")
     private String nomEtudiant;
@@ -27,6 +30,15 @@ public class Etudiant {
         this.adresseMail = adresseMail;
         this.promo = promo;
         this.emerge = Emerge.ABSENT;
+    }
+
+    public Etudiant(String numeroEtudiant, String nomEtudiant, String prenomEtudiant, String adresseMail, Promotion promo, Emerge emerge) {
+        this.numeroEtudiant = numeroEtudiant;
+        this.nomEtudiant = nomEtudiant;
+        this.prenomEtudiant = prenomEtudiant;
+        this.adresseMail = adresseMail;
+        this.promo = promo;
+        this.emerge = emerge;
     }
 
     public String getNumeroEtudiant() {

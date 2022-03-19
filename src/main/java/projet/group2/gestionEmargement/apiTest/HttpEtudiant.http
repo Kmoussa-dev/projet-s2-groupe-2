@@ -1,0 +1,21 @@
+POST http://localhost:8080/api/creerEtudiant
+Content-Type: application/json
+
+{
+  "numeroEtudiant": "o2175246",
+  "nomEtudiant": "KONE",
+  "prenomEtudiant": "MOUSSA",
+  "adresseMail": "moussa.kone@etu.univ-orleans.fr",
+  "promo":
+         {
+            "niveau": {
+              "niveau": "MASTER 1"
+            },
+           "annee": "2022"
+          },
+    "emerge": {
+      "emargement": "PRE"
+    }
+}
+
+###

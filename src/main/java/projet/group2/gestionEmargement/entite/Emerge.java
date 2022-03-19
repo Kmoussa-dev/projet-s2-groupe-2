@@ -1,11 +1,14 @@
 package projet.group2.gestionEmargement.entite;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 public enum Emerge {
 
     PRESENT("PRE"), ABSENT("ABS");
 
+    @Id
+    private String id;
     @Field(name = "emargement")
     private String abreviation;
 

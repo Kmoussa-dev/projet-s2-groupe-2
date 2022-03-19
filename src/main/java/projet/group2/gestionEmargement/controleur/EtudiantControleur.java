@@ -1,16 +1,16 @@
 package projet.group2.gestionEmargement.controleur;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.*;
-import projet.group2.gestionEmargement.dto.EtudiantDto;
+
 import projet.group2.gestionEmargement.entite.Etudiant;
 import projet.group2.gestionEmargement.service.EtudiantService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(name = "/api")
+@RequestMapping("/api")
 public class EtudiantControleur {
 
     @Autowired
