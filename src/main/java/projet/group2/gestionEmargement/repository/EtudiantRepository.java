@@ -8,9 +8,4 @@ import java.util.List;
 
 public interface EtudiantRepository extends MongoRepository<Etudiant,String> {
 
-
-    Etudiant findByNumeroEtudiant(String numeroEtudiant);
-    List<Etudiant>  findAllByPromo(Promotion promotion);
-
-
 }

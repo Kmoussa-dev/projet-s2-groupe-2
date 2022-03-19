@@ -1,13 +1,23 @@
 package projet.group2.gestionEmargement.entite;
 
-////doit etre un document
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
+@Document(collection = "etudiant")
 public class Etudiant {
 
+    @Id
     private String numeroEtudiant;
+    @Field(name = "nomEtudiant")
     private String nomEtudiant;
+    @Field(name = "prenomEtudiant")
     private String prenomEtudiant;
+    @Field(name = "adresseMail")
     private String adresseMail;
+
     private Promotion promo;
+
     private Emerge emerge;
 
     public Etudiant(String numeroEtudiant, String nomEtudiant, String prenomEtudiant, String adresseMail, Promotion promo) {

@@ -11,14 +11,14 @@ import projet.group2.gestionEmargement.service.EtudiantService;
 @RequestMapping(name = "/api")
 public class EtudiantControleur {
 
-    @Autowired
-    private EtudiantService etudiantService;
-
-    @PostMapping ("/etudiant")
-    ResponseEntity<EtudiantDto> inscriptionEtudiant(@RequestBody EtudiantDto etudiantDto) {
-        return etudiantService.inscriptionEtudiant();
-
-    }
+//    @Autowired
+//    private EtudiantService etudiantService;
+//
+//    @PostMapping ("/etudiant")
+//    ResponseEntity<EtudiantDto> inscriptionEtudiant(@RequestBody EtudiantDto etudiantDto) {
+//        return etudiantService.inscriptionEtudiant();
+//
+//    }
 
 
 }

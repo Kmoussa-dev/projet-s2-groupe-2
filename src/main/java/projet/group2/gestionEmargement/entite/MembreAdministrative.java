@@ -1,10 +1,14 @@
 package projet.group2.gestionEmargement.entite;
-//doit etre un document
+
+import org.springframework.data.mongodb.core.mapping.Field;
 
 public class MembreAdministrative {
 
+    @Field(name = "idMembre")
     private String idMembre;
+    @Field(name = "nomMembre")
     private String nomMembre;
+    @Field(name = "prenomMembre")
     private String prenomMembre;
 
     public MembreAdministrative(String idMembre, String nomMembre, String prenomMembre) {

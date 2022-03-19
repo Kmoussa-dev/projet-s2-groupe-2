@@ -1,16 +1,14 @@
 package projet.group2.gestionEmargement.entite;
-//doit etre un document
+
+import org.springframework.data.mongodb.core.mapping.Field;
+
 public class Enseignant {
-
+    @Field(name = "idEnseigant")
     private String idEnseignant;
+    @Field(name = "nomEnseignant")
     private String nomEseignant;
+    @Field(name = "prenomEnseignant")
     private String prenomEnseignant;
-
-    public Enseignant(String idEnseignant, String nomEseignant, String prenomEnseignant) {
-        this.idEnseignant = idEnseignant;
-        this.nomEseignant = nomEseignant;
-        this.prenomEnseignant = prenomEnseignant;
-    }
 
     public String getIdEnseignant() {
         return idEnseignant;
