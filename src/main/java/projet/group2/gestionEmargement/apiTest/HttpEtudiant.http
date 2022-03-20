@@ -1,6 +1,30 @@
 
 
-GET http://localhost:8080/api/getById/62354c1892a4b501b2ca9e51
+DELETE http://localhost:8080/api/delete/62368a60bd61507b772a2fa9
+Accept: application/json
+
+###
+PUT http://localhost:80/api/update
+Accept: application/json
+
+{
+  "id": "62368a60bd61507b772a2fa9",
+  "numeroEtudiant": "Mister",
+  "nomEtudiant": null,
+  "prenomEtudiant": null,
+  "adresseMail": null,
+  "promo": {
+    "niveau": null,
+    "annee": "2023"
+  }
+}
+###
+GET http://localhost:8080/api/all
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/getById/62368a60bd61507b772a2fa9
 Accept: application/json
 
 ###
@@ -14,14 +38,9 @@ Content-Type: application/json
   "adresseMail": "moussa.kone@etu.univ-orleans.fr",
   "promo":
          {
-            "niveau": {
-              "niveau": "MASTER 1"
-            },
+           "niveau": "MASTER 1",
            "annee": "2022"
-          },
-    "emerge": {
-      "emargement": "PRE"
-    }
+          }
 }
 
 ###

@@ -5,27 +5,23 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 
 public class Promotion {
-//    @Id
-//    private String idPromotion;
 
-    private Niveau niveau;
+    @Field(name = "niveau")
+    private String niveau;
 
     @Field(name = "annee")
     private String annee;
 
-//    public String getIdPromotion() {
-//        return idPromotion;
-//    }
-//
-//    public void setIdPromotion(String idPromotion) {
-//        this.idPromotion = idPromotion;
-//    }
+    public Promotion(String niveau, String annee) {
+        this.niveau = niveau;
+        this.annee = annee;
+    }
 
-    public Niveau getNiveau() {
+    public String getNiveau() {
         return niveau;
     }
 
-    public void setNiveau(Niveau niveau) {
+    public void setNiveau(String niveau) {
         this.niveau = niveau;
     }
 

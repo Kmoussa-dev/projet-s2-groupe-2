@@ -21,25 +21,6 @@ public class Etudiant {
 
     private Promotion promo;
 
-    private Emerge emerge;
-
-    public Etudiant(String numeroEtudiant, String nomEtudiant, String prenomEtudiant, String adresseMail, Promotion promo) {
-        this.numeroEtudiant = numeroEtudiant;
-        this.nomEtudiant = nomEtudiant;
-        this.prenomEtudiant = prenomEtudiant;
-        this.adresseMail = adresseMail;
-        this.promo = promo;
-        this.emerge = Emerge.ABSENT;
-    }
-
-    public Etudiant(String numeroEtudiant, String nomEtudiant, String prenomEtudiant, String adresseMail, Promotion promo, Emerge emerge) {
-        this.numeroEtudiant = numeroEtudiant;
-        this.nomEtudiant = nomEtudiant;
-        this.prenomEtudiant = prenomEtudiant;
-        this.adresseMail = adresseMail;
-        this.promo = promo;
-        this.emerge = emerge;
-    }
 
     public Etudiant() {
     }
@@ -84,11 +65,12 @@ public class Etudiant {
         this.promo = promo;
     }
 
-    public Emerge getEmerge() {
-        return emerge;
+    public String getId() {
+        return id;
     }
 
-    public void setEmerge(Emerge emerge) {
-        this.emerge = emerge;
+    public void setId(String id) {
+        this.id = id;
     }
+
 }
