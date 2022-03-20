@@ -1,10 +1,10 @@
-package projet.group2.gestionEmargement.controleur;
+package projet.group2.gestionEmargement.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
 
-import projet.group2.gestionEmargement.entite.Etudiant;
+import projet.group2.gestionEmargement.entity.Etudiant;
 import projet.group2.gestionEmargement.service.EtudiantService;
 
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.List;
 public class EtudiantControleur {
 
     @Autowired
-    private EtudiantService etudiantService;
+    EtudiantService etudiantService;
 
     @PostMapping("/creerEtudiant")
     public Etudiant creerEtudiant(@RequestBody Etudiant etudiant){

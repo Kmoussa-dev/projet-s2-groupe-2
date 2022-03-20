@@ -1,6 +1,5 @@
-package projet.group2.gestionEmargement.entite;
+package projet.group2.gestionEmargement.entity;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 
@@ -11,11 +10,6 @@ public class Promotion {
 
     @Field(name = "annee")
     private String annee;
-
-    public Promotion(String niveau, String annee) {
-        this.niveau = niveau;
-        this.annee = annee;
-    }
 
     public String getNiveau() {
         return niveau;

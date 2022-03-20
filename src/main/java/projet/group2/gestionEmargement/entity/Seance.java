@@ -1,11 +1,10 @@
-package projet.group2.gestionEmargement.entite;
+package projet.group2.gestionEmargement.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 @Document(collection = "seance")
 public class Seance {
@@ -13,39 +12,31 @@ public class Seance {
     @Id
     private String idSeance;
 
-    private MembreAdministrative createurSeance;
+    private Utilisateur createurSeance;
 
     @Field(name = "discipline")
     private String discipline;
 
-    private Enseignant enseignant;
-    private TypeSeance typeSeance;
+    private Utilisateur enseignant;
+
+    @Field(name = "typeDeSeance")
+    private String typeSeance;
+
     private List<Etudiant> etudiants;
+
     private List<Etudiant> etudiantsPresent;
 
     @Field(name = "heureDebut")
     private LocalDateTime heureDebut;
+
     @Field(name = "heureFin")
     private LocalDateTime heureFin;
 
     private Promotion promotion;
 
-    private StatutSeance statutSeance;
+    @Field(name = "statutSeance")
+    private String statutSeance;
 
-    public Seance(String idSeance, String discipline, Enseignant enseignant, TypeSeance typeSeance, List<Etudiant> etudiants,
-                  LocalDateTime heureDebut, LocalDateTime heureFin, Promotion promotion,MembreAdministrative membre) {
-        this.idSeance = idSeance;
-        this.discipline = discipline;
-        this.enseignant = enseignant;
-        this.typeSeance = typeSeance;
-        this.etudiants = etudiants;
-        this.etudiantsPresent = new ArrayList<>();
-        this.heureDebut = heureDebut;
-        this.heureFin = heureFin;
-        this.promotion = promotion;
-        this.statutSeance = StatutSeance.NV;
-        this.createurSeance=membre;
-    }
 
     public String getIdSeance() {
         return idSeance;
@@ -63,19 +54,19 @@ public class Seance {
         this.discipline = discipline;
     }
 
-    public Enseignant getEnseignant() {
+    public Utilisateur getEnseignant() {
         return enseignant;
     }
 
-    public void setEnseignant(Enseignant enseignant) {
+    public void setEnseignant(Utilisateur enseignant) {
         this.enseignant = enseignant;
     }
 
-    public TypeSeance getTypeSeance() {
+    public String getTypeSeance() {
         return typeSeance;
     }
 
-    public void setTypeSeance(TypeSeance typeSeance) {
+    public void setTypeSeance(String  typeSeance) {
         this.typeSeance = typeSeance;
     }
 
@@ -119,19 +110,19 @@ public class Seance {
         this.promotion = promotion;
     }
 
-    public StatutSeance getStatutSeance() {
+    public String getStatutSeance() {
         return statutSeance;
     }
 
-    public void setStatutSeance(StatutSeance statutSeance) {
+    public void setStatutSeance(String statutSeance) {
         this.statutSeance = statutSeance;
     }
 
-    public MembreAdministrative getCreateurSeance() {
+    public Utilisateur getCreateurSeance() {
         return createurSeance;
     }
 
-    public void setCreateurSeance(MembreAdministrative createurSeance) {
+    public void setCreateurSeance(Utilisateur createurSeance) {
         this.createurSeance = createurSeance;
     }
 }

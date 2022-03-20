@@ -1,9 +1,10 @@
-package projet.group2.gestionEmargement.entite;
+package projet.group2.gestionEmargement.entity;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+
+import java.util.List;
 
 @Document(collection = "etudiant")
 public class Etudiant {
@@ -20,6 +21,12 @@ public class Etudiant {
     private String adresseMail;
 
     private Promotion promo;
+
+    @Field(name = "motDePasse")
+    private String motDepasse;
+
+    @Field(name = "roles")
+    private List<String> roles;
 
 
     public Etudiant() {
@@ -73,4 +80,19 @@ public class Etudiant {
         this.id = id;
     }
 
+    public String getMotDepasse() {
+        return motDepasse;
+    }
+
+    public void setMotDepasse(String motDepasse) {
+        this.motDepasse = motDepasse;
+    }
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
 }
