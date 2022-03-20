@@ -17,27 +17,27 @@ public class EtudiantControleur {
     private EtudiantService etudiantService;
 
     @PostMapping("/creerEtudiant")
-    public Etudiant createStudent(@RequestBody Etudiant etudiant){
+    public Etudiant creerEtudiant(@RequestBody Etudiant etudiant){
         return etudiantService.creerEtudiant(etudiant);
     }
 
     @GetMapping("/getById/{id}")
-    public Etudiant getStudentById(@PathVariable String id){
+    public Etudiant getEtudiantById(@PathVariable String id){
         return etudiantService.getEtudiantById(id);
     }
 
     @GetMapping("/all")
-    public List<Etudiant> getAllStudents(){
+    public List<Etudiant> getAllEtudiants(){
         return etudiantService.getAllEtudiants();
     }
 
     @PutMapping("/update")
-    public Etudiant updateStudent(@RequestBody Etudiant etudiant){
+    public Etudiant updateEtudiant(@RequestBody Etudiant etudiant){
         return etudiantService.majEtudiant(etudiant);
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteStudent(@PathVariable String id){
+    public String deleteEtudiant(@PathVariable String id){
         return etudiantService.supprimerEtudiant(id);
     }
 }

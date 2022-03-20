@@ -41,6 +41,9 @@ public class Etudiant {
         this.emerge = emerge;
     }
 
+    public Etudiant() {
+    }
+
     public String getNumeroEtudiant() {
         return numeroEtudiant;
     }

@@ -12,6 +12,7 @@ public enum Niveau {
     @Field(name = "niveau")
     private String abreviation;
 
+
     private Niveau(String abreviation) {
         this.abreviation = abreviation;
     }
