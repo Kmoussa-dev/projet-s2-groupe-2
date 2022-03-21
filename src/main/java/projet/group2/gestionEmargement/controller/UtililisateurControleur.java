@@ -26,9 +26,24 @@ public class UtililisateurControleur {
         return utilisateurService.getUtilisateurById(id);
     }
 
-    @GetMapping("/all")
+    @GetMapping("/allUtilisateurs")
     public List<Utilisateur> getAllUtilisateurs(){
         return utilisateurService.getAllUtilisateurs();
+    }
+
+    @GetMapping("/allEtudiants")
+    public List<Utilisateur> getAllEtudiants(){
+        return utilisateurService.getEtudiants();
+    }
+
+    @GetMapping("/allMembreAdministratifs")
+    public List<Utilisateur> getAllMembreAdministratifs(){
+        return utilisateurService.getMembreAdministratifs();
+    }
+
+    @GetMapping("/allEnseignants")
+    public List<Utilisateur> getAllEnseignants(){
+        return utilisateurService.getEnseignants();
     }
 
     @PutMapping("/update")

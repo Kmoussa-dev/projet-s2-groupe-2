@@ -1,4 +1,11 @@
+GET http://localhost:8080/api/allEnseignants
+Accept: application/json
 
+###
+GET http://localhost:8080/api/allEtudiants
+Accept: application/json
+
+###
 
 DELETE http://localhost:8080/api/delete/62368a60bd61507b772a2fa9
 Accept: application/json
@@ -26,7 +33,7 @@ Accept: application/json
 
 }
 ###
-GET http://localhost:8080/api/all
+GET http://localhost:8080/api/allUtilisateurs
 Accept: application/json
 
 ###
@@ -39,17 +46,17 @@ POST http://localhost:8080/api/creerUtilisateur
 Content-Type: application/json
 
 {
-  "numeroEtudiant": "o2175246",
+  "numeroEtudiant": "o22002589",
   "fonction": "ETUDIANT",
-  "nomUtilisateur": "KONE",
+  "nomUtilisateur": "BAKAYOKO",
   "prenomUtilisateur": "MOUSSA",
   "promo":
          {
            "niveau": "MASTER 1",
            "annee": "2022"
          },
-  "email": "moussa.kone@etu.univ-orleans.fr",
-  "motDePasse": "Kmm@1999",
+  "email": "moussa.bakayoko@etu.univ-orleans.fr",
+  "motDePasse": "@Jason09",
   "roles": [
     "ETUDIANT","EMARGEMENT"
   ]
@@ -62,10 +69,10 @@ Content-Type: application/json
 
 {
   "fonction": "ENSEIGNANT",
-  "nomUtilisateur": "MOAL",
-  "prenomUtilisateur": "FREDÉRIC",
-  "email": "frederic.moal@univ-orleans.fr",
-  "motDePasse": "fred",
+  "nomUtilisateur": "BOICHUT",
+  "prenomUtilisateur": "YOHAN",
+  "email": "yohan.boichut@univ-orleans.fr",
+  "motDePasse": "yohan",
   "roles": [
     "ENSEIGNANT","VALIDER SEANCE"
   ]
@@ -78,10 +85,10 @@ Content-Type: application/json
 
 {
   "fonction": "MEMBRE ADMINISTRATIF",
-  "nomUtilisateur": "DUPUIS",
-  "prenomUtilisateur": "BRIGITTE",
-  "email": "brigitte.dupuis@univ-orleans.fr",
-  "motDePasse": "brigitte",
+  "nomUtilisateur": "MAUBERT",
+  "prenomUtilisateur": "FLORENCE",
+  "email": "florence.maubert@univ-orleans.fr",
+  "motDePasse": "florence",
   "roles": [
     "MEMBRE ADMINISTRATIF","CREER SEANCE"
   ]

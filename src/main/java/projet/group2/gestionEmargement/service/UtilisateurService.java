@@ -24,6 +24,12 @@ public class UtilisateurService {
         return utilisateurRepository.findAll();
     }
 
+    public List<Utilisateur> getEtudiants(){return utilisateurRepository.findByFonction("ETUDIANT");}
+
+    public List<Utilisateur> getEnseignants(){return utilisateurRepository.findByFonction("ENSEIGNANT");}
+
+    public List<Utilisateur> getMembreAdministratifs(){return utilisateurRepository.findByFonction("MEMBRE ADMINISTRATIF");}
+
     public Utilisateur majUtilisateur(Utilisateur utilisateur) {
         return utilisateurRepository.save(utilisateur);
     }
