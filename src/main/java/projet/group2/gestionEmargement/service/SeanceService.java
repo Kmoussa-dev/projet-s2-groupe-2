@@ -2,9 +2,7 @@ package projet.group2.gestionEmargement.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import projet.group2.gestionEmargement.entity.Etudiant;
 import projet.group2.gestionEmargement.entity.Seance;
-import projet.group2.gestionEmargement.repository.EtudiantRepository;
 import projet.group2.gestionEmargement.repository.SeanceRepository;
 
 import java.util.List;

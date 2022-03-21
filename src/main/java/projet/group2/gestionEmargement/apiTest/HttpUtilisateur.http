@@ -28,7 +28,7 @@ GET http://localhost:8080/api/getById/62368a60bd61507b772a2fa9
 Accept: application/json
 
 ###
-POST http://localhost:8080/api/creerEtudiant
+POST http://localhost:8080/api/creerUtilisateur
 Content-Type: application/json
 
 {

@@ -3,22 +3,24 @@ package projet.group2.gestionEmargement.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-//Pour les enseignants et pour les membres administratifs
 import java.util.List;
+
 @Document(collection="utilisateur")
 public class Utilisateur {
 
     @Id
     private String idUtilisateur;
 
-    @Field(name = "profession")
-    private String profession;
+    @Field(name = "fonction")
+    private String fonction;
 
     @Field(name = "nomUtilisateur")
     private String nomUtilisateur;
 
     @Field(name = "prenomUtilisateur")
     private String prenomUtilisateur;
+
+    private Promotion promo;
 
     @Field(name = "email")
     private String email;
@@ -37,12 +39,12 @@ public class Utilisateur {
         this.idUtilisateur = idUtilisateur;
     }
 
-    public String getProfession() {
-        return profession;
+    public String getFonction() {
+        return fonction;
     }
 
-    public void setProfession(String profession) {
-        this.profession = profession;
+    public void setFonction(String fonction) {
+        this.fonction = fonction;
     }
 
     public String getNomUtilisateur() {

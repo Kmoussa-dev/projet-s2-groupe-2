@@ -22,9 +22,9 @@ public class Seance {
     @Field(name = "typeDeSeance")
     private String typeSeance;
 
-    private List<Etudiant> etudiants;
+    private List<Utilisateur> etudiants;
 
-    private List<Etudiant> etudiantsPresent;
+    private List<Utilisateur> etudiantsPresent;
 
     @Field(name = "heureDebut")
     private LocalDateTime heureDebut;
@@ -70,19 +70,19 @@ public class Seance {
         this.typeSeance = typeSeance;
     }
 
-    public List<Etudiant> getEtudiants() {
+    public List<Utilisateur> getEtudiants() {
         return etudiants;
     }
 
-    public void setEtudiants(List<Etudiant> etudiants) {
+    public void setEtudiants(List<Utilisateur> etudiants) {
         this.etudiants = etudiants;
     }
 
-    public List<Etudiant> getEtudiantsPresent() {
+    public List<Utilisateur> getEtudiantsPresent() {
         return etudiantsPresent;
     }
 
-    public void setEtudiantsPresent(List<Etudiant> etudiantsPresent) {
+    public void setEtudiantsPresent(List<Utilisateur> etudiantsPresent) {
         this.etudiantsPresent = etudiantsPresent;
     }
 
