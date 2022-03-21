@@ -11,6 +11,9 @@ public class Utilisateur {
     @Id
     private String idUtilisateur;
 
+    @Field(name = "numeroEtudiant")
+    private String numeroEtudiant;
+
     @Field(name = "fonction")
     private String fonction;
 
@@ -37,6 +40,14 @@ public class Utilisateur {
 
     public void setIdUtilisateur(String idUtilisateur) {
         this.idUtilisateur = idUtilisateur;
+    }
+
+    public String getNumeroEtudiant() {
+        return numeroEtudiant;
+    }
+
+    public void setNumeroEtudiant(String numeroEtudiant) {
+        this.numeroEtudiant = numeroEtudiant;
     }
 
     public String getFonction() {

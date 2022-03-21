@@ -4,19 +4,26 @@ DELETE http://localhost:8080/api/delete/62368a60bd61507b772a2fa9
 Accept: application/json
 
 ###
-PUT http://localhost:80/api/update
+PUT http://localhost:8080/api/update
 Accept: application/json
 
 {
-  "id": "62368a60bd61507b772a2fa9",
-  "numeroEtudiant": "Mister",
-  "nomEtudiant": null,
-  "prenomEtudiant": null,
-  "adresseMail": null,
-  "promo": {
-    "niveau": null,
-    "annee": "2023"
-  }
+  "idUtilisateur": "6238a666545c22363f41c588",
+  "numeroEtudiant": "o2175246",
+  "fonction": "ETUDIANT",
+  "nomUtilisateur": "KONE",
+  "prenomUtilisateur": "MOUSSA MOHAMED",
+  "promo":
+         {
+           "niveau": "MASTER 1",
+           "annee": "2022"
+         },
+  "email": "moussa.kone@etu.univ-orleans.fr",
+  "motDePasse": "Kmm@1999",
+  "roles": [
+    "ETUDIANT","EMARGEMENT"
+  ]
+
 }
 ###
 GET http://localhost:8080/api/all
@@ -24,7 +31,7 @@ Accept: application/json
 
 ###
 
-GET http://localhost:8080/api/getById/62368a60bd61507b772a2fa9
+GET http://localhost:8080/api/getById/6238a2375bb773217b58d5a9
 Accept: application/json
 
 ###
@@ -33,14 +40,50 @@ Content-Type: application/json
 
 {
   "numeroEtudiant": "o2175246",
-  "nomEtudiant": "KONE",
-  "prenomEtudiant": "MOUSSA",
-  "adresseMail": "moussa.kone@etu.univ-orleans.fr",
+  "fonction": "ETUDIANT",
+  "nomUtilisateur": "KONE",
+  "prenomUtilisateur": "MOUSSA",
   "promo":
          {
            "niveau": "MASTER 1",
            "annee": "2022"
-          }
+         },
+  "email": "moussa.kone@etu.univ-orleans.fr",
+  "motDePasse": "Kmm@1999",
+  "roles": [
+    "ETUDIANT","EMARGEMENT"
+  ]
+
 }
 
 ###
+POST http://localhost:8080/api/creerUtilisateur
+Content-Type: application/json
+
+{
+  "fonction": "ENSEIGNANT",
+  "nomUtilisateur": "MOAL",
+  "prenomUtilisateur": "FREDÉRIC",
+  "email": "frederic.moal@univ-orleans.fr",
+  "motDePasse": "fred",
+  "roles": [
+    "ENSEIGNANT","VALIDER SEANCE"
+  ]
+
+}
+
+###
+POST http://localhost:8080/api/creerUtilisateur
+Content-Type: application/json
+
+{
+  "fonction": "MEMBRE ADMINISTRATIF",
+  "nomUtilisateur": "DUPUIS",
+  "prenomUtilisateur": "BRIGITTE",
+  "email": "brigitte.dupuis@univ-orleans.fr",
+  "motDePasse": "brigitte",
+  "roles": [
+    "MEMBRE ADMINISTRATIF","CREER SEANCE"
+  ]
+}
+
