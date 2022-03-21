@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import projet.group2.gestionEmargement.entity.Utilisateur;
 import projet.group2.gestionEmargement.service.UtilisateurService;
 
+
 import java.util.List;
 
 @RestController
@@ -15,6 +16,7 @@ public class UtililisateurControleur {
 
     @Autowired
     UtilisateurService utilisateurService;
+
 
     @PostMapping("/creerUtilisateur")
     public Utilisateur creerUtilisateur(@RequestBody Utilisateur utilisateur){

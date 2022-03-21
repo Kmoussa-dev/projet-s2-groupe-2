@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import projet.group2.gestionEmargement.entity.Seance;
 import projet.group2.gestionEmargement.repository.SeanceRepository;
+import projet.group2.gestionEmargement.repository.UtilisateurRepository;
 
 import java.util.List;
 
@@ -13,7 +14,12 @@ public class SeanceService {
     @Autowired
     SeanceRepository seanceRepository;
 
+    @Autowired
+    UtilisateurRepository utilisateurRepository;
+
     public Seance creerSeance(Seance seance){
+        utilisateurRepository.save(seance.getCreateurSeance());
+        utilisateurRepository.save(seance.getEnseignant());
         return seanceRepository.save(seance);
     }
 

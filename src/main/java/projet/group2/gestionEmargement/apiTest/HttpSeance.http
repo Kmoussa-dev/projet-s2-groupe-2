@@ -1,0 +1,30 @@
+POST http://localhost:8080/api/seance/creerSeance
+Content-Type: application/json
+
+{
+  "createurSeance": {
+    "fonction": "MEMBRE ADMINISTRATIF",
+    "nomUtilisateur": "MAUBERT1",
+    "prenomUtilisateur": "FLORENCE2",
+    "email": "florence.maubert@univ-orleans.fr",
+    "motDePasse": "florence",
+    "roles": [
+      "MEMBRE ADMINISTRATIF",
+      "CREER SEANCE"
+    ]
+  },
+  "discipline": "TEST ET QUALITÉ",
+  "enseignant": {
+    "fonction": "ENSEIGNANT",
+    "nomUtilisateur": "CHAPELLE",
+    "prenomUtilisateur": "MATTHIEU",
+    "email": "matthieu.chapelle@univ-orleans.fr",
+    "motDePasse": "matthieu",
+    "roles": [
+      "ENSEIGNANT",
+      "VALIDER SEANCE"
+    ]
+  },
+  "typeSeance": "TD",
+  "statutSeance": "NON VALIDE"
+}
