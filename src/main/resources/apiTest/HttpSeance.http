@@ -1,3 +1,15 @@
+DELETE http://localhost:8080/api/seance/delete/6239eb78c203c90b13bfab44
+Accept: application/json
+
+###
+GET http://localhost:8080/api/seance/getById/6239eb78c203c90b13bfab44
+Accept: application/json
+
+###
+GET http://localhost:8080/api/seance/all
+Accept: application/json
+
+###
 POST http://localhost:8080/api/seance/creerSeance
 Content-Type: application/json
 
@@ -16,7 +28,7 @@ Content-Type: application/json
   "discipline": "TEST ET QUALITÉ",
   "enseignant": {
     "fonction": "ENSEIGNANT",
-    "nomUtilisateur": "CHAPELLE",
+    "nomUtilisateur": "CHAPEL",
     "prenomUtilisateur": "MATTHIEU",
     "email": "matthieu.chapelle@univ-orleans.fr",
     "motDePasse": "matthieu",
@@ -26,5 +38,9 @@ Content-Type: application/json
     ]
   },
   "typeSeance": "TD",
+  "heureDebut": "2020-05-07T08:00:00",
+  "heureFin": "2020-05-07T10:00:00",
   "statutSeance": "NON VALIDE"
 }
+###
+

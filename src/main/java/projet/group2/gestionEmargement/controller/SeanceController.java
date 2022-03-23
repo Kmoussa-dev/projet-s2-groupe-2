@@ -3,6 +3,7 @@ package projet.group2.gestionEmargement.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import projet.group2.gestionEmargement.entity.Seance;
+import projet.group2.gestionEmargement.exception.CreationImpossibleDeSeanceException;
 import projet.group2.gestionEmargement.service.SeanceService;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class SeanceController {
     SeanceService seanceService;
 
     @PostMapping("/creerSeance")
-    public Seance creerSeance(@RequestBody Seance seance){
+    public Seance creerSeance(@RequestBody Seance seance) throws CreationImpossibleDeSeanceException {
         return seanceService.creerSeance(seance);
     }
 

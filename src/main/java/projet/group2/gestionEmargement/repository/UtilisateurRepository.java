@@ -8,5 +8,6 @@ import java.util.List;
 public interface UtilisateurRepository extends MongoRepository<Utilisateur,String> {
 
     List<Utilisateur> findByFonction(String fonction);
-
+    Utilisateur findByNomUtilisateurAndPrenomUtilisateur(String nomUtilisateur,String prenomUtilisateur);
+    Utilisateur findByEmail(String email);
 }
