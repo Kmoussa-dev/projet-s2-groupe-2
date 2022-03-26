@@ -22,6 +22,8 @@ public class Seance {
     @Field(name = "typeDeSeance")
     private String typeSeance;
 
+    private Groupe groupe;
+
     private List<Utilisateur> etudiants;
 
     private List<Utilisateur> etudiantsPresent;
@@ -33,6 +35,7 @@ public class Seance {
     private LocalDateTime heureFin;
 
     private Promotion promotion;
+
 
     @Field(name = "statutSeance")
     private String statutSeance;

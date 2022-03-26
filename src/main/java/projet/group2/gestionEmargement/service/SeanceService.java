@@ -33,9 +33,6 @@ public class SeanceService {
         seance.setEtudiants(utilisateurRepository.findByFonction("ETUDIANT"));
         //Problème:Création d'une séance avec la contrainte du créneau
         List<Seance> seances=seanceRepository.findAll();
-
-
-
         //Vérifier s'il existe dans le Mongo
         Utilisateur enseignant=utilisateurRepository.findByEmail(seance.getEnseignant().getEmail());
         Utilisateur createurSeance= utilisateurRepository.findByEmail(seance.getCreateurSeance().getEmail());
@@ -45,25 +42,40 @@ public class SeanceService {
         if (Objects.isNull(createurSeance)){
             utilisateurRepository.save(seance.getCreateurSeance());
         }
-        //une Seance ne peut commencer à 8h00
-        //une Seance ne peut etre programmer à plus de 20 h00
+
         //les creneaux ne peuvent se chevaucher
-
         LocalDate date=seance.getHeureFin().toLocalDate();
-        LocalTime time=seance.getHeureFin().toLocalTime();
-        boolean possibiliteDeCreer=false;
-        for (Seance iSeance:seances){
-            LocalDate iSeanceDate=iSeance.getHeureFin().toLocalDate();
-            LocalTime iSeanceTime=iSeance.getHeureFin().toLocalTime();
+        LocalTime timeFin=seance.getHeureFin().toLocalTime();
+        LocalTime timeDebut=seance.getHeureDebut().toLocalTime();
 
+        boolean possibiliteDeCreerSurUneDate=false;
+        boolean possibiliteDeCreerSurUneAutreDate=false;
+
+        for (Seance iSeance:seances){
+            LocalDate iSeanceDate=iSeance.getHeureDebut().toLocalDate();
+            LocalTime iSeanceTimeDebut=iSeance.getHeureDebut().toLocalTime();
+            LocalTime iSeanceTimeFin=iSeance.getHeureFin().toLocalTime();
             if(iSeanceDate.equals(date)){
-                if(iSeanceTime.isBefore(time)|| iSeanceTime.isAfter(time)){
-                    possibiliteDeCreer = true;
+                if(iSeanceTimeDebut.isBefore(timeFin)&&iSeanceTimeDebut.isAfter(timeDebut)){
+                    possibiliteDeCreerSurUneDate = false;
+                }
+                else if (iSeanceTimeFin.isBefore(timeFin)&&iSeanceTimeFin.isAfter(timeDebut)){
+                    possibiliteDeCreerSurUneDate=false;
+                }
+                else if (iSeanceTimeDebut.isBefore(timeDebut)&&iSeanceTimeFin.isAfter(timeFin)){
+                    possibiliteDeCreerSurUneDate=false;
+                }
+                else {
+                    possibiliteDeCreerSurUneDate=true;
                 }
             }
+            else {
+                possibiliteDeCreerSurUneAutreDate=true;
+            }
         }
-        if (possibiliteDeCreer) return seanceRepository.save(seance);
-        return null;
+
+        if (possibiliteDeCreerSurUneDate||possibiliteDeCreerSurUneAutreDate) return seanceRepository.save(seance);
+        return seance;
     }
 
 //    public int comprareLocalDateTime(LocalDateTime ldt1,LocalDateTime ldt2){

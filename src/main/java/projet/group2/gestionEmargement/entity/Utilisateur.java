@@ -23,6 +23,8 @@ public class Utilisateur {
     @Field(name = "prenomUtilisateur")
     private String prenomUtilisateur;
 
+    private Groupe groupe;
+
     private Promotion promo;
 
     @Field(name = "email")
