@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
 
+import projet.group2.gestionEmargement.entity.Groupe;
 import projet.group2.gestionEmargement.entity.Utilisateur;
 import projet.group2.gestionEmargement.service.UtilisateurService;
 
@@ -11,7 +12,7 @@ import projet.group2.gestionEmargement.service.UtilisateurService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/utilisateur")
 public class UtililisateurControleur {
 
     @Autowired
@@ -28,24 +29,39 @@ public class UtililisateurControleur {
         return utilisateurService.getUtilisateurById(id);
     }
 
-    @GetMapping("/allUtilisateurs")
+    @GetMapping("/all")
     public List<Utilisateur> getAllUtilisateurs(){
         return utilisateurService.getAllUtilisateurs();
     }
 
-    @GetMapping("/allEtudiants")
+    @GetMapping("/etudiants")
     public List<Utilisateur> getAllEtudiants(){
         return utilisateurService.getEtudiants();
     }
 
-    @GetMapping("/allMembreAdministratifs")
+    @GetMapping("/membreAdministratifs")
     public List<Utilisateur> getAllMembreAdministratifs(){
         return utilisateurService.getMembreAdministratifs();
     }
 
-    @GetMapping("/allEnseignants")
+    @GetMapping("/enseignants")
     public List<Utilisateur> getAllEnseignants(){
         return utilisateurService.getEnseignants();
+    }
+
+//    @GetMapping("/groupe")
+//    public List<Utilisateur> getEtudiantByGroupe(Groupe groupe) {
+//        return utilisateurService.getUtilisateurByGroupe(groupe);
+//    }
+
+    @GetMapping("/promotion/{niveau}")
+    public List<Utilisateur> getUtilisateurByPromoNiveau(@PathVariable("niveau") String niveau) {
+        return utilisateurService.getUtilisateurByPromoNiveau(niveau);
+    }
+
+    @GetMapping("/promotion/{niveau}/{annee}")
+    public List<Utilisateur> getUtilisateurByPromoNiveauAndAnnee(@PathVariable("niveau") String niveau,@PathVariable("annee") String annee) {
+        return utilisateurService.getUtilisateurByPromoNiveauAndAnnee(niveau,annee);
     }
 
     @PutMapping("/update")

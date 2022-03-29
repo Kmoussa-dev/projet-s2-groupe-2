@@ -2,6 +2,7 @@ package projet.group2.gestionEmargement.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import projet.group2.gestionEmargement.entity.Groupe;
 import projet.group2.gestionEmargement.entity.Utilisateur;
 import projet.group2.gestionEmargement.repository.UtilisateurRepository;
 
@@ -32,6 +33,18 @@ public class UtilisateurService {
 
     public Utilisateur majUtilisateur(Utilisateur utilisateur) {
         return utilisateurRepository.save(utilisateur);
+    }
+
+//    public List<Utilisateur> getUtilisateurByGroupe(Groupe groupe) {
+//        return utilisateurRepository.findByGroupe(groupe);
+//    }
+
+    public List<Utilisateur> getUtilisateurByPromoNiveau(String niveau) {
+        return utilisateurRepository.findByPromoNiveau(niveau);
+    }
+
+    public List<Utilisateur> getUtilisateurByPromoNiveauAndAnnee(String niveau,String annee) {
+        return utilisateurRepository.findByPromoNiveauAndPromoAnnee(niveau,annee);
     }
 
     public String supprimerUtilisateur(String id) {

@@ -23,6 +23,7 @@ public class Utilisateur {
     @Field(name = "prenomUtilisateur")
     private String prenomUtilisateur;
 
+
     private Groupe groupe;
 
     private Promotion promo;
@@ -98,5 +99,21 @@ public class Utilisateur {
 
     public void setRoles(List<String> roles) {
         this.roles = roles;
+    }
+
+    public void setGroupe(Groupe groupe) {
+        this.groupe = groupe;
+    }
+
+    public void setPromo(Promotion promo) {
+        this.promo = promo;
+    }
+
+    public Groupe getGroupe() {
+        return groupe;
+    }
+
+    public Promotion getPromo() {
+        return promo;
     }
 }
