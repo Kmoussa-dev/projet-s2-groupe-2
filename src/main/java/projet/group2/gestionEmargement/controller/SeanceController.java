@@ -11,31 +11,31 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/seance")
 public class SeanceController {
-    @Autowired
-    SeanceService seanceService;
+//    @Autowired
+//    SeanceService seanceService;
 
-    @PostMapping("/creerSeance")
-    public Seance creerSeance(@RequestBody Seance seance) throws CreationImpossibleDeSeanceException {
-        return seanceService.creerSeance(seance);
-    }
-
-    @GetMapping("/getById/{id}")
-    public Seance getSeanceById(@PathVariable String id){
-        return seanceService.getSeanceById(id);
-    }
-
-    @GetMapping("/all")
-    public List<Seance> getAllSeances(){
-        return seanceService.getAllSeances();
-    }
-
-    @PutMapping("/update")
-    public Seance updateSeance(@RequestBody Seance seance){
-        return seanceService.majSeance(seance);
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public String deleteSeance(@PathVariable String id){
-        return seanceService.supprimerSeance(id);
-    }
+//    @PostMapping("/creerSeance")
+//    public Seance creerSeance(@RequestBody Seance seance) throws CreationImpossibleDeSeanceException {
+//        return seanceService.creerSeance(seance);
+//    }
+//
+//    @GetMapping("/getById/{id}")
+//    public Seance getSeanceById(@PathVariable String id){
+//        return seanceService.getSeanceById(id);
+//    }
+//
+//    @GetMapping("/all")
+//    public List<Seance> getAllSeances(){
+//        return seanceService.getAllSeances();
+//    }
+//
+//    @PutMapping("/update")
+//    public Seance updateSeance(@RequestBody Seance seance){
+//        return seanceService.majSeance(seance);
+//    }
+//
+//    @DeleteMapping("/delete/{id}")
+//    public String deleteSeance(@PathVariable String id){
+//        return seanceService.supprimerSeance(id);
+//    }
 }

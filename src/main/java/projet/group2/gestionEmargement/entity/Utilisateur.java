@@ -5,61 +5,22 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import java.util.List;
 
-@Document(collection="utilisateur")
+
 public class Utilisateur {
-
-    @Id
-    private String id;
-
-    @Field(name = "numeroEtudiant")
-    private String numeroEtudiant;
-
-    @Field(name = "fonction")
-    private String fonction;
-
     @Field(name = "nom")
-    private String nom;
+    protected String nom;
 
     @Field(name = "prenom")
-    private String prenom;
-
-    private Groupe groupe;
-
-    @Field(name = "promo")
-    private Promotion promo;
+    protected String prenom;
 
     @Field(name = "email")
-    private String email;
+    protected String email;
 
     @Field(name = "motDePasse")
-    private String motDePasse;
+    protected String motDePasse;
 
     @Field(name = "roles")
-    private List<String> roles;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getNumeroEtudiant() {
-        return numeroEtudiant;
-    }
-
-    public void setNumeroEtudiant(String numeroEtudiant) {
-        this.numeroEtudiant = numeroEtudiant;
-    }
-
-    public String getFonction() {
-        return fonction;
-    }
-
-    public void setFonction(String fonction) {
-        this.fonction = fonction;
-    }
+    protected List<String> roles;
 
     public String getNom() {
         return nom;
@@ -75,22 +36,6 @@ public class Utilisateur {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
-    }
-
-    public Groupe getGroupe() {
-        return groupe;
-    }
-
-    public void setGroupe(Groupe groupe) {
-        this.groupe = groupe;
-    }
-
-    public Promotion getPromo() {
-        return promo;
-    }
-
-    public void setPromo(Promotion promo) {
-        this.promo = promo;
     }
 
     public String getEmail() {
