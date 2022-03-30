@@ -10,6 +10,7 @@ Accept: application/json
 DELETE http://localhost:8080/api/delete/6239eb78c203c90b13bfab43
 Accept: application/json
 
+
 ###
 PUT http://localhost:8080/api/update
 Accept: application/json
@@ -48,8 +49,8 @@ Content-Type: application/json
 {
   "numeroEtudiant": "o22002589",
   "fonction": "ETUDIANT",
-  "nomUtilisateur": "BAKAYOKO",
-  "prenomUtilisateur": "MOUSSA",
+  "nom": "BAKAYOKO",
+  "prenom": "MOUSSA",
   "promo":
          {
            "niveau": "MASTER 1",

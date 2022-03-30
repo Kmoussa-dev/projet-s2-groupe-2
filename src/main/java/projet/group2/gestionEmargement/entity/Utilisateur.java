@@ -9,7 +9,7 @@ import java.util.List;
 public class Utilisateur {
 
     @Id
-    private String idUtilisateur;
+    private String id;
 
     @Field(name = "numeroEtudiant")
     private String numeroEtudiant;
@@ -17,14 +17,15 @@ public class Utilisateur {
     @Field(name = "fonction")
     private String fonction;
 
-    @Field(name = "nomUtilisateur")
-    private String nomUtilisateur;
+    @Field(name = "nom")
+    private String nom;
 
-    @Field(name = "prenomUtilisateur")
-    private String prenomUtilisateur;
+    @Field(name = "prenom")
+    private String prenom;
 
     private Groupe groupe;
 
+    @Field(name = "promo")
     private Promotion promo;
 
     @Field(name = "email")
@@ -36,12 +37,12 @@ public class Utilisateur {
     @Field(name = "roles")
     private List<String> roles;
 
-    public String getIdUtilisateur() {
-        return idUtilisateur;
+    public String getId() {
+        return id;
     }
 
-    public void setIdUtilisateur(String idUtilisateur) {
-        this.idUtilisateur = idUtilisateur;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNumeroEtudiant() {
@@ -60,20 +61,36 @@ public class Utilisateur {
         this.fonction = fonction;
     }
 
-    public String getNomUtilisateur() {
-        return nomUtilisateur;
+    public String getNom() {
+        return nom;
     }
 
-    public void setNomUtilisateur(String nomUtilisateur) {
-        this.nomUtilisateur = nomUtilisateur;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
-    public String getPrenomUtilisateur() {
-        return prenomUtilisateur;
+    public String getPrenom() {
+        return prenom;
     }
 
-    public void setPrenomUtilisateur(String prenomUtilisateur) {
-        this.prenomUtilisateur = prenomUtilisateur;
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public Groupe getGroupe() {
+        return groupe;
+    }
+
+    public void setGroupe(Groupe groupe) {
+        this.groupe = groupe;
+    }
+
+    public Promotion getPromo() {
+        return promo;
+    }
+
+    public void setPromo(Promotion promo) {
+        this.promo = promo;
     }
 
     public String getEmail() {
@@ -100,3 +117,5 @@ public class Utilisateur {
         this.roles = roles;
     }
 }
+
+

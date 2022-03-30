@@ -6,11 +6,12 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
 @Document(collection = "seance")
 public class Seance {
 
     @Id
-    private String idSeance;
+    private String id;
 
     private Utilisateur createurSeance;
 
@@ -26,7 +27,7 @@ public class Seance {
 
     private List<Utilisateur> etudiants;
 
-    private List<Utilisateur> etudiantsPresent;
+    private List<HeurePointage> etudiantsPresent;
 
     @Field(name = "heureDebut")
     private LocalDateTime heureDebut;
@@ -40,13 +41,20 @@ public class Seance {
     @Field(name = "statutSeance")
     private String statutSeance;
 
-
-    public String getIdSeance() {
-        return idSeance;
+    public String getId() {
+        return id;
     }
 
-    public void setIdSeance(String idSeance) {
-        this.idSeance = idSeance;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Utilisateur getCreateurSeance() {
+        return createurSeance;
+    }
+
+    public void setCreateurSeance(Utilisateur createurSeance) {
+        this.createurSeance = createurSeance;
     }
 
     public String getDiscipline() {
@@ -69,8 +77,16 @@ public class Seance {
         return typeSeance;
     }
 
-    public void setTypeSeance(String  typeSeance) {
+    public void setTypeSeance(String typeSeance) {
         this.typeSeance = typeSeance;
+    }
+
+    public Groupe getGroupe() {
+        return groupe;
+    }
+
+    public void setGroupe(Groupe groupe) {
+        this.groupe = groupe;
     }
 
     public List<Utilisateur> getEtudiants() {
@@ -81,11 +97,11 @@ public class Seance {
         this.etudiants = etudiants;
     }
 
-    public List<Utilisateur> getEtudiantsPresent() {
+    public List<HeurePointage> getEtudiantsPresent() {
         return etudiantsPresent;
     }
 
-    public void setEtudiantsPresent(List<Utilisateur> etudiantsPresent) {
+    public void setEtudiantsPresent(List<HeurePointage> etudiantsPresent) {
         this.etudiantsPresent = etudiantsPresent;
     }
 
@@ -119,13 +135,5 @@ public class Seance {
 
     public void setStatutSeance(String statutSeance) {
         this.statutSeance = statutSeance;
-    }
-
-    public Utilisateur getCreateurSeance() {
-        return createurSeance;
-    }
-
-    public void setCreateurSeance(Utilisateur createurSeance) {
-        this.createurSeance = createurSeance;
     }
 }

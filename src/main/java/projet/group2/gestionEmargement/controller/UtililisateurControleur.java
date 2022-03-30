@@ -11,7 +11,7 @@ import projet.group2.gestionEmargement.service.UtilisateurService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/utitlisateur")
 public class UtililisateurControleur {
 
     @Autowired
