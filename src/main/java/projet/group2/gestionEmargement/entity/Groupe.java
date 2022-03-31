@@ -5,25 +5,25 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 public class Groupe {
 
-    @Field(name = "groupeDeTD")
-    private String groupeDeTD;
+    @Field(name = "td")
+    private String td;
 
-    @Field(name = "groupeDeTP")
-    private String groupeDeTP;
+    @Field(name = "tp")
+    private String tp;
 
-    public String getGroupeDeTD() {
-        return groupeDeTD;
+    public String getTd() {
+        return td;
     }
 
-    public void setGroupeDeTD(String groupeDeTD) {
-        this.groupeDeTD = groupeDeTD;
+    public void setTd(String td) {
+        this.td = td;
     }
 
-    public String getGroupeDeTP() {
-        return groupeDeTP;
+    public String getTp() {
+        return tp;
     }
 
-    public void setGroupeDeTP(String groupeDeTP) {
-        this.groupeDeTP = groupeDeTP;
+    public void setTp(String tp) {
+        this.tp = tp;
     }
 }

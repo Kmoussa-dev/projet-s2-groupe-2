@@ -10,6 +10,7 @@ import java.util.List;
 
 @Service
 public class UtilisateurService {
+
     @Autowired
     UtilisateurRepository utilisateurRepository;
 
@@ -35,9 +36,9 @@ public class UtilisateurService {
         return utilisateurRepository.save(utilisateur);
     }
 
-//    public List<Utilisateur> getUtilisateurByGroupe(Groupe groupe) {
-//        return utilisateurRepository.findByGroupe(groupe);
-//    }
+    public List<Utilisateur> getEtudiantsByGroupeTD(String td) {return utilisateurRepository.findByGroupeTd(td);}
+
+    public List<Utilisateur> getEtudiantsByGroupeTP(String tp) {return utilisateurRepository.findByGroupeTp(tp);}
 
     public List<Utilisateur> getUtilisateurByPromoNiveau(String niveau) {
         return utilisateurRepository.findByPromoNiveau(niveau);

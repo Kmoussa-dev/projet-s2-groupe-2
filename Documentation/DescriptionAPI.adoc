@@ -20,6 +20,12 @@
 | /etudiant/{numeroEtudiant}
 | Récupérer un étudiant via son numéro Etudiant
 
+
+| Get tous les étudiants
+| GET
+| /etudiant/
+| Récupérer un étudiant via son numéro Etudiant
+
 | Liste des étudiants d'une promotion
 | GET
 | promotion/{idPromotion}/etudiants

@@ -18,13 +18,12 @@ public class UtililisateurControleur {
     @Autowired
     UtilisateurService utilisateurService;
 
-
     @PostMapping("/creerUtilisateur")
     public Utilisateur creerUtilisateur(@RequestBody Utilisateur utilisateur){
         return utilisateurService.creerUtilisateur(utilisateur);
     }
 
-    @GetMapping("/getById/{id}")
+    @GetMapping("/etudiant/{id}")
     public Utilisateur getEtudiantById(@PathVariable String id){
         return utilisateurService.getUtilisateurById(id);
     }
@@ -53,6 +52,18 @@ public class UtililisateurControleur {
 //    public List<Utilisateur> getEtudiantByGroupe(Groupe groupe) {
 //        return utilisateurService.getUtilisateurByGroupe(groupe);
 //    }
+
+
+
+    @GetMapping("/promotion/groupe/td/{td}")
+    public List<Utilisateur> getEtudiantsByGroupeTd(@PathVariable("td") String td) {
+        return utilisateurService.getEtudiantsByGroupeTD(td);
+    }
+
+    @GetMapping("/promotion/groupe/tp/{tp}")
+    public List<Utilisateur> getEtudiantsByGroupeTP(@PathVariable("tp") String tp) {
+        return utilisateurService.getEtudiantsByGroupeTP(tp);
+    }
 
     @GetMapping("/promotion/{niveau}")
     public List<Utilisateur> getUtilisateurByPromoNiveau(@PathVariable("niveau") String niveau) {
