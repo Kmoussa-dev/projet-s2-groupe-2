@@ -26,4 +26,12 @@ public class Groupe {
     public void setGroupeDeTP(String groupeDeTP) {
         this.groupeDeTP = groupeDeTP;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Groupe)
+            return this.groupeDeTD.equals(((Groupe)obj).groupeDeTD) && this.groupeDeTP.equals(((Groupe)obj).groupeDeTP);
+        else
+            return false;
+    }
 }

@@ -8,4 +8,8 @@ import java.util.Map;
 
 @Repository
 public interface SecretaireRepository extends MongoRepository<Secretaire, String> {
+    Secretaire getSecretaireByEmail(String email);
+    Secretaire getSecretaireById(String id);
 }
+
+

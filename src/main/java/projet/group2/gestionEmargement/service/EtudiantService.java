@@ -15,7 +15,7 @@ public class EtudiantService {
     private EtudiantRepository etudiantRepository;
 
     public Etudiant inscription(Etudiant etudiant){
-        return this.etudiantRepository.save(etudiant);
+        return this.etudiantRepository.insert(etudiant);
     }
 
     public List<Etudiant> getEtudiants()

@@ -4,8 +4,12 @@ import java.time.LocalDateTime;
 
 public class HeurePointage {
     private LocalDateTime pointage;
-    private Utilisateur etudiant;
+    private String numEtudiant;
 
+    public HeurePointage(LocalDateTime pointage, String numEtudiant) {
+        this.pointage = pointage;
+        this.numEtudiant = numEtudiant;
+    }
 
     public LocalDateTime getPointage() {
         return pointage;
@@ -15,11 +19,11 @@ public class HeurePointage {
         this.pointage = pointage;
     }
 
-    public Utilisateur getEtudiant() {
-        return etudiant;
+    public String getNumEtudiant() {
+        return numEtudiant;
     }
 
-    public void setEtudiant(Utilisateur etudiant) {
-        this.etudiant = etudiant;
+    public void setNumEtudiant(String numEtudiant) {
+        this.numEtudiant = numEtudiant;
     }
 }

@@ -10,7 +10,12 @@ import java.util.List;
 @Repository
 public interface EtudiantRepository extends MongoRepository<Etudiant, String> {
 
+
     Etudiant getEtudiantByNumeroEtudiant(String numeroEtudiant);
 
     List<Etudiant> getEtudiantsByPromo(Promotion promo);
+
+    boolean existsEtudiantByNumeroEtudiant(String numeroEtudiant);
+
+
 }

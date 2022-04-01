@@ -13,21 +13,21 @@ public class Seance {
     @Id
     private String id;
 
-    private Utilisateur createurSeance;
+    private String userID;
 
     @Field(name = "discipline")
     private String discipline;
 
-    private Utilisateur enseignant;
+    private String enseignantID;
 
     @Field(name = "typeDeSeance")
     private String typeSeance;
 
     private Groupe groupe;
 
-    private List<Utilisateur> etudiants;
+    private List<String> numEtudiants;
 
-    private List<HeurePointage> etudiantsPresent;
+    private List<HeurePointage> numEtudiantsPresent;
 
     @Field(name = "heureDebut")
     private LocalDateTime heureDebut;
@@ -36,7 +36,6 @@ public class Seance {
     private LocalDateTime heureFin;
 
     private Promotion promotion;
-
 
     @Field(name = "statutSeance")
     private String statutSeance;
@@ -49,12 +48,12 @@ public class Seance {
         this.id = id;
     }
 
-    public Utilisateur getCreateurSeance() {
-        return createurSeance;
+    public String getUserID() {
+        return userID;
     }
 
-    public void setCreateurSeance(Utilisateur createurSeance) {
-        this.createurSeance = createurSeance;
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
     public String getDiscipline() {
@@ -65,12 +64,12 @@ public class Seance {
         this.discipline = discipline;
     }
 
-    public Utilisateur getEnseignant() {
-        return enseignant;
+    public String getEnseignantID() {
+        return enseignantID;
     }
 
-    public void setEnseignant(Utilisateur enseignant) {
-        this.enseignant = enseignant;
+    public void setEnseignantID(String enseignantID) {
+        this.enseignantID = enseignantID;
     }
 
     public String getTypeSeance() {
@@ -89,20 +88,20 @@ public class Seance {
         this.groupe = groupe;
     }
 
-    public List<Utilisateur> getEtudiants() {
-        return etudiants;
+    public List<String> getNumEtudiants() {
+        return numEtudiants;
     }
 
-    public void setEtudiants(List<Utilisateur> etudiants) {
-        this.etudiants = etudiants;
+    public void setNumEtudiants(List<String> numEtudiants) {
+        this.numEtudiants = numEtudiants;
     }
 
-    public List<HeurePointage> getEtudiantsPresent() {
-        return etudiantsPresent;
+    public List<HeurePointage> getNumEtudiantsPresent() {
+        return numEtudiantsPresent;
     }
 
-    public void setEtudiantsPresent(List<HeurePointage> etudiantsPresent) {
-        this.etudiantsPresent = etudiantsPresent;
+    public void setNumEtudiantsPresent(List<HeurePointage> numEtudiantsPresent) {
+        this.numEtudiantsPresent = numEtudiantsPresent;
     }
 
     public LocalDateTime getHeureDebut() {

@@ -1,10 +1,13 @@
 package projet.group2.gestionEmargement.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import projet.group2.gestionEmargement.entity.Seance;
-import projet.group2.gestionEmargement.entity.Utilisateur;
+import projet.group2.gestionEmargement.entity.*;
+import projet.group2.gestionEmargement.exception.AppelleNonPrisEnCompteException;
 import projet.group2.gestionEmargement.exception.CreationImpossibleDeSeanceException;
+import projet.group2.gestionEmargement.exception.EtudiantInexistantException;
+import projet.group2.gestionEmargement.repository.EtudiantRepository;
 import projet.group2.gestionEmargement.repository.SeanceRepository;
 import projet.group2.gestionEmargement.repository.UtilisateurRepository;
 
@@ -14,103 +17,56 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
 
-
+@Service
 public class SeanceService {
 
+    @Autowired
+    private SeanceRepository seanceRepository;
 
-//    SeanceRepository seanceRepository;
-//
-//    UtilisateurRepository utilisateurRepository;
+    @Autowired
+    private EtudiantRepository etudiantRepository;
 
+    public Seance creer(Seance seance){
+        return this.seanceRepository.insert(seance);
+    }
 
-    //Question pour le prof
-    //Est ce que dans le mongodb on vérifie s'il existe le meme Utilisateur dans la base de données
-    //En gros peut-on dupliquer des données
-//    public Seance creerSeance(Seance seance) throws CreationImpossibleDeSeanceException {
-//        //Récupération de la liste des etudiants de la promo
-//        //Penser à gérer avec les roles
-//        seance.setEtudiants(utilisateurRepository.findByFonction("ETUDIANT"));
-//        //Problème:Création d'une séance avec la contrainte du créneau
-//        List<Seance> seances=seanceRepository.findAll();
-//        //Vérifier s'il existe dans le Mongo
-//        Utilisateur enseignant=utilisateurRepository.findByEmail(seance.getEnseignant().getEmail());
-//        Utilisateur createurSeance= utilisateurRepository.findByEmail(seance.getCreateurSeance().getEmail());
-//        if (Objects.isNull(enseignant)){
-//            utilisateurRepository.save(seance.getEnseignant());
-//        }
-//        if (Objects.isNull(createurSeance)){
-//            utilisateurRepository.save(seance.getCreateurSeance());
-//        }
-//
-//        //les creneaux ne peuvent se chevaucher
-//        LocalDate date=seance.getHeureFin().toLocalDate();
-//        LocalTime timeFin=seance.getHeureFin().toLocalTime();
-//        LocalTime timeDebut=seance.getHeureDebut().toLocalTime();
-//
-//        boolean possibiliteDeCreerSurUneDate=false;
-//        boolean possibiliteDeCreerSurUneAutreDate=false;
-//
-//        for (Seance iSeance:seances){
-//            LocalDate iSeanceDate=iSeance.getHeureDebut().toLocalDate();
-//            LocalTime iSeanceTimeDebut=iSeance.getHeureDebut().toLocalTime();
-//            LocalTime iSeanceTimeFin=iSeance.getHeureFin().toLocalTime();
-//            if(iSeanceDate.equals(date)){
-//                if(iSeanceTimeDebut.isBefore(timeFin)&&iSeanceTimeDebut.isAfter(timeDebut)){
-//                    possibiliteDeCreerSurUneDate = false;
-//                }
-//                else if (iSeanceTimeFin.isBefore(timeFin)&&iSeanceTimeFin.isAfter(timeDebut)){
-//                    possibiliteDeCreerSurUneDate=false;
-//                }
-//                else if (iSeanceTimeDebut.isBefore(timeDebut)&&iSeanceTimeFin.isAfter(timeFin)){
-//                    possibiliteDeCreerSurUneDate=false;
-//                }
-//                else {
-//                    possibiliteDeCreerSurUneDate=true;
-//                }
-//            }
-//            else {
-//                possibiliteDeCreerSurUneAutreDate=true;
-//            }
-//        }
-//
-//        if (possibiliteDeCreerSurUneDate||possibiliteDeCreerSurUneAutreDate) return seanceRepository.save(seance);
-//        return seance;
-//    }
+    public List<Seance> getSeances(){
+        return this.seanceRepository.findAll();
+    }
 
-//    public int comprareLocalDateTime(LocalDateTime ldt1,LocalDateTime ldt2){
-////        LocalDateTime ldt1 = LocalDateTime.parse("2019-04-28T22:32:38.536");
-////        LocalDateTime ldt2 = LocalDateTime.parse("2017-01-14T15:32:56.000");
-//
-//        int diff = ldt1.compareTo(ldt2);
-//        if (diff < 0) {
-//            // return "ldt1 est supérieur à ldt2";
-//                return 1;
-//        } else if (diff > 0) {
-//           //  return "ldt1 est supérieur à ldt2";
-//            return 2;
-//        } else {
-//            return 0;
-//        }
-//    }
-//
+    public Seance getSeanceById(String id){
+        return this.seanceRepository.getSeanceById(id);
+    }
+
+    public Seance update(Seance seance){
+        return this.seanceRepository.save(seance);
+    }
+
+    public void delete(Seance seance){
+        this.seanceRepository.delete(seance);
+    }
 
 
+    public Seance getSeanceByHeureDebutAndHeureFinAndDisciplineAndGroupe(LocalDateTime heureDebut, LocalDateTime heureFin, String discipline, Groupe groupe){
+        return this.seanceRepository.getSeanceByHeureDebutAndHeureFinAndDisciplineAndGroupe( heureDebut, heureFin, discipline, groupe);
+    }
 
-//    public Seance getSeanceById(String id) {
-//        return seanceRepository.findById(id).get();
-//    }
-//
-//    public List<Seance> getAllSeances() {
-//        return seanceRepository.findAll();
-//    }
-//
-//    public Seance majSeance(Seance seance) {
-//        return seanceRepository.save(seance);
-//    }
-//
-//    public String supprimerSeance(String id) {
-//        seanceRepository.deleteById(id);
-//        return "Seance a été supprimé.";
-//    }
+    public Seance emerger(String seanceid, String numEtudiant) throws EtudiantInexistantException, AppelleNonPrisEnCompteException{
+        LocalDateTime now = LocalDateTime.now();
+        Seance seance = this.getSeanceById(seanceid);
+        if(this.etudiantRepository.existsEtudiantByNumeroEtudiant(numEtudiant) && Objects.nonNull(seance)){
+            if(seance.getHeureDebut().isBefore(now) && seance.getHeureFin().isAfter(now) && seance.getNumEtudiants().contains(numEtudiant)){
+                seance.getNumEtudiantsPresent().add(new HeurePointage(now, numEtudiant));
+                return this.seanceRepository.save(seance);
+            }
+            else {
+                throw new AppelleNonPrisEnCompteException();
+            }
+        }
+        else{
+            throw new EtudiantInexistantException();
+        }
+    }
+
 
 }
