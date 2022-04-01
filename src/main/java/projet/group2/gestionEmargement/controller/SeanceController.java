@@ -56,7 +56,8 @@ public class SeanceController {
     }
 
     @PutMapping("/seance/{id}/pointage/{numEtudant}")
-    public ResponseEntity<Seance> emerger(@PathVariable String id, @PathVariable String numEtudant){
+    public ResponseEntity<Seance> emerger(@PathVariable String id, @PathVariable String numEtudant)
+    {
         try {
             Seance seance = this.seanceService.emerger(id,numEtudant);
             return ResponseEntity.ok(seance);

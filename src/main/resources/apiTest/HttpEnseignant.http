@@ -1,0 +1,16 @@
+POST http://localhost:8080/api/emergement/enseignant
+Content-Type: application/json
+
+{
+  "nom": "DELACOURT",
+  "prenom": "MARTINS",
+  "email": "martins.delacourt@univ-orleans.fr",
+  "motDePasse": "martins",
+  "roles": [
+    "MEMBRE ADMINISTRATIF","PROF"
+  ]
+}
+
+###
+
+GET http://localhost:8080/api/emergement/enseignants

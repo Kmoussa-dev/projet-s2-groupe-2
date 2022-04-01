@@ -13,6 +13,7 @@ public class Seance {
     @Id
     private String id;
 
+    @Field(name = "createurSeance")
     private String userID;
 
     @Field(name = "discipline")

@@ -10,6 +10,7 @@ import projet.group2.gestionEmargement.service.SeanceService;
 import projet.group2.gestionEmargement.service.SecretaireService;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Objects;
 
 @RestController
@@ -18,7 +19,7 @@ public class SecretaireController {
 
     private final SecretaireService secretaireService;
 
-    public SecretaireController(SeanceService seanceService, SecretaireService secretaireService) {
+    public SecretaireController(SecretaireService secretaireService) {
         this.secretaireService = secretaireService;
     }
 
@@ -39,10 +40,21 @@ public class SecretaireController {
     }
 
     @GetMapping("/secretaire/{id}")
-    public ResponseEntity<Secretaire> getEtudiantbyNumeroEtudiant(@PathVariable String id){
+    public ResponseEntity<Secretaire> getSecretaireById(@PathVariable String id){
         Secretaire secretaire =  this.secretaireService.getSecretaireById(id);
         if(Objects.nonNull(secretaire)){
             return ResponseEntity.ok(secretaire);
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/secretaires")
+    public ResponseEntity<List<Secretaire>> getSecretaires(){
+        List<Secretaire> secretaires =  this.secretaireService.getSecretaires();
+        if(secretaires.size() >0 ){
+            return ResponseEntity.ok(secretaires);
         }
         else {
             return ResponseEntity.notFound().build();

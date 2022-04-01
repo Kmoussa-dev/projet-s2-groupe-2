@@ -7,6 +7,7 @@ import projet.group2.gestionEmargement.entity.Etudiant;
 import projet.group2.gestionEmargement.service.EtudiantService;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Objects;
 
 @RestController
@@ -39,6 +40,17 @@ public class EtudiantController {
     public ResponseEntity<Etudiant> getEtudiantbyNumeroEtudiant(@PathVariable String numeroEtudiant){
         Etudiant etudiant =  this.etudiantService.getEtudiantbyNumeroEtudiant(numeroEtudiant);
         if(Objects.nonNull(etudiant)){
+            return ResponseEntity.ok(etudiant);
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/etudiants")
+    public ResponseEntity<List<Etudiant>> getEtudiants(){
+        List<Etudiant> etudiant =  this.etudiantService.getEtudiants();
+        if(etudiant.size() > 0){
             return ResponseEntity.ok(etudiant);
         }
         else {

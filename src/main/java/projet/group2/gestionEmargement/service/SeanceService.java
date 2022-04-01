@@ -14,6 +14,7 @@ import projet.group2.gestionEmargement.repository.UtilisateurRepository;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -51,12 +52,19 @@ public class SeanceService {
         return this.seanceRepository.getSeanceByHeureDebutAndHeureFinAndDisciplineAndGroupe( heureDebut, heureFin, discipline, groupe);
     }
 
-    public Seance emerger(String seanceid, String numEtudiant) throws EtudiantInexistantException, AppelleNonPrisEnCompteException{
+    public Seance emerger(String seanceid, String numEtudiant) throws EtudiantInexistantException, AppelleNonPrisEnCompteException
+    {
         LocalDateTime now = LocalDateTime.now();
         Seance seance = this.getSeanceById(seanceid);
         if(this.etudiantRepository.existsEtudiantByNumeroEtudiant(numEtudiant) && Objects.nonNull(seance)){
-            if(seance.getHeureDebut().isBefore(now) && seance.getHeureFin().isAfter(now) && seance.getNumEtudiants().contains(numEtudiant)){
-                seance.getNumEtudiantsPresent().add(new HeurePointage(now, numEtudiant));
+            if(now.isAfter(seance.getHeureDebut()) && now.isBefore(seance.getHeureFin()) && seance.getNumEtudiants().contains(numEtudiant)){
+              if(Objects.isNull(seance.getNumEtudiantsPresent())){
+                  seance.setNumEtudiantsPresent(List.of(new HeurePointage(now, numEtudiant)));
+              }
+              else {
+                  seance.getNumEtudiantsPresent().add(new HeurePointage(now, numEtudiant));
+              }
+
                 return this.seanceRepository.save(seance);
             }
             else {

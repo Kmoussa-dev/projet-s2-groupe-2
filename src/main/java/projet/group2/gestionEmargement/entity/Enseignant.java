@@ -5,7 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="enseignants")
-public class Enseignant {
+public class Enseignant extends Utilisateur {
 
     @Id
     private String id;
