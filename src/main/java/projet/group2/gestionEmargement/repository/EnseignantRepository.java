@@ -12,5 +12,5 @@ public interface EnseignantRepository extends MongoRepository<Enseignant, String
 
     Enseignant getEnseignantByEmail(String email);
 
-    Enseignant getEnseignantById(String id);
+
 }

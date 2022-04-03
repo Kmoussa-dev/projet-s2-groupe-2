@@ -7,7 +7,6 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Document(collection="etudiants")
 public class Etudiant extends Utilisateur {
 
-    @Id
     @Field(name = "numeroEtudiant")
     private String numeroEtudiant;
 

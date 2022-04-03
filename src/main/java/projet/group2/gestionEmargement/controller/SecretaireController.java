@@ -2,11 +2,10 @@ package projet.group2.gestionEmargement.controller;
 
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import projet.group2.gestionEmargement.entity.Etudiant;
 import projet.group2.gestionEmargement.entity.Secretaire;
-import projet.group2.gestionEmargement.service.SeanceService;
 import projet.group2.gestionEmargement.service.SecretaireService;
 
 import java.net.URI;
@@ -18,19 +17,22 @@ import java.util.Objects;
 public class SecretaireController {
 
     private final SecretaireService secretaireService;
+    private final PasswordEncoder passwordEncoder;
 
-    public SecretaireController(SecretaireService secretaireService) {
+    public SecretaireController(SecretaireService secretaireService, PasswordEncoder passwordEncoder) {
         this.secretaireService = secretaireService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @PostMapping("/secretaire")
     public ResponseEntity<Secretaire> inscription(@RequestBody Secretaire secretaire) {
         Secretaire se = this.secretaireService.getSecretaireByEmail(secretaire.getEmail());
         if(Objects.isNull(se)){
+            secretaire.setMotDePasse(this.passwordEncoder.encode(secretaire.getMotDePasse()));
             se = this.secretaireService.inscription(secretaire);
             URI location = ServletUriComponentsBuilder
                     .fromCurrentRequest().path("/{id}")
-                    .buildAndExpand(se.getId()).toUri();
+                    .buildAndExpand(se.getEmail()).toUri();
             return ResponseEntity.created(location).body(se);
         }
         else {
@@ -39,9 +41,9 @@ public class SecretaireController {
 
     }
 
-    @GetMapping("/secretaire/{id}")
-    public ResponseEntity<Secretaire> getSecretaireById(@PathVariable String id){
-        Secretaire secretaire =  this.secretaireService.getSecretaireById(id);
+    @GetMapping("/secretaire/{email}")
+    public ResponseEntity<Secretaire> getSecretaireById(@PathVariable String email){
+        Secretaire secretaire =  this.secretaireService.getSecretaireByEmail(email);
         if(Objects.nonNull(secretaire)){
             return ResponseEntity.ok(secretaire);
         }

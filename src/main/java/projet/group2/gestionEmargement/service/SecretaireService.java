@@ -28,9 +28,7 @@ public class SecretaireService {
         return this.secretaireRepository.getSecretaireByEmail(id);
     }
 
-    public Secretaire getSecretaireById(String id){
-        return this.secretaireRepository.getSecretaireById(id);
-    }
+
 
 
 }

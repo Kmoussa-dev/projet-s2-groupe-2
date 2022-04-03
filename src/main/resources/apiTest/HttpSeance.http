@@ -26,14 +26,14 @@ Content-Type: application/json
     "o22002589",
     "o2175246"
   ],
-  "heureDebut": "2022-04-01T20:15:00",
-  "heureFin": "2022-04-01T21:15:00",
+  "heureDebut": "2022-04-03T23:15:00",
+  "heureFin": "2022-04-04T01:15:00",
   "statutSeance": "NON VALIDE"
 }
 ###
 
-PUT http://localhost:8080/api/emergement/seance/624747cf008d021c86193ee6/pointage/o22009067
+PUT http://localhost:8080/api/emergement/seance/624a13b8d893233ac3935b91/pointage/o22002589
 Accept: application/json
 
 ####
-GET http://localhost:8080/api/emergement/seance/624747cf008d021c86193ee6/etudiant-present
+GET http://localhost:8080/api/emergement/seance/624a13b8d893233ac3935b91/etudiant-present

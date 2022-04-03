@@ -13,6 +13,8 @@ public interface EtudiantRepository extends MongoRepository<Etudiant, String> {
 
     Etudiant getEtudiantByNumeroEtudiant(String numeroEtudiant);
 
+    Etudiant getEtudiantByEmail(String email);
+
     List<Etudiant> getEtudiantsByPromo(Promotion promo);
 
     boolean existsEtudiantByNumeroEtudiant(String numeroEtudiant);

@@ -1,6 +1,7 @@
 package projet.group2.gestionEmargement.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import projet.group2.gestionEmargement.entity.Etudiant;
@@ -15,19 +16,23 @@ import java.util.Objects;
 public class EtudiantController {
 
     private final EtudiantService etudiantService;
+    private final PasswordEncoder passwordEncoder;
 
-    public EtudiantController(EtudiantService etudiantService) {
+    public EtudiantController(EtudiantService etudiantService, PasswordEncoder passwordEncoder) {
         this.etudiantService = etudiantService;
+        this.passwordEncoder = passwordEncoder;
     }
+
 
     @PostMapping("/etudiant")
     public ResponseEntity<Etudiant> inscription(@RequestBody Etudiant etu) {
         Etudiant etudiant = this.etudiantService.getEtudiantbyNumeroEtudiant(etu.getNumeroEtudiant());
         if(Objects.isNull(etudiant)){
+            etu.setMotDePasse(this.passwordEncoder.encode(etu.getMotDePasse()));
             etudiant = this.etudiantService.inscription(etu);
             URI location = ServletUriComponentsBuilder
                     .fromCurrentRequest().path("/{numeroEtudiant}")
-                    .buildAndExpand(etudiant.getNumeroEtudiant()).toUri();
+                    .buildAndExpand(etudiant.getEmail()).toUri();
             return ResponseEntity.created(location).body(etudiant);
         }
         else {

@@ -29,9 +29,7 @@ public class EnseignantService {
         return this.enseignantRepository.getEnseignantByEmail(id);
     }
 
-    public Enseignant getEnseignantById(String id){
-        return this.enseignantRepository.getEnseignantById(id);
-    }
+
 }
 
 

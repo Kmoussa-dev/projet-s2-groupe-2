@@ -7,10 +7,33 @@ Content-Type: application/json
   "email": "martins.delacourt@univ-orleans.fr",
   "motDePasse": "martins",
   "roles": [
-    "MEMBRE ADMINISTRATIF","PROF"
+    "PROF", "MEMBRE_ADMINISTRATIF"
   ]
 }
 
 ###
+POST http://localhost:8080/api/emergement/enseignant
+Content-Type: application/json
 
+{
+"nom": "Boichut",
+"prenom": "Yohan",
+"email": "yohan.boichut@univ-orleans.fr",
+"motDePasse": "mdp",
+"roles": [
+"PROF", "MEMBRE_ADMINISTRATIF"
+]
+}
+
+
+
+###
 GET http://localhost:8080/api/emergement/enseignants
+
+###
+GET http://localhost:8080/api/emergement/enseignants
+Authorization: Basic yohan.boichut@univ-orleans.fr mdp
+
+###
+GET http://localhost:8080/api/emergement/enseignants
+Authorization: Basic solomon.lourdessamy@etu.univ-orleans.fr @Jason09

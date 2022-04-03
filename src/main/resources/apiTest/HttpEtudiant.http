@@ -25,22 +25,22 @@ POST http://localhost:8080/api/emergement/etudiant
 Content-Type: application/json
 
 {
-"numeroEtudiant": "o2175246",
-"nom": "KONE",
-"prenom": "MOUSSA",
-"groupe": {
-"groupeDeTD": "TD1",
-"groupeDeTP": "TP1"
-},
-"promo": {
-"niveau": "MASTER 1",
-"annee": "2022"
-},
-"email": "moussa.kone@etu.univ-orleans.fr",
-"motDePasse": "@Jason09",
-"roles": [
-"ETUDIANT"
-]
+  "numeroEtudiant": "o2175246",
+  "nom": "KONE",
+  "prenom": "MOUSSA",
+  "groupe": {
+    "groupeDeTD": "TD1",
+    "groupeDeTP": "TP1"
+  },
+  "promo": {
+    "niveau": "MASTER 1",
+    "annee": "2022"
+  },
+  "email": "moussa.kone@etu.univ-orleans.fr",
+  "motDePasse": "@Jason09",
+  "roles": [
+    "ETUDIANT"
+  ]
 }
 
 
@@ -68,5 +68,41 @@ Content-Type: application/json
   ]
 }
 
+###
+POST http://localhost:8080/api/emergement/etudiant
+Content-Type: application/json
+
+{
+  "numeroEtudiant": "o22000004",
+  "nom": "EL Ouariachi",
+  "prenom": "Rachida",
+  "groupe": {
+    "groupeDeTD": "TD1",
+    "groupeDeTP": "TP1"
+  },
+  "promo": {
+    "niveau": "MASTER 1",
+    "annee": "2022"
+  },
+  "email": "rachida.el-ouariachi@etu.univ-orleans.fr",
+  "motDePasse": "mdp",
+  "roles": [
+    "ETUDIANT"
+  ]
+}
+
 #####
 GET http://localhost:8080/api/emergement/etudiants
+Accept: application/json
+
+
+#####
+GET http://localhost:8080/api/emergement/etudiants
+Accept: application/json
+Authorization: Basic solomon.lourdessamy@etu.univ-orleans.fr @Jason09
+
+
+#####
+GET http://localhost:8080/api/emergement/etudiants
+Accept: application/json
+Authorization: Basic yohan.boichut@univ-orleans.fr mdp

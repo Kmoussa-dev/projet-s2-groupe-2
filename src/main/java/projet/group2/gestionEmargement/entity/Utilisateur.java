@@ -7,14 +7,16 @@ import java.util.List;
 
 
 public class Utilisateur {
+
+    @Id
+    @Field(name = "email")
+    protected String email;
+
     @Field(name = "nom")
     protected String nom;
 
     @Field(name = "prenom")
     protected String prenom;
-
-    @Field(name = "email")
-    protected String email;
 
     @Field(name = "motDePasse")
     protected String motDePasse;
