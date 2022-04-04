@@ -87,5 +87,22 @@ public class SeanceController {
         }
     }
 
+    @GetMapping("/seance/{id}/etudiant-absent")
+    public ResponseEntity<List<Etudiant>> getEtudiantsAbsent(@PathVariable String id){
+        Seance seance = this.seanceService.getSeanceById(id);
+        List<String> lesNumEtudiantPresent = new ArrayList<>();
+        if (Objects.nonNull(seance) && Objects.nonNull(seance.getNumEtudiantsPresent())){
+            seance.getNumEtudiantsPresent().forEach(h -> lesNumEtudiantPresent.add(h.getNumEtudiant()));
+                List<String> numEtudiantsAbsents = seance.getNumEtudiants().stream().filter(e -> !lesNumEtudiantPresent.contains(e)).collect(Collectors.toList());
+                List<Etudiant> lesEtuAbsent =  this.etudiantService.getEtudiants().stream().filter(e -> numEtudiantsAbsents.contains(e.getNumeroEtudiant())).collect(Collectors.toList());
+                return ResponseEntity.ok(lesEtuAbsent);
+
+        }
+        else {
+            List<Etudiant> lesEtuAbsent = this.etudiantService.getEtudiants().stream().filter(e -> seance.getNumEtudiants().contains(e.getNumeroEtudiant())).collect(Collectors.toList());
+            return ResponseEntity.ok(lesEtuAbsent);
+        }
+    }
+
 
 }

@@ -73,6 +73,29 @@ POST http://localhost:8080/api/emergement/etudiant
 Content-Type: application/json
 
 {
+  "numeroEtudiant": "o22010238",
+  "nom": "elbardi",
+  "prenom": "fati",
+  "groupe": {
+    "groupeDeTD": "TD1",
+    "groupeDeTP": "TP1"
+  },
+  "promo": {
+    "niveau": "MASTER 1",
+    "annee": "2022"
+  },
+  "email": "fatima.elbardi@etu.univ-orleans.fr",
+  "motDePasse": "@Jason09",
+  "roles": [
+    "ETUDIANT"
+  ]
+}
+
+###
+POST http://localhost:8080/api/emergement/etudiant
+Content-Type: application/json
+
+{
   "numeroEtudiant": "o22000004",
   "nom": "EL Ouariachi",
   "prenom": "Rachida",
