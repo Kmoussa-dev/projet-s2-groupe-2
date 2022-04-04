@@ -1,0 +1,44 @@
+=== Compte Rendu du 03/04/2022
+
+=====  Réalisations :
+
+- Durée : 1h le 5 avril
+- récupération des étudiant pour une séance concernée
+
+===== Tâches à réaliser :
+
+*Modélisation des utilisateurs :*
+
+Réunion pour décider du choix de modélisation de la partie utilisateurs comprenant le personnel enseignant et adminnistratif :
+
+1. Fusionner les deux entités Secretaire et Enseignant en une seule entité nommée Personnel ?
+2. Ou bien garder la solution actuelle ?
+3. faire des controles de validitée
+
+*URIs :*
+
+- Analyser nos uri actuelles pour compléter le tableau des URI
+- Relever les incohérences, améliorations et les ajouts des URIS manquantes
+
+
+*Sécurité :*
+
+- Gestion des permissions d'accès sur les URIs en fonction des rôles
+- _Optionnel : compléter la sécurité avec JWT_
+
+
+
+*Tests :*
+
+- Effectuer des tests fonctionnels et structruels
+
+*Documentation technique :*
+
+- Se renseigner sur Spring REST Docs
+
+*Refactoring:*
+
+*Déploiement:*
+
+
+
