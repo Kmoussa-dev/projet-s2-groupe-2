@@ -52,6 +52,17 @@ public class EtudiantController {
         }
     }
 
+    @GetMapping("/etudiant/{email}")
+    public ResponseEntity<Etudiant> getEtudiantbyEmail(@PathVariable String email){
+        Etudiant etudiant =  this.etudiantService.getEtudiantbyEmail(email);
+        if(Objects.nonNull(etudiant)){
+            return ResponseEntity.ok(etudiant);
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @GetMapping("/etudiants")
     public ResponseEntity<List<Etudiant>> getEtudiants(){
         List<Etudiant> etudiant =  this.etudiantService.getEtudiants();

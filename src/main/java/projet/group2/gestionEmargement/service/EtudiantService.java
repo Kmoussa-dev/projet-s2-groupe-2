@@ -26,6 +26,9 @@ public class EtudiantService {
     public Etudiant getEtudiantbyNumeroEtudiant(String numeroEtudiant){
         return this.etudiantRepository.getEtudiantByNumeroEtudiant(numeroEtudiant);
     }
+    public Etudiant getEtudiantbyEmail(String email){
+        return this.etudiantRepository.getEtudiantByEmail(email);
+    }
 
     public List<Etudiant> getEtudiantsByPromo(Promotion promotion){
         return this.etudiantRepository.getEtudiantsByPromo(promotion);
