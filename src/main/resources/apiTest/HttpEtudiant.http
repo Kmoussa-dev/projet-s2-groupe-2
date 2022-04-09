@@ -20,6 +20,16 @@ Content-Type: application/json
   ]
 }
 
+####
+POST http://localhost:8080/api/emergement/etudiant
+Content-Type: application/json
+
+{
+  "numeroEtudiant": "o2200258",
+  "email": "m.kone@etu.univ-orleans.fr",
+  "motDePasse": "@Jason05"
+}
+
 ###
 POST http://localhost:8080/api/emergement/etudiant
 Content-Type: application/json
@@ -113,6 +123,7 @@ Content-Type: application/json
     "ETUDIANT"
   ]
 }
+
 
 #####
 GET http://localhost:8080/api/emergement/etudiants
