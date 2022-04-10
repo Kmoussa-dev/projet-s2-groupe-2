@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import projet.group2.gestionEmargement.dataTest.DataEtudiantTest;
+//import projet.group2.gestionEmargement.dataTest.DataEtudiantTest;
 import projet.group2.gestionEmargement.service.EtudiantService;
 
 
@@ -23,7 +23,7 @@ public class EtudiantControllerTest {
     @Autowired
    private MockMvc mockMvc;
     @Autowired
-   private DataEtudiantTest dataEtudiantTest;
+    //private DataEtudiantTest dataEtudiantTest;
 
    @BeforeEach
     public  void init() {

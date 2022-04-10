@@ -1,0 +1,17 @@
+== Gestion des rôles et permissions d'accès
+
+=== Profils d'utilisateurs de l'application
+
+====
+.Les différents utilisateurs et leur rôle associé :
+- Étudiant => rôle *ÉTUDIANT*
+- Enseignant => rôle *ENSEIGNANT*
+- Personnel administratif => rôle *MEMBRE_ADMINISTRATIF*
+- Administrateur => rôle *ADMIN*
+====
+_Note : Un utilisateur peut avoir plusieurs rôles._
+
+=== Matrice des droits
+
+[NOTE]
+Tableau des permissions à compléter

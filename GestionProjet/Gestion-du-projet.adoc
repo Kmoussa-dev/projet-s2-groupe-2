@@ -1,0 +1,63 @@
+
+=== Avancement du projet
+
+Suivi de l'état d'avancement des différentes tâches du projet :
+
+==== Conception
+* [x] Analyse des besoins (cahier des charges)
+* [x] Modélisation du SI
+* [x] Définition des URI de l'API
+
+
+===== Documentation projet
+* [x] User stories
+* [x] Décomposition du projet en sous-tâches
+* [ ] Diagramme de Gantt   _(fait brouillon -> reste à mettre au propre)_
+* [ ] Matrice RACI   _(fait brouillon -> reste à mettre au propre)_
+
+
+===== Développement
+* [x] Initialisation et configuration du projet : maven, java 17, Spring Web, git
+* [x] Base de données MongoDB
+** [x] Configuration docker image mongoDB
+** [x] Connexion à la base de données
+* [x] Modèle
+* [x] Couche Repository
+* [x] Couche Service
+* [x] Couche Controller I (fonctionnalités principales)
+* [ ] Couche Controller II (fonctionnalités secondaires)
+* [ ] Fonctionnalité d'émargement QR code (contrôle d'intégrité avec tokens)
+* [x] Sécurité Basic avec encodage password
+* [ ] Gestion des rôles & permissions d'accès   _(en cours)_
+* [ ] _[Optionnel] Sécurité avec JWT_
+* [ ] Contraintes de validation
+
+
+===== Tests / Recette
+* [ ] Tests fonctionnels   _(en cours)_
+* [ ] Tests d'intégration  _(en cours)_
+* [ ] Tests structurels
+* [ ] Validation des fonctionnalités
+
+
+===== Documentation technique
+* [ ] Tableau des URI   _(en cours)_
+* [ ] Documentation API Spring REST Docs  _(en cours)_
+* [ ] Diagramme de classes final :
+** [ ] à générer au format png
+** [ ] à expliquer
+* [ ] Description de l'architecture du projet
+* [ ] Description de la solution de sécurisation utilisée
+* [ ] Description des différentes solutions envisagées et celle retenue
+* [ ] Description détaillée de la solution technique du QR code
+
+* [ ] _[Optionnel] Retour sur les Refactoring majeurs effectués :_
+** [ ] _Expliquer le changement de modélisation du SI (objectif : respecter principes SOLID)_
+
+===== Déploiement
+* [ ] Configurer le fichier docker-compose.yml pour lancer mongoDB et l'application .jar
+
+* [ ] _[Optionnel] Migration des données (construire un jeu de données davantage rempli et réaliste)_
+* [ ] _[Optionnel] Recueillir des retours d'expériences des clients (corps professoral + secrétaires)_
+
+

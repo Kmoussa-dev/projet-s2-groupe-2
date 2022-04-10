@@ -1,0 +1,52 @@
+
+
+==== Brouillon solutions QR Codes :
+écrire les solutions envisagées et celles rejetées, expliquez les raisons
+
+exemple du transport ou bu deg : code
+un écran présent dans les salles, qui affiche le qrcode. le qrcode est générée
+
+exemple technique d'izly, un scanneur dans la salle
+
+
+_____________________________
+
+
+    Cas de tests
+    Cas d'erreurs
+    Jeux de données
+    Relecture des users stories par les membre de l'équipe
+    Le passage avec succès des tests fonctionnels définis dans la User Story
+    La réalisation des tests automatiques
+    La réalisation d’une revue du code
+
+_____________________________
+
+
+=== Consignes
+* Utilisation régulière et pertinente du dépôt Git mis à votre disposition sur PDICoST. Aucune autre plateforme Git n'est acceptée.
+
+* Réalisation de tests fonctionnels et tests d'intégration pertinents (back-end et front-end).
+* Couverture du code par des tests structurels.
+
+* Conception et réalisation d'un code de qualité (validité, fiabilité, lisibilité, maintenabilité, évolutivité).
+====
+-> principes SOLID
+
+-> architecture MVC (sans la vue)
+
+-> Optionnel : versionner l'api
+====
+
+* Interdiction d'utiliser tout ou partie de code provenant d'un autre groupe ou d'Internet, à l'exception de ce qui a été fourni ou présenté en cours ou TP (dont les vidéos de Y. Boichut ou F. Moal).
+
+* Pour les besoins du projet, vous pouvez être amenés à utiliser des librairies de manipulation de QR-Code (génération ou capture). Attention : ces librairies doivent se limiter strictement à la manipulation des QR-Codes.
+
+
+
+=== Outils et technologies
+
+- Service Web : SpringBoot REST API
+- Documentation : Spring REST Docs (avec génération de snippets de tests)
+- Base de données : MongoDB
+- Déploiement : Docker

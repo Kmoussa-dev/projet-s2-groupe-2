@@ -1,0 +1,117 @@
+
+==== User Stories et critères d'acceptance
+
+Les user stories sont un bon outil pour retranscrire les besoins utilisateurs
+et mieux comprendre les fonctionnalités à développer.
+
+Pour chaque user stories, nous avons déterminés des critères d'acceptance (spécifications techniques)
+pour s'assurer que le produit livré est conforme aux exigences du cahier des charges.
+Ces critères ont également une utilité pour la phase de test.
+
+====== UTILISATEUR
+
+  USER STORY N°1 :
+  En tant qu'utilisateur, je veux m'inscrire pour accèder aux fonctionnalités de l'application d'émargement.
+
+====== ETUDIANT
+
+  USER STORY N°2 :
+  En tant qu'étudiant, je veux émarger pour une séance en cours de déroulement afin de valider ma présence.
+
+====
+US n°2 - Tests fonctionnels / Spécifications techniques et fonctionnelles :
+
+* [ ] Je peux émarger pour une séance *en cours*
+* [ ] Je ne peux pas émarger pour une séance *passée*
+* [ ] Je ne peux pas émarger pour une séance *future*
+* [ ] Je ne peux pas émarger pour une séance qui n'est pas destiné à ma promotion ou/et mes groupes de TD/TP
+
+Ressource associée :
+PUT http://localhost:8080/api/emergement/seance/{id}/pointage/{numEtudant}
+====
+
+ USER STORY N° :
+ En tant qu'étudiant, je veux consulter ma page personnel "mon compte" :
+ getEtudiantbyNumeroEtudiant ?
+
+ USER STORY N° :
+ En tant qu'étudiant, je veux consulter mes absences :
+ -> récupérer les séances absences
+ -> récupérer total des heures absents
+
+
+ USER STORY N° [optionnel] :
+ En tant qu'étudiant, je veux consulter mes retards
+
+
+====== PERSONNEL ADMINISTRATIF OU ENSEIGNANT
+
+ USER STORY N° :
+ En tant que personnel administratif ou enseignant, je veux récupérer la liste de tous les étudiants d'une promotion.
+
+ USER STORY N° :
+ En tant que personnel administratif ou enseignant, je veux récupérer la liste des étudiants d'un groupe de TD ou TP.
+
+
+====== ENSEIGNANT
+
+ USER STORY N° :
+ En tant qu'enseignant, je veux valider les émargements pour une séance.
+
+__Note : Les étudiants arrivés après la clôture de l'émargement par l'enseignent, peuvent émarger, mais sont considérés en retard.
+__
+
+====== PERSONNEL ADMNISTRATIF
+
+ USER STORY N° :
+ En tant que personnel administratif, je veux créer une séance.
+
+ USER STORY N° :
+ En tant que personnel administratif, je veux récupérer les informations d'une séance.
+
+ USER STORY N° :
+ En tant que personnel administratif, je veux filtrer les étudiants présents pour une séance
+
+ USER STORY N° :
+ En tant que personnel administratif, je veux filtrer les étudiants absents pour une séance
+
+ USER STORY N° :
+ En tant que personnel administratif, je veux récupérer les étudiants présents/absents par semaine/mois/semestre (absences justifies)
+
+
+====== ADMINISTRATEUR
+
+ USER STORY N° :
+ En tant qu'administrateur, je veux avoir accès à l'ensemble des fonctionnalités de l'application.
+
+
+
+
+==== Liste des principales fonctionnalités de l'API
+
+Les user stories ont guidé la décomposition du projet en *sous-tâches de développement*.
+====
+.Le backlog produit :
+* [x] Inscription d'un utilisateur
+* [x] Émarger pour une séance par un étudiant
+* [x] Récupérer tous les étudiants
+* [ ] Récupérer les étudiants d'une promotion
+* [ ] Récupérer les étudiants d'un groupe de TD
+* [ ] Récupérer les étudiants d'un groupe de TP
+* [x] Récupérer les étudiants absents d'une séance
+* [x] Récupérer les étudiants présents d'une séance
+* [ ] Récupérer les statistiques par période
+* [ ] Consulter ses absences
+* [ ] Consulter ses retards
+* [ ] Valider les émargements pour une séance
+* [x] Créer une séance
+* [ ] Récupérer les informations d'une séance
+* [ ] Gérer les droits et permissions
+* [ ] Donner tous les accès à l'administrateur
+
+====
+
+
+
+
+
