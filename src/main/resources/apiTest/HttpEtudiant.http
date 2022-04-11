@@ -25,8 +25,30 @@ POST http://localhost:8080/api/emergement/etudiant
 Content-Type: application/json
 
 {
-  "numeroEtudiant": "o2200258",
-  "email": "m.kone@etu.univ-orleans.fr",
+  "numeroEtudiant": "o22002589",
+  "nom": "",
+  "prenom": "",
+  "groupe": {
+    "groupeDeTD": "TD1",
+    "groupeDeTP": "TP1"
+  },
+  "promo": {
+    "niveau": "MASTER 1",
+    "annee": "2022"
+  },
+  "email": "15446645",
+  "motDePasse": "@Jason09",
+  "roles": [
+    "ETUDIANT"
+  ]
+}
+
+####
+POST http://localhost:8080/api/emergement/etudiant
+Content-Type: application/json
+
+{
+  "numeroEtudiant": "56455646",
   "motDePasse": "@Jason05"
 }
 
@@ -72,7 +94,7 @@ Content-Type: application/json
     "annee": "2022"
   },
   "email": "solomon.lourdessamy@etu.univ-orleans.fr",
-  "motDePasse": "@Jason09",
+  "motDePasse": "  ",
   "roles": [
     "ETUDIANT"
   ]
@@ -95,7 +117,7 @@ Content-Type: application/json
     "annee": "2022"
   },
   "email": "fatima.elbardi@etu.univ-orleans.fr",
-  "motDePasse": "@Jason09",
+  "motDePasse": "  ",
   "roles": [
     "ETUDIANT"
   ]

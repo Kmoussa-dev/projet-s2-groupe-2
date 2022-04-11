@@ -1,5 +1,6 @@
 package projet.group2.gestionEmargement.controller;
 
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -13,6 +14,8 @@ import projet.group2.gestionEmargement.service.EtudiantService;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -22,8 +25,6 @@ public class EtudiantControllerTest {
    private EtudiantService etudiantService;
     @Autowired
    private MockMvc mockMvc;
-    @Autowired
-    //private DataEtudiantTest dataEtudiantTest;
 
    @BeforeEach
     public  void init() {
@@ -32,18 +33,27 @@ public class EtudiantControllerTest {
 
     /**
      * test inscription d'un etudiant avec son numéro d'étudiant et un mot de passe
-     *
+     * @throws Exception
+     * 201
      */
    @Test
     public void testInscriptionEtudiant1() throws Exception {
        this.mockMvc.perform(post("/api/emergement/etudiant")
                .contentType(MediaType.APPLICATION_JSON)
-               .content("{\"numeroEtudiant\": \"8521\", \"motDePasse\": \"526\"}")
-               .with(csrf())
+               .content("{\"numeroEtudiant\": \"951354265265\", \"motDePasse\": \"951357\"}")
+                       .with(csrf())
        )
                .andExpect(MockMvcResultMatchers.status().isCreated())
-               .andExpect(MockMvcResultMatchers.header().exists("Location"));
+               .andExpect(header().exists("Location"));
    }
+   
+   @Test
+    public void testGetEtudiants() throws Exception {
+
+       this.mockMvc.perform(get("/api/emergement/etudiants"))
+               .andExpect(status().isOk());
+   }
+
 
 
 

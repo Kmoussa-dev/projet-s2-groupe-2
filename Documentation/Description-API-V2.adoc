@@ -80,6 +80,10 @@ NOTE : {} => utilisé pour les paramètres (id) (cf. 6.3)
 | POST
 | /etudiant/
 | Inscription d'un étudiant (numéro étudiant, nom, prénom,...)
+201 création OK
+409 etudiant déjà existant
+406 informations manquantes
+400 bad request
 
 | Get étudiant
 | GET

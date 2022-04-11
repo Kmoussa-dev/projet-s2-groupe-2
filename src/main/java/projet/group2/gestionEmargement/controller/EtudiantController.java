@@ -1,10 +1,13 @@
 package projet.group2.gestionEmargement.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import projet.group2.gestionEmargement.entity.Etudiant;
+import projet.group2.gestionEmargement.exception.EtudiantDejaExisteException;
+import projet.group2.gestionEmargement.exception.MotDePasseObligatoireException;
 import projet.group2.gestionEmargement.service.EtudiantService;
 
 import java.net.URI;
@@ -27,18 +30,21 @@ public class EtudiantController {
     @PostMapping("/etudiant")
     public ResponseEntity<Etudiant> inscription(@RequestBody Etudiant etu) {
         Etudiant etudiant = this.etudiantService.getEtudiantbyNumeroEtudiant(etu.getNumeroEtudiant());
-        if(Objects.isNull(etudiant)){
-            etu.setMotDePasse(this.passwordEncoder.encode(etu.getMotDePasse()));
-            etudiant = this.etudiantService.inscription(etu);
-            URI location = ServletUriComponentsBuilder
-                    .fromCurrentRequest().path("/{numeroEtudiant}")
-                    .buildAndExpand(etudiant.getEmail()).toUri();
-            return ResponseEntity.created(location).body(etudiant);
-        }
-        else {
-            return ResponseEntity.badRequest().build();
-        }
-
+       try {
+           if (Objects.isNull(etudiant)) {
+               etu.setMotDePasse(this.passwordEncoder.encode(etu.getMotDePasse()));
+               etudiant = this.etudiantService.inscription(etu);
+               URI location = ServletUriComponentsBuilder
+                       .fromCurrentRequest().path("/{numeroEtudiant}")
+                       .buildAndExpand(etudiant.getEmail()).toUri();
+               return ResponseEntity.created(location).body(etudiant);
+           }
+       }catch (EtudiantDejaExisteException e) {
+           return ResponseEntity.status(HttpStatus.CONFLICT).build();
+       }catch (MotDePasseObligatoireException e) {
+           return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
+       }
+       return ResponseEntity.badRequest().build();
     }
 
     @GetMapping("/etudiant/{numeroEtudiant}")

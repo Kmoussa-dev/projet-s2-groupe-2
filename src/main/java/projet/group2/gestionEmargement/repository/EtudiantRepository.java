@@ -11,7 +11,7 @@ import java.util.List;
 public interface EtudiantRepository extends MongoRepository<Etudiant, String> {
 
 
-    Etudiant getEtudiantByNumeroEtudiant(String numeroEtudiant);
+    Etudiant findEtudiantByNumeroEtudiant(String numeroEtudiant);
 
     Etudiant getEtudiantByEmail(String email);
 

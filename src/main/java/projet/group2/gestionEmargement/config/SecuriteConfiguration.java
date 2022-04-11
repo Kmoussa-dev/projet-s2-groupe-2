@@ -44,7 +44,7 @@ public class SecuriteConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET,"/api/emergement/etudiants").hasRole("ETUDIANT")
+                .antMatchers(HttpMethod.GET,"/api/emergement/etudiants").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/emergement/enseignants").hasRole("PROF")
                 .and().httpBasic()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
