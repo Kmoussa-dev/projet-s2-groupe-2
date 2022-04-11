@@ -67,7 +67,10 @@ __
  En tant que personnel administratif, je veux créer une séance.
 
  USER STORY N° :
- En tant que personnel administratif, je veux récupérer les informations d'une séance.
+ En tant que personnel administratif, je veux consulter, modifier ou supprimer une séance.
+
+ USER STORY N° :
+ En tant que personnel administratif, je veux consulter la liste d'émargement d'une séance terminée.
 
  USER STORY N° :
  En tant que personnel administratif, je veux filtrer les étudiants présents pour une séance
@@ -78,6 +81,15 @@ __
  USER STORY N° :
  En tant que personnel administratif, je veux récupérer les étudiants présents/absents par semaine/mois/semestre (absences justifies)
 
+ USER STORY N° :
+ En tant que personnel administratif, je veux consulter les séances en cours de déroulement.
+
+ USER STORY N° :
+ En tant que personnel administratif, je veux consulter les séances terminées.
+
+ USER STORY N° :
+ En tant que personnel administratif, je veux consulter les séances à venir.
+
 
 ====== ADMINISTRATEUR
 
@@ -86,30 +98,6 @@ __
 
 
 
-
-==== Liste des principales fonctionnalités de l'API
-
-Les user stories ont guidé la décomposition du projet en *sous-tâches de développement*.
-====
-.Le backlog produit :
-* [x] Inscription d'un utilisateur
-* [x] Émarger pour une séance par un étudiant
-* [x] Récupérer tous les étudiants
-* [ ] Récupérer les étudiants d'une promotion
-* [ ] Récupérer les étudiants d'un groupe de TD
-* [ ] Récupérer les étudiants d'un groupe de TP
-* [x] Récupérer les étudiants absents d'une séance
-* [x] Récupérer les étudiants présents d'une séance
-* [ ] Récupérer les statistiques par période
-* [ ] Consulter ses absences
-* [ ] Consulter ses retards
-* [ ] Valider les émargements pour une séance
-* [x] Créer une séance
-* [ ] Récupérer les informations d'une séance
-* [ ] Gérer les droits et permissions
-* [ ] Donner tous les accès à l'administrateur
-
-====
 
 
 

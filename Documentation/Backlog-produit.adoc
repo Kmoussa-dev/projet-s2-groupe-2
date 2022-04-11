@@ -1,0 +1,59 @@
+
+==== Liste des principales fonctionnalités de l'API
+
+Les user stories ont guidé la décomposition du projet en *sous-tâches de développement*.
+
+//*Le backlog produit :*
+//
+//_Note : En gras, les tâches prioritaires pour correspondre au CDC._
+====
+.Le backlog produit
+****
+_Note : En gras, les tâches prioritaires pour correspondre au Cahier des charges._
+****
+
+****
+.Fonctionnalités de bases
+* [x] Inscription d'un utilisateur
+* [ ] Gérer les droits et permissions
+****
+
+****
+.Séance
+* [x] *Créer une séance*
+* [ ] Consulter une séance
+* [ ] Modifier une séance
+* [ ] Supprimer une séance
+* [ ] Consulter la liste des séances en cours.
+* [ ] Consulter la liste des séances à venir.
+* [ ] Consulter la liste des séances terminées.
+****
+
+****
+.Émargement
+* [x] *Émarger pour une séance* (étudiant)
+* [ ] *Valider les émargements pour une séance* (enseignant + automatique pour travail autonomie)
+* [ ] *Consulter les listes d'émargement* (personnel administratif)
+* [ ] *Consulter la liste d'émargement d'une séance terminée* (personnel administratif)
+****
+
+****
+.Listes étudiantes
+* [x] Récupérer tous les étudiants
+* [ ] Récupérer les étudiants d'une promotion
+* [ ] Récupérer les étudiants d'un groupe de TD
+* [ ] Récupérer les étudiants d'un groupe de TP
+* [x] Récupérer les étudiants absents d'une séance
+* [x] Récupérer les étudiants présents d'une séance
+* [ ] Récupérer les statistiques par période
+****
+
+****
+.Compte étudiant
+* [ ] Consulter ses propres absences
+* [ ] Consulter ses propres retards
+****
+
+
+
+====

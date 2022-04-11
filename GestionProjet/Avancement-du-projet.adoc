@@ -1,39 +1,64 @@
 
-== Gestion du projet
+=== Avancement du projet
 
-=== Cycle de vie du projet
+Suivi de l'état d'avancement des différentes tâches du projet :
 
-La gestion du projet de conception d'une API d'émargement s'est organisé en plusieurs étapes.
-
-====
-.Les phases du projet :
-* Conception
-* Développement
-* Recette technique
-* Production
-====
-
-=== Planification
-
-[NOTE]
-_Diagramme de Gantt à ajouter_
+===== Conception
+* [x] Analyse des besoins (cahier des charges)
+* [x] Modélisation du SI
+* [x] Définition des URI de l'API
 
 
-=== Équipe projet
-
-====
-.Les membres de l'équipe :
-* Fatima-Ezzahraa ELBARDI
-* Moussa KONE
-* Rachida EL OUARIACHI
-* Solomon LOURDESSAMY
-====
+===== Documentation projet
+* [x] User stories
+* [x] Décomposition du projet en sous-tâches
+* [ ] Diagramme de Gantt   _(fait brouillon -> reste à mettre au propre)_
+* [ ] Matrice RACI   _(fait brouillon -> reste à mettre au propre)_
 
 
-=== Matrice RACI
-Identification des tâches et des rôles/responsabilités
+===== Développement
+* [x] Initialisation et configuration du projet : maven, java 17, Spring Web, git
+* [x] Base de données MongoDB
+** [x] Configuration docker image mongoDB
+** [x] Connexion à la base de données
+* [x] Modèle
+* [x] Couche Repository
+* [x] Couche Service
+* [x] Couche Controller I (fonctionnalités principales)
+* [ ] Couche Controller II (fonctionnalités secondaires)
+* [ ] Fonctionnalité d'émargement QR code (contrôle d'intégrité avec tokens)
+* [x] Sécurité Basic avec encodage password
+* [ ] Gestion des rôles & permissions d'accès   _(en cours)_
+* [ ] _[Optionnel] Sécurité avec JWT_
+* [ ] Contraintes de validation
+* [ ] Pagination
+* [ ] _[Optionnel] Versionner l'API_
 
-[NOTE]
-_Matrice RACI à ajouter_
+
+===== Tests / Recette
+* [ ] Tests fonctionnels   _(en cours)_
+* [ ] Tests d'intégration  _(en cours)_
+* [ ] Tests structurels
+* [ ] Validation des fonctionnalités
+
+
+===== Documentation technique
+* [ ] Tableau des URI   _(en cours)_
+* [ ] Documentation API Spring REST Docs  _(en cours)_
+* [ ] Diagramme de classes final :
+** [ ] à générer au format png
+** [ ] à expliquer
+* [ ] Description de l'architecture du projet
+* [ ] Description de la solution de sécurisation utilisée
+* [ ] Description des différentes solutions envisagées et celle retenue
+* [ ] Description détaillée de la solution technique du QR code
+
+* [ ] _[Optionnel] Retour sur les Refactoring majeurs effectués :_
+** [ ] _Expliquer le changement de modélisation du SI (objectif : respecter principes SOLID)_
+
+===== Déploiement
+* [ ] Configurer les fichiers docker-compose.yml et DockerFile pour lancer mongoDB et l'application .jar
+* [ ] _[Optionnel] Migration des données (construire un jeu de données davantage rempli et réaliste)_
+* [ ] _[Optionnel] Recueillir des retours d'expériences des clients (corps professoral + secrétaires)_
 
 

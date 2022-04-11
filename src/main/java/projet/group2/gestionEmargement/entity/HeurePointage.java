@@ -3,6 +3,7 @@ package projet.group2.gestionEmargement.entity;
 import java.time.LocalDateTime;
 
 public class HeurePointage {
+
     private LocalDateTime pointage;
     private String numEtudiant;
 
