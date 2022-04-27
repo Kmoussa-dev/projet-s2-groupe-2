@@ -1,55 +1,34 @@
-package projet.group2.gestionEmargement.entity;
+package projet.group2.gestionEmargement.dto;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+import projet.group2.gestionEmargement.entity.Groupe;
+import projet.group2.gestionEmargement.entity.Promotion;
+import projet.group2.gestionEmargement.entity.Seance;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Objects;
 
-@Document(collection = "seance")
-public class Seance {
-
-    @Id
-    private String id;
-
-
-    @Field(name = "createurSeance")
+public class SeanceDTO {
     private String userID;
 
-    @Field(name = "discipline")
+
     private String discipline;
 
     private String enseignantID;
 
-    @Field(name = "typeDeSeance")
+
     private String typeSeance;
 
     private Groupe groupe;
 
-    private List<String> numEtudiants;
-
-    private List<HeurePointage> numEtudiantsPresent;
-
-    @Field(name = "heureDebut")
     private LocalDateTime heureDebut;
 
-    @Field(name = "heureFin")
+
     private LocalDateTime heureFin;
 
     private Promotion promotion;
 
-    @Field(name = "statutSeance")
+
     private String statutSeance;
-
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getUserID() {
         return userID;
@@ -91,22 +70,6 @@ public class Seance {
         this.groupe = groupe;
     }
 
-    public List<String> getNumEtudiants() {
-        return numEtudiants;
-    }
-
-    public void setNumEtudiants(List<String> numEtudiants) {
-        this.numEtudiants = numEtudiants;
-    }
-
-    public List<HeurePointage> getNumEtudiantsPresent() {
-        return numEtudiantsPresent;
-    }
-
-    public void setNumEtudiantsPresent(List<HeurePointage> numEtudiantsPresent) {
-        this.numEtudiantsPresent = numEtudiantsPresent;
-    }
-
     public LocalDateTime getHeureDebut() {
         return heureDebut;
     }
@@ -138,4 +101,26 @@ public class Seance {
     public void setStatutSeance(String statutSeance) {
         this.statutSeance = statutSeance;
     }
+
+    public static Seance toEntity(SeanceDTO seanceDTO){
+        if(Objects.isNull(seanceDTO))
+            return null;
+        else {
+            Seance seance = new Seance();
+            seance.setUserID(seanceDTO.getUserID());
+            seance.setDiscipline(seanceDTO.getDiscipline());
+            seance.setEnseignantID(seanceDTO.getEnseignantID());
+            seance.setTypeSeance(seanceDTO.getTypeSeance());
+            seance.setGroupe(seanceDTO.getGroupe());
+            seance.setHeureDebut(seanceDTO.getHeureDebut());
+            seance.setHeureFin(seanceDTO.getHeureFin());
+            seance.setPromotion(seanceDTO.getPromotion());
+            seance.setStatutSeance(seanceDTO.getStatutSeance());
+            return seance;
+        }
+    }
+
+//    public static SeanceDTO fromEntity(Seance seance){
+//
+//    }
 }

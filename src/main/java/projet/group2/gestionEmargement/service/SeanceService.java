@@ -17,6 +17,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class SeanceService {
@@ -28,6 +29,19 @@ public class SeanceService {
     private EtudiantRepository etudiantRepository;
 
     public Seance creer(Seance seance){
+        List<String> numEtudiants;
+        switch (seance.getTypeSeance()){
+            case "TP":
+                numEtudiants = this.etudiantRepository.getEtudiantsByPromoNiveauAndGroupeGroupeDeTP(seance.getPromotion().getNiveau(),seance.getGroupe().getGroupeDeTP()).stream().map(e -> e.getNumeroEtudiant()).collect(Collectors.toList());
+                break;
+            case "TD":
+                numEtudiants = this.etudiantRepository.getEtudiantsByPromoNiveauAndGroupeGroupeDeTD(seance.getPromotion().getNiveau(),seance.getGroupe().getGroupeDeTD()).stream().map(e -> e.getNumeroEtudiant()).collect(Collectors.toList());
+                break;
+            default:
+                numEtudiants = this.etudiantRepository.getEtudiantsByPromo(seance.getPromotion()).stream().map(e -> e.getNumeroEtudiant()).collect(Collectors.toList());
+                break;
+        }
+        seance.setNumEtudiants(numEtudiants);
         return this.seanceRepository.insert(seance);
     }
 

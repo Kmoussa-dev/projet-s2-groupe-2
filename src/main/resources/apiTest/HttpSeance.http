@@ -42,3 +42,26 @@ GET http://localhost:8080/api/emergement/seance/624b6be231b295383b70f2c7/etudian
 
 ####
 GET http://localhost:8080/api/emergement/seance/624b6be231b295383b70f2c7/etudiant-absent
+
+
+###
+POST http://localhost:8080/api/emergement/seance
+Content-Type: application/json
+
+{
+  "userID": "624733dd522eca380ed8cd77",
+  "discipline": "Systeme répatition",
+  "enseignantID": "6247341b522eca380ed8cd78",
+  "typeSeance": "TP",
+  "groupe": {
+    "groupeDeTD": "",
+    "groupeDeTP": "TP3"
+  },
+  "promotion": {
+    "niveau": "MASTER 1",
+    "annee": "2022"
+  },
+  "heureDebut": "2022-04-28T00:20:00",
+  "heureFin": "2022-04-28T01:55:00",
+  "statutSeance": "NON VALIDE"
+}

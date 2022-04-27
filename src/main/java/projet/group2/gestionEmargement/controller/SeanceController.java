@@ -3,6 +3,7 @@ package projet.group2.gestionEmargement.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import projet.group2.gestionEmargement.dto.SeanceDTO;
 import projet.group2.gestionEmargement.entity.Etudiant;
 import projet.group2.gestionEmargement.entity.Seance;
 import projet.group2.gestionEmargement.exception.AppelleNonPrisEnCompteException;
@@ -10,6 +11,7 @@ import projet.group2.gestionEmargement.exception.EtudiantInexistantException;
 import projet.group2.gestionEmargement.service.EtudiantService;
 import projet.group2.gestionEmargement.service.SeanceService;
 
+import javax.annotation.security.RolesAllowed;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +33,9 @@ public class SeanceController {
 
 
     @PostMapping("/seance")
-    public ResponseEntity<Seance> nouvelleSeance(@RequestBody Seance seance){
+    public ResponseEntity<Seance> nouvelleSeance(@RequestBody SeanceDTO seance){
         if(Objects.isNull(this.seanceService.getSeanceByHeureDebutAndHeureFinAndDisciplineAndGroupe(seance.getHeureDebut(),seance.getHeureFin(),seance.getDiscipline(), seance.getGroupe()))){
-             Seance s = this.seanceService.creer(seance);
+            Seance s = this.seanceService.creer(SeanceDTO.toEntity(seance));
             URI location = ServletUriComponentsBuilder
                     .fromCurrentRequest().path("/{id}")
                     .buildAndExpand(s.getId()).toUri();
@@ -56,6 +58,7 @@ public class SeanceController {
     }
 
     @PutMapping("/seance/{id}/pointage/{numEtudant}")
+    @RolesAllowed("PROFESSEUR")
     public ResponseEntity<Seance> emerger(@PathVariable String id, @PathVariable String numEtudant)
     {
         try {

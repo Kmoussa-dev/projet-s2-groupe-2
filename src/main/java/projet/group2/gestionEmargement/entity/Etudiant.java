@@ -4,6 +4,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.UUID;
+
 @Document(collection="etudiants")
 public class Etudiant extends Utilisateur {
 
@@ -15,7 +17,7 @@ public class Etudiant extends Utilisateur {
     @Field(name = "promo")
     private Promotion promo;
 
-    @Field(name = "groupe")
+
     public Groupe getGroupe() {
         return groupe;
     }
@@ -40,4 +42,6 @@ public class Etudiant extends Utilisateur {
     public void setNumeroEtudiant(String numeroEtudiant) {
         this.numeroEtudiant = numeroEtudiant;
     }
+
+
 }
