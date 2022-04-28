@@ -30,12 +30,7 @@ public class SecuriteConfiguration extends WebSecurityConfigurerAdapter {
     }
 
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-        auth.authenticationProvider(authenticationProvider());
-
-    }
 
 
     @Override
@@ -46,6 +41,9 @@ public class SecuriteConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET,"/api/emergement/etudiants").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/emergement/enseignants").hasRole("PROF")
+                .antMatchers(HttpMethod.PUT,"/api/emergement/seance/**").hasRole("PROF")
+                .antMatchers(HttpMethod.POST,"/api/emergement/seance").permitAll()
+                .anyRequest().authenticated()
                 .and().httpBasic()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
@@ -76,15 +74,6 @@ public class SecuriteConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
-
-        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
-        daoAuthenticationProvider.setUserDetailsService(userDetailsService());
-
-        return daoAuthenticationProvider;
-    }
 
 
 }

@@ -56,9 +56,8 @@ public class SeanceController {
             return ResponseEntity.notFound().build();
         }
     }
-
+    @RolesAllowed("PROF")
     @PutMapping("/seance/{id}/pointage/{numEtudant}")
-    @RolesAllowed("PROFESSEUR")
     public ResponseEntity<Seance> emerger(@PathVariable String id, @PathVariable String numEtudant)
     {
         try {
