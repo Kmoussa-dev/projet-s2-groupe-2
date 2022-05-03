@@ -3,8 +3,8 @@ package projet.group2.gestionEmargement.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.http.converter.BufferedImageHttpMessageConverter;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -17,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import projet.group2.gestionEmargement.entity.Utilisateur;
 import projet.group2.gestionEmargement.service.UtilisateurService;
 
+import java.awt.image.BufferedImage;
 import java.util.Objects;
 
 @Configuration
@@ -39,10 +40,12 @@ public class SecuriteConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
+                .antMatchers(HttpMethod.POST,"/api/emergement/etudiant").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/emergement/etudiants").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/emergement/enseignants").hasRole("PROF")
-                .antMatchers(HttpMethod.PUT,"/api/emergement/seance/**").hasRole("PROF")
+                .antMatchers(HttpMethod.PUT,"/api/emergement/seance/**").permitAll()
                 .antMatchers(HttpMethod.POST,"/api/emergement/seance").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/emergement/seance/token**").permitAll()
                 .anyRequest().authenticated()
                 .and().httpBasic()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
@@ -75,5 +78,8 @@ public class SecuriteConfiguration extends WebSecurityConfigurerAdapter {
     }
 
 
-
+    @Bean
+    public HttpMessageConverter<BufferedImage> createImageHttpMessageConverter() {
+        return new BufferedImageHttpMessageConverter();
+    }
 }

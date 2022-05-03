@@ -1,8 +1,15 @@
 package projet.group2.gestionEmargement.controller;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.BufferedImageHttpMessageConverter;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import projet.group2.gestionEmargement.config.TokenGenerator;
 import projet.group2.gestionEmargement.dto.SeanceDTO;
 import projet.group2.gestionEmargement.entity.Etudiant;
 import projet.group2.gestionEmargement.entity.Seance;
@@ -12,7 +19,12 @@ import projet.group2.gestionEmargement.service.EtudiantService;
 import projet.group2.gestionEmargement.service.SeanceService;
 
 import javax.annotation.security.RolesAllowed;
+import java.awt.image.BufferedImage;
 import java.net.URI;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -56,19 +68,26 @@ public class SeanceController {
             return ResponseEntity.notFound().build();
         }
     }
-    @RolesAllowed("PROF")
-    @PutMapping("/seance/{id}/pointage/{numEtudant}")
-    public ResponseEntity<Seance> emerger(@PathVariable String id, @PathVariable String numEtudant)
+
+    @PutMapping("/seance/{id}/pointage/{numEtudant}/{dateExpire}")
+    public ResponseEntity<Seance> emerger(@PathVariable String id, @PathVariable String numEtudant, @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateExpire)
     {
-        try {
-            Seance seance = this.seanceService.emerger(id,numEtudant);
-            return ResponseEntity.ok(seance);
-        } catch (EtudiantInexistantException e) {
-            return ResponseEntity.notFound().build();
-        } catch (AppelleNonPrisEnCompteException e) {
-            return ResponseEntity.badRequest().build();
+        if(!Duration.between(LocalDateTime.now(),dateExpire).isNegative()){
+            try {
+                Seance seance = this.seanceService.emerger(id,numEtudant);
+                return ResponseEntity.ok(seance);
+            } catch (EtudiantInexistantException e) {
+                return ResponseEntity.notFound().build();
+            } catch (AppelleNonPrisEnCompteException e) {
+                return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
+            }
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
         }
     }
+
+
 
     @GetMapping("/seance/{id}/etudiant-present")
     public ResponseEntity<List<Etudiant>> getEtudiantsPresent(@PathVariable String id){
@@ -105,6 +124,17 @@ public class SeanceController {
             return ResponseEntity.ok(lesEtuAbsent);
         }
     }
+
+    @GetMapping(value = "/seance/token", produces = MediaType.IMAGE_PNG_VALUE)
+    public ResponseEntity<BufferedImage> genarateToken(@RequestParam String idSeance, @RequestParam String numEtudiant){
+        try {
+            BufferedImage bufferedImage = TokenGenerator.generateQRCode(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/emergement/seance/{id}/pointage/{numEtudant}/{dateExpire}").buildAndExpand(idSeance,numEtudiant,LocalDateTime.now().plusSeconds(5).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)).toUriString());
+            return ResponseEntity.ok(bufferedImage);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
+    }
+
 
 
 }
