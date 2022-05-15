@@ -55,6 +55,7 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- QR CODE -->
 		<dependency>
 			<groupId>com.google.zxing</groupId>
 			<artifactId>core</artifactId>

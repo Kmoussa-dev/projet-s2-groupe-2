@@ -1,0 +1,18 @@
+
+#### Cahier de test
+
+- `POST /api/emargement/seances` ->  *création d'une nouvelle séance*.
+
+* [x] Un cas de succès
+* [x] 403
+* [x] 409
+
+
+
+- `GET /api/emargement/seances/{id}` ->  *consultation d'une séance*.
+* Nécessite d'être authentifié.
+* *Requête* sans contenu particulier.
+* *Réponse* :
+** `200` (OK) -> Le corps de la réponse doit contenir un objet Séance (au format JSON).
+** `401` (Unauthorized) -> Un utilisateur non authentifié essaie d'accéder à la ressource.
+** `404` (Not found) -> La séance n'existe pas.

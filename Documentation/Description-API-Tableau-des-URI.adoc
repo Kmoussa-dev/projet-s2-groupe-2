@@ -51,8 +51,11 @@
 
 | Créer un type de séance
 | POST
-| /promotion/
+| /api/emargement/seances
 | Création d'une séance
+201 created
+409 conflict séance Deja existante
+403 uniquement
 
 | Créer une liste d'émargement
 | POST

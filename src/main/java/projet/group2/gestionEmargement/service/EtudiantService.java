@@ -12,7 +12,6 @@ import projet.group2.gestionEmargement.repository.EtudiantRepository;
 import java.util.*;
 
 @Service
-@Component
 public class EtudiantService {
 
     @Autowired
@@ -28,8 +27,7 @@ public class EtudiantService {
         return this.etudiantRepository.insert(etudiant);
     }
 
-    public List<Etudiant> getEtudiants()
-    {
+    public List<Etudiant> getEtudiants() {
         return this.etudiantRepository.findAll();
     }
 

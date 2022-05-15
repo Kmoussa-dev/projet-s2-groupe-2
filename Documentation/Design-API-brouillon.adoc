@@ -1,0 +1,79 @@
+
+=== Design API
+
+- `POST /api/emargement/seances` ->  *création d'une nouvelle séance*.
+* Nécessite d'être authentifié en tant que MEMBRE ADMINISTRATIF.
+* *Requête* avec un objet de type *SeanceDTO* dans le body.
+* *Réponse* :
+** `201` (Created) -> La séance a bien été créé.
+** `403` (Forbidden) -> Utilisateur authentifié n'a pas le rôle MEMBRE ADMINISTRATIF
+** `409` (Conflict) -> Une séance avec les mêmes horaires, la même discipline, le même type de groupe existe déjà.
+
+
+- `GET /api/emargement/seances/{id}` ->  *consultation d'une séance*.
+* Nécessite d'être authentifié.
+* *Requête* sans contenu particulier.
+* *Réponse* :
+** `200` (OK) -> Le corps de la réponse doit contenir un objet Séance (au format JSON).
+** `401` (Unauthorized) -> Un utilisateur non authentifié essaie d'accéder à la ressource.
+** `404` (Not found) -> La séance n'existe pas.
+
+
+
+- `PUT /api/emargement/seances/{id}/pointage/{numEtudant}/{dateExpire}` ->  *validation d'un émargement par un enseignant ou par un scanner d'une salle de classe donnée*.
+* Nécessite d'être authentifié en tant qu' ENSEIGNANT ou ADMIN.
+* *Réponse* :
+** `202` (Accepted) -> L'émargement a bien été effectué.
+** `403` (Forbidden) -> Un étudiant essaie d'émarger pour une séance alors qu'il n'est pas autorisé.
+** `404` (Not found) -> La séance n'existe pas ou l'étudiant n'existe pas.
+** `406` (Not Acceptable) -> Appel non pris en compte.
+** `498` (Token expired/invalid) -> Le token d'émargement a expiré ou invalide.
+
+
+
+- `POST /api/emargement/seances/token` ->  *génération d'un token QR CODE pour permettre à l'étudiant d'émarger pour une séance*.
+* Nécessite d'être authentifié comme ETUDIANT.
+* *Réponse* :
+** `201` (Created) -> Le QR Code a été bien généré.
+** `400` (Bad Request) -> Le QR code est mal généré dû à l'encodage.
+
+
+- `GET /api/emargement/seances` ->  *consultation de l'ensemble des séances*.
+* Nécessite d'être authentifié.
+* *Requête* sans contenu particulier.
+* *Réponse* :
+** `200` (OK) -> Le corps de la réponse doit contenir une liste d'objet Séance (au format JSON).
+** `401` (Unauthorized) -> Un utilisateur non authentifié essaie d'accéder à la ressource.
+** `404` (Not found) -> La liste des séances est vide.
+
+
+- `GET /api/emargement/seances/periode ->  *consulation des séances pour une période donnée*.
+* Nécessite d'être authentifié.
+* *Requête* nécessitant les paramètres :
+** `dateDebut` : date de début de l'intervalle
+** `dateFin` : date de fin de l'intervalle
+* *Réponse* :
+** `200` (OK) -> Le corps de la réponse doit contenir une liste d'objet Séance (au format JSON).
+** `400` (Bad Request) -> Les informations fournies sont incorrectes.
+** `401` (Unauthorized) -> Un utilisateur non authentifié essaie d'accéder à la ressource.
+** `404` (Not found) -> La liste des séances est vide.
+
+
+- `PUT /api/emargement/seances/{id} ->  *modification d'une séance*.
+* Nécessite d'être authentifié en tant que MEMBRE ADMINISTRATIF.
+* *Requête* nécessitant les paramètres :
+* *Réponse* :
+** `202` (Accepted) -> La modification a bien été effectuée.
+** `403` (Forbiden) -> Un utilisateur non MEMBRE ADMINISTRATIF essaie de modifier la ressource.
+** `404` (Not found) -> La séance n'existe pas.
+** `400` (Not acceptable) -> Les informations fournies sont incorrectes.
+
+
+- `DELETE /api/emargement/seances/{id} ->  *suppression d'une séance*.
+* Nécessite d'être authentifié en tant que MEMBRE ADMINISTRATIF.
+* *Requête* nécessitant les paramètres :
+* *Réponse* :
+** `202` (Accepted) -> La suppression a bien été effectuée.
+** `403` (Forbiden) -> Un utilisateur non MEMBRE ADMINISTRATIF essaie de modifier la ressource.
+** `404` (Not found) -> La séance n'existe pas.
+** `400` (Not acceptable) -> Les informations fournies sont incorrectes.

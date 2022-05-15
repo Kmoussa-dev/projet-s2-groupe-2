@@ -120,6 +120,23 @@ public class SeanceDTO {
         }
     }
 
+    public static Seance toEntityUpdate(Seance seance, SeanceDTO seanceDTO){
+        if(Objects.isNull(seanceDTO) && Objects.isNull(seance))
+            return null;
+        else {
+            seance.setUserID(seanceDTO.getUserID());
+            seance.setDiscipline(seanceDTO.getDiscipline());
+            seance.setEnseignantID(seanceDTO.getEnseignantID());
+            seance.setTypeSeance(seanceDTO.getTypeSeance());
+            seance.setGroupe(seanceDTO.getGroupe());
+            seance.setHeureDebut(seanceDTO.getHeureDebut());
+            seance.setHeureFin(seanceDTO.getHeureFin());
+            seance.setPromotion(seanceDTO.getPromotion());
+            seance.setStatutSeance(seanceDTO.getStatutSeance());
+            return seance;
+        }
+    }
+
 //    public static SeanceDTO fromEntity(Seance seance){
 //
 //    }

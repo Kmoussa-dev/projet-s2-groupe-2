@@ -80,3 +80,6 @@ GET http://localhost:8080/api/emargement/seances/periode?dateDebut=2022-04-04T00
 ####
 DELETE http://localhost:8080/api/emargement/seances/6281392785d09311f38546c5
 Accept: application/json
+
+#### genération du code qrc d'une seance pour un étudiant
+GET http://localhost:8080/api/emargements/seances/token?idSeance=62707ca87754620c29af3d8c&numEtudiant=54648564
