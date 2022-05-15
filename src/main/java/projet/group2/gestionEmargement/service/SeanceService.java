@@ -1,20 +1,16 @@
 package projet.group2.gestionEmargement.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import projet.group2.gestionEmargement.entity.*;
 import projet.group2.gestionEmargement.exception.AppelleNonPrisEnCompteException;
-import projet.group2.gestionEmargement.exception.CreationImpossibleDeSeanceException;
 import projet.group2.gestionEmargement.exception.EtudiantInexistantException;
+import projet.group2.gestionEmargement.exception.MauvaisIdentifiantException;
+import projet.group2.gestionEmargement.exception.SeanceInexistanteException;
 import projet.group2.gestionEmargement.repository.EtudiantRepository;
 import projet.group2.gestionEmargement.repository.SeanceRepository;
-import projet.group2.gestionEmargement.repository.UtilisateurRepository;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -28,27 +24,44 @@ public class SeanceService {
     @Autowired
     private EtudiantRepository etudiantRepository;
 
-    public Seance creer(Seance seance){
+    /**
+     * Permet la création d'une nouvelle séance dans la bdd
+     * @param seance
+     * @return
+     */
+    public Seance creerSeance(Seance seance){
         List<String> numEtudiants;
         switch (seance.getTypeSeance()){
             case "TP":
-                numEtudiants = this.etudiantRepository.getEtudiantsByPromoNiveauAndGroupeGroupeDeTP(seance.getPromotion().getNiveau(),seance.getGroupe().getGroupeDeTP()).stream().map(e -> e.getNumeroEtudiant()).collect(Collectors.toList());
+                numEtudiants = this.etudiantRepository.getEtudiantsByPromoNiveauAndGroupeGroupeDeTP(seance.getPromotion().getNiveau(),seance.getGroupe().getGroupeDeTP())
+                        .stream().map(e -> e.getNumeroEtudiant()).collect(Collectors.toList());
                 break;
             case "TD":
-                numEtudiants = this.etudiantRepository.getEtudiantsByPromoNiveauAndGroupeGroupeDeTD(seance.getPromotion().getNiveau(),seance.getGroupe().getGroupeDeTD()).stream().map(e -> e.getNumeroEtudiant()).collect(Collectors.toList());
+                numEtudiants = this.etudiantRepository.getEtudiantsByPromoNiveauAndGroupeGroupeDeTD(seance.getPromotion().getNiveau(),seance.getGroupe().getGroupeDeTD())
+                        .stream().map(e -> e.getNumeroEtudiant()).collect(Collectors.toList());
                 break;
             default:
-                numEtudiants = this.etudiantRepository.getEtudiantsByPromo(seance.getPromotion()).stream().map(e -> e.getNumeroEtudiant()).collect(Collectors.toList());
+                numEtudiants = this.etudiantRepository.getEtudiantsByPromo(seance.getPromotion())
+                        .stream().map(e -> e.getNumeroEtudiant()).collect(Collectors.toList());
                 break;
         }
         seance.setNumEtudiants(numEtudiants);
         return this.seanceRepository.insert(seance);
     }
 
+    /**
+     * Récupère toutes les séances enregistrées dans la bdd
+     * @return la liste des séances
+     */
     public List<Seance> getSeances(){
         return this.seanceRepository.findAll();
     }
 
+    /**
+     * Récupère une séance par son identifiant
+     * @param id de la séance
+     * @return la séance
+     */
     public Seance getSeanceById(String id){
         return this.seanceRepository.getSeanceById(id);
     }
@@ -66,7 +79,13 @@ public class SeanceService {
         return this.seanceRepository.getSeanceByHeureDebutAndHeureFinAndDisciplineAndGroupe( heureDebut, heureFin, discipline, groupe);
     }
 
-    public Seance emerger(String seanceid, String numEtudiant) throws EtudiantInexistantException, AppelleNonPrisEnCompteException
+    /**
+     * Permet la génération de token pour la fonctionnalité émarger
+     * @param seanceid id de la séance
+     * @param numEtudiant numéro étudiant de l'élève qui va émarger
+     * @return
+     */
+    public Seance emarger(String seanceid, String numEtudiant) throws EtudiantInexistantException, AppelleNonPrisEnCompteException
     {
         LocalDateTime now = LocalDateTime.now();
         Seance seance = this.getSeanceById(seanceid);
@@ -90,5 +109,51 @@ public class SeanceService {
         }
     }
 
+    /**
+     * Permet de récupérer la liste des séances pour une période donnée comprise entre un intervalle de deux dates
+     * @param dateDebut de l'intervalle
+     * @param dateFin de l'intervalle
+     * @return la liste des séances de la période sélectionnée
+     */
+    public List<Seance> getSeancesByPeriode(LocalDateTime dateDebut, LocalDateTime dateFin) {
+        return this.seanceRepository.findAllByHeureDebutBetween(dateDebut,dateFin);
+    }
+
+    /**
+     * Permet la suppression d'une séance
+     * @param id de la séance à supprimer
+     * @throws SeanceInexistanteException : si l'id est inexistant dans la bdd
+     * @throws MauvaisIdentifiantException : si le format de l'id est incorrect ou null ou vide
+     */
+    public void deleteSeance(String id) throws SeanceInexistanteException, MauvaisIdentifiantException {
+
+        if (id == null || id.isEmpty() || id.isBlank() || !(id instanceof String) ) {
+            throw new MauvaisIdentifiantException();
+        }
+        if (seanceRepository.existsSeanceById(id)) {
+            this.seanceRepository.deleteSeanceById(id);
+        } else {
+            throw new SeanceInexistanteException();
+        }
+
+    }
+
+    /**
+     * Modifier les informations d'une séance par une secrétaire
+     * @param id de la seéance à éditer
+     * @throws SeanceInexistanteException
+     * @throws MauvaisIdentifiantException
+     */
+    public void updateSeance(String id) throws SeanceInexistanteException, MauvaisIdentifiantException {
+
+        if (id == null || id.isEmpty() || id.isBlank() || !(id instanceof String) ) {
+            throw new MauvaisIdentifiantException();
+        }
+        if (seanceRepository.existsSeanceById(id)) {
+            this.seanceRepository.save(getSeanceById(id));
+        } else {
+            throw new SeanceInexistanteException();
+        }
+    }
 
 }

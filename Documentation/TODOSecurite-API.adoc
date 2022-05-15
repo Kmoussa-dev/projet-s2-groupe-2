@@ -1,0 +1,9 @@
+
+=== Sécurité de l'API REST Emargement
+
+L'API REST Emargement est sécurisée à l'aide de la sécurité du module Spring Security...
+Mode Basic....
+
+...
+
+//TODO

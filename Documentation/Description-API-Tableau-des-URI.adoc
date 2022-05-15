@@ -1,80 +1,15 @@
-=== Description de l'API
+==== Description API
 
-*Mémo des codes HTTP :*
-
-    100-199 ➡ Information
-    200-299 ➡ Succès
-    300-399 ➡ Redirection
-    400-499 ➡ Erreur client
-    505-599 ➡ Erreur serveur
-
-.Principaux codes utilisés dans l'API
-|===
-|Code | Message | Description
-
-|200
-|OK
-|La requête a réussi.
-
-|201
-|Created
-|La requête a réussi et la nouvelle ressource a été crée.
-
-|400
-|Bad Request
-|La syntaxe de la requête est invalide.
-
-|401
-|Unauthorized
-|Une authentification est nécessaire pour accéder à la ressource.
-
-|403
-|Forbidden
-|Le client n'a pas les droits d'accès au contenu, demande refusée par le serveur.
-
-|404
-|Not Found
-|Le serveur n'a pas trouvé la ressource demandée.
-
-|405
-|Method Not Allowed
-|La méthode de la requête n'est pas autorisée.
-
-|406
-|Not Acceptable
-|La ressource demandée n'est pas disponible dans un format qui respecterait les en-têtes « Accept » de la requête.
-
-|409
-|Conflict
-|La requête ne peut être traitée en l’état actuel.
-
-|498
-|Token expired/invalid
-|Le jeton a expiré ou est invalide.
-
-|500
-|Internal Server Error
-|Erreur interne du serveur.
-
-|===
-
-
-_Source : wikipedia  & developer mozilla_
-
-
-==== Conception des URI
+===== Conception des URIs
 
 *Racine de l'api :* /api/emargement
-
-NOTE : {} => utilisé pour les paramètres (id) (cf. 6.3)
-
-
 
 ====== Tableau des URI :
 
 [cols="2,1,3a,4"]
 |===
 |Action | Méthode | URI | Description
+
 
 | Inscription étudiant
 | POST

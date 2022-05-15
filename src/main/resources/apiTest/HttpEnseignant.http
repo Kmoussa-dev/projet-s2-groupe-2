@@ -1,4 +1,4 @@
-POST http://localhost:8080/api/emergement/enseignant
+POST http://localhost:8080/api/emargement/enseignants
 Content-Type: application/json
 
 {
@@ -12,7 +12,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8080/api/emergement/enseignant
+POST http://localhost:8080/api/emargement/enseignants
 Content-Type: application/json
 
 {
@@ -28,12 +28,12 @@ Content-Type: application/json
 
 
 ###
-GET http://localhost:8080/api/emergement/enseignants
+GET http://localhost:8080/api/emargement/enseignants
 
 ###
-GET http://localhost:8080/api/emergement/enseignants
+GET http://localhost:8080/api/emargement/enseignants
 Authorization: Basic yohan.boichut@univ-orleans.fr mdp
 
 ###
-GET http://localhost:8080/api/emergement/enseignants
+GET http://localhost:8080/api/emargement/enseignants
 Authorization: Basic solomon.lourdessamy@etu.univ-orleans.fr @Jason09

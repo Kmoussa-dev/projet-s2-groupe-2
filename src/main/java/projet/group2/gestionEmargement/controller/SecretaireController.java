@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Objects;
 
 @RestController
-@RequestMapping("/api/emergement")
+@RequestMapping("/api/emargement")
 public class SecretaireController {
 
     private final SecretaireService secretaireService;
@@ -24,7 +24,7 @@ public class SecretaireController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @PostMapping("/secretaire")
+    @PostMapping("/secretaires")
     public ResponseEntity<Secretaire> inscription(@RequestBody Secretaire secretaire) {
         Secretaire se = this.secretaireService.getSecretaireByEmail(secretaire.getEmail());
         if(Objects.isNull(se)){
@@ -41,7 +41,7 @@ public class SecretaireController {
 
     }
 
-    @GetMapping("/secretaire/{email}")
+    @GetMapping("/secretaires/{email}")
     public ResponseEntity<Secretaire> getSecretaireById(@PathVariable String email){
         Secretaire secretaire =  this.secretaireService.getSecretaireByEmail(email);
         if(Objects.nonNull(secretaire)){

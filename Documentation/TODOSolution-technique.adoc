@@ -1,0 +1,18 @@
+
+==== Solution technique du système d'émargement
+
+*TODO :*
+
+===== QR Code :
+
+- expliquer les solutions envisagées
+- expliquez en détail la solution utilisée
+
+le contrôle d'intégrité de l'émargement (token)
+
+intégrité = la personne est dans la salle
+
+temps limité pour valider le token
+
+...
+//TODO

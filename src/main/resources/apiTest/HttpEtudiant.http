@@ -1,4 +1,4 @@
-POST http://localhost:8080/api/emergement/etudiant
+POST http://localhost:8080/api/emargement/etudiants
 Content-Type: application/json
 
 {
@@ -21,7 +21,7 @@ Content-Type: application/json
 }
 
 ####
-POST http://localhost:8080/api/emergement/etudiant
+POST http://localhost:8080/api/emargement/etudiants
 Content-Type: application/json
 
 {
@@ -44,7 +44,7 @@ Content-Type: application/json
 }
 
 ####
-POST http://localhost:8080/api/emergement/etudiant
+POST http://localhost:8080/api/emargement/etudiants
 Content-Type: application/json
 
 {
@@ -53,7 +53,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8080/api/emergement/etudiant
+POST http://localhost:8080/api/emargement/etudiants
 Content-Type: application/json
 
 {
@@ -78,7 +78,7 @@ Content-Type: application/json
 
 
 ###
-POST http://localhost:8080/api/emergement/etudiant
+POST http://localhost:8080/api/emargement/etudiants
 Content-Type: application/json
 
 {
@@ -101,7 +101,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8080/api/emergement/etudiant
+POST http://localhost:8080/api/emargement/etudiants
 Content-Type: application/json
 
 {
@@ -124,7 +124,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8080/api/emergement/etudiant
+POST http://localhost:8080/api/emargement/etudiants
 Content-Type: application/json
 
 {
@@ -148,17 +148,17 @@ Content-Type: application/json
 
 
 #####
-GET http://localhost:8080/api/emergement/etudiants
+GET http://localhost:8080/api/emargement/etudiants
 Accept: application/json
 
 
 #####
-GET http://localhost:8080/api/emergement/etudiants
+GET http://localhost:8080/api/emargement/etudiants
 Accept: application/json
 Authorization: Basic solomon.lourdessamy@etu.univ-orleans.fr @Jason09
 
 
 #####
-GET http://localhost:8080/api/emergement/etudiants
+GET http://localhost:8080/api/emargement/etudiants
 Accept: application/json
 Authorization: Basic yohan.boichut@univ-orleans.fr mdp

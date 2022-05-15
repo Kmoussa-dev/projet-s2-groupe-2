@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Objects;
 
 @RestController
-@RequestMapping("/api/emergement")
+@RequestMapping("/api/emargement")
 public class EnseignantController {
 
     private final EnseignantService enseignantService;
@@ -23,7 +23,7 @@ public class EnseignantController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @PostMapping("/enseignant")
+    @PostMapping("/enseignants")
     public ResponseEntity<Enseignant> inscription(@RequestBody Enseignant enseignant) {
         Enseignant ens = this.enseignantService.getEnseignantByEmail(enseignant.getEmail());
         if(Objects.isNull(ens)){
@@ -40,7 +40,7 @@ public class EnseignantController {
 
     }
 
-    @GetMapping("/enseignant/{id}")
+    @GetMapping("/enseignants/{id}")
     public ResponseEntity<Enseignant> getEnseignantByEmail(@PathVariable String id){
         Enseignant enseignant =  this.enseignantService.getEnseignantByEmail(id);
         if(Objects.nonNull(enseignant)){

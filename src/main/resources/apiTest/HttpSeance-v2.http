@@ -1,0 +1,82 @@
+#### creer une seance
+POST http://localhost:8080/api/emargement/seances
+Content-Type: application/json
+
+{
+  "userID": "624733dd522eca380ed8cd77",
+  "discipline": "Test et Qualité",
+  "enseignantID": "6247341b522eca380ed8cd78",
+  "typeSeance": "TD",
+  "groupe": {
+    "groupeDeTD": "TD1",
+    "groupeDeTP": ""
+  },
+  "promotion": {
+    "niveau" : "MASTER 1",
+    "annee" : "2022"
+  },
+  "heureDebut": "2022-04-04T23:20:00",
+  "heureFin": "2022-04-05T01:55:00",
+  "statutSeance": "NON VALIDE"
+}
+
+
+####
+POST http://localhost:8080/api/emargement/seances
+Content-Type: application/json
+
+{
+  "userID": "624733dd522eca380ed8cd77",
+  "discipline": "Systeme répatition",
+  "enseignantID": "6247341b522eca380ed8cd78",
+  "typeSeance": "TD",
+  "groupe": {
+    "groupeDeTD": "TD2",
+    "groupeDeTP": ""
+  },
+  "promotion": {
+    "niveau" : "MASTER 1",
+    "annee" : "2022"
+  },
+  "heureDebut": "2022-04-04T23:20:00",
+  "heureFin": "2022-04-05T01:55:00",
+  "statutSeance": "NON VALIDE"
+}
+
+
+####
+POST http://localhost:8080/api/emargement/seances
+Content-Type: application/json
+
+{
+  "userID": "624733dd522eca380ed8cd77",
+  "discipline": "Web services",
+  "enseignantID": "6247341b522eca380ed8cd78",
+  "typeSeance": "TD",
+  "groupe": {
+    "groupeDeTD": "TD2",
+    "groupeDeTP": ""
+  },
+  "promotion": {
+    "niveau" : "MASTER 1",
+    "annee" : "2022"
+  },
+  "heureDebut": "2022-05-14T23:22:00",
+  "heureFin": "2022-05-15T01:54:00",
+  "statutSeance": "TEST SEANCE A SUPPRIMER"
+}
+
+
+#### recupérer toutes les séances
+GET http://localhost:8080/api/emargement/seances
+
+#### recuperer les seances d'une periode (res = toutes)
+GET http://localhost:8080/api/emargement/seances/periode?dateDebut=2022-04-04T00:00:00&dateFin=2022-05-18T00:00:00
+
+#### recuperer les seances d'une periode (res = 2)
+GET http://localhost:8080/api/emargement/seances/periode?dateDebut=2022-04-04T00:00:00&dateFin=2022-04-18T00:00:00
+
+
+####
+DELETE http://localhost:8080/api/emargement/seances/6281392785d09311f38546c5
+Accept: application/json

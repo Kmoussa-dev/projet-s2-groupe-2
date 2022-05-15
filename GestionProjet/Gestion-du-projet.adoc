@@ -7,6 +7,7 @@ La gestion du projet de conception d'une API d'émargement s'est organisé en pl
 
 ====
 .Les phases du projet :
+* Analyse des besoins
 * Conception
 * Développement
 * Recette technique
@@ -17,6 +18,8 @@ La gestion du projet de conception d'une API d'émargement s'est organisé en pl
 
 [NOTE]
 _Diagramme de Gantt à ajouter_
+
+
 
 
 === Équipe projet

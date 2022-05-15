@@ -1,16 +1,16 @@
-DELETE http://localhost:8080/api/seance/delete/6238e26494ea427d1d1771b9
+DELETE http://localhost:8080/api/seances/delete/6238e26494ea427d1d1771b9
 Accept: application/json
 
-###
-GET http://localhost:8080/api/seance/getById/6238e29f9788553cb0635ac6
+####
+GET http://localhost:8080/api/seances/getById/6238e29f9788553cb0635ac6
 Accept: application/json
 
-###
-GET http://localhost:8080/api/seance/all
+####
+GET http://localhost:8080/api/seances/
 Accept: application/json
 
-###
-POST http://localhost:8080/api/emergement/seance
+####
+POST http://localhost:8080/api/emargement/seances
 Content-Type: application/json
 
 {
@@ -32,19 +32,19 @@ Content-Type: application/json
 }
 ###
 
-PUT http://localhost:8080/api/emergement/seance/6269d5250ad19b5db9a61248/pointage/o22000004
+PUT http://localhost:8080/api/emargement/seances/6269d5250ad19b5db9a61248/pointage/o22000004
 Accept: application/json
 Authorization: Basic rachida.el-ouariachi@etu.univ-orleans.fr mdp
 
 ####
-GET http://localhost:8080/api/emergement/seance/624b6be231b295383b70f2c7/etudiant-present
+GET http://localhost:8080/api/emargement/seances/624b6be231b295383b70f2c7/etudiants-presents
 
 ####
-GET http://localhost:8080/api/emergement/seance/624b6be231b295383b70f2c7/etudiant-absent
+GET http://localhost:8080/api/emargement/seances/624b6be231b295383b70f2c7/etudiants-absents
 
 
-###
-POST http://localhost:8080/api/emergement/seance
+####
+POST http://localhost:8080/api/emargement/seances
 Content-Type: application/json
 
 {

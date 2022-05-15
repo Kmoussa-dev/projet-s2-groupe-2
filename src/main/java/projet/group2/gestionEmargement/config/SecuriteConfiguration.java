@@ -40,13 +40,16 @@ public class SecuriteConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST,"/api/emergement/etudiant").permitAll()
-                .antMatchers(HttpMethod.GET,"/api/emergement/etudiants").permitAll()
-                .antMatchers(HttpMethod.GET,"/api/emergement/enseignants").hasRole("PROF")
-                .antMatchers(HttpMethod.PUT,"/api/emergement/seance/**").permitAll()
-                .antMatchers(HttpMethod.POST,"/api/emergement/seance").permitAll()
-                .antMatchers(HttpMethod.GET,"/api/emergement/seance/token**").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers(HttpMethod.POST,"/api/emargement/etudiants").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/emargement/etudiants").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/emargement/enseignants").hasRole("PROF")
+                .antMatchers(HttpMethod.PUT,"/api/emargement/seances/**").permitAll()
+                .antMatchers(HttpMethod.POST,"/api/emargement/seances").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/emargement/seances").permitAll()
+                .antMatchers(HttpMethod.DELETE,"/api/emargement/seances/*").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/emargement/seances/token**").permitAll()
+                //.anyRequest().authenticated()
+                .anyRequest().permitAll() // pour tests
                 .and().httpBasic()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }

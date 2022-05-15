@@ -1,0 +1,50 @@
+@startgantt
+'https://plantuml.com/gantt-diagram
+
+language fr
+'saturday is colored in WhiteSmoke
+'saturday are closed
+sunday are closed
+
+Project starts 2022-02-28
+[Analyse] as [TASK1] lasts 1 weeks
+'[TASK1] is colored in Lavender/LightBlue
+'[Conception] starts 2022-03-10 and ends 2022-03-15
+[Conception] lasts 8 days
+[Analyse]->[Conception]
+[Developement] lasts 5 weeks
+[Conception]->[Developement]
+[Documentations et cahier de tests] starts at [Conception]'s end and lasts 3 weeks
+'[Conception]->[Documentation technique et cahier de test]
+[Tests] starts at [Documentations et cahier de tests]'s end and lasts 2 weeks
+'[Tests] starts 2022-04-06 and lasts 2 weeks
+
+[Doc technique] starts at [Tests]'s end and lasts 4 days
+
+[Validation] lasts 3 days
+[Tests] -> [Validation]
+[Deploiment] lasts 1 days
+[Validation]->[Deploiment]
+
+
+2022-03-28 to 2022-04-15 are named [Période entreprise]
+2022-03-28 to 2022-04-15 are colored in salmon
+
+
+'2022-05-02 to 2022-05-07 are named [Période révisions]
+'2022-05-02 to 2022-05-07 are colored in MediumSlateBlue
+'2022-05-02 to 2022-05-07 are closed
+
+'2022-05-09 to 2022-05-14 are named [Période examens]
+'2022-05-09 to 2022-05-13 are colored in MediumSlateBlue
+'2022-05-09 to 2022-05-13 are closed
+
+2022-05-02 to 2022-05-15 are named [Période révisions et examens]
+2022-05-02 to 2022-05-12 are closed
+2022-05-13 is colored in MediumSlateBlue
+[Deadline] happens at 2022-05-13
+
+
+title Diagramme de Gantt
+header version 1.4
+@endgantt

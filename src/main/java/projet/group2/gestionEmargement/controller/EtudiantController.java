@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Objects;
 
 @RestController
-@RequestMapping("/api/emergement")
+@RequestMapping("/api/emargement")
 public class EtudiantController {
 
     private final EtudiantService etudiantService;
@@ -27,7 +27,7 @@ public class EtudiantController {
     }
 
 
-    @PostMapping("/etudiant")
+    @PostMapping("/etudiants")
     public ResponseEntity<Etudiant> inscription(@RequestBody Etudiant etu) {
         Etudiant etudiant = this.etudiantService.getEtudiantbyNumeroEtudiant(etu.getNumeroEtudiant());
        try {
@@ -47,7 +47,7 @@ public class EtudiantController {
        return ResponseEntity.badRequest().build();
     }
 
-    @GetMapping("/etudiant/{numeroEtudiant}")
+    @GetMapping("/etudiants/{numeroEtudiant}")
     public ResponseEntity<Etudiant> getEtudiantbyNumeroEtudiant(@PathVariable String numeroEtudiant){
         Etudiant etudiant =  this.etudiantService.getEtudiantbyNumeroEtudiant(numeroEtudiant);
         if(Objects.nonNull(etudiant)){
@@ -58,7 +58,7 @@ public class EtudiantController {
         }
     }
 
-    @GetMapping("/etudiant/{email}")
+    @GetMapping("/etudiants/{email}")
     public ResponseEntity<Etudiant> getEtudiantbyEmail(@PathVariable String email){
         Etudiant etudiant =  this.etudiantService.getEtudiantbyEmail(email);
         if(Objects.nonNull(etudiant)){

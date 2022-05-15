@@ -6,13 +6,14 @@ Suivi de l'état d'avancement des différentes tâches du projet :
 ===== Conception
 * [x] Analyse des besoins (cahier des charges)
 * [x] Modélisation du SI
-* [x] Définition des URI de l'API
+* [x] Définition des URI de l'API [contract first]
+* [ ] Définition des URI de l'API V2 [après codage]
 
 
 ===== Documentation projet
 * [x] User stories
 * [x] Décomposition du projet en sous-tâches
-* [ ] Diagramme de Gantt   _(fait brouillon -> reste à mettre au propre)_
+* [x] Diagramme de Gantt   _(2 semaines de retard)_
 * [ ] Matrice RACI   _(fait brouillon -> reste à mettre au propre)_
 
 
@@ -26,16 +27,18 @@ Suivi de l'état d'avancement des différentes tâches du projet :
 * [x] Couche Service
 * [x] Couche Controller I (fonctionnalités principales)
 * [ ] Couche Controller II (fonctionnalités secondaires)
-* [ ] Fonctionnalité d'émargement QR code (contrôle d'intégrité avec tokens)
+* [x] Fonctionnalité d'émargement QR code (contrôle d'intégrité avec tokens)
+* [ ] Fonctionnalité d'émargement QR code amélioration du contrôle d'intégrité V2
 * [x] Sécurité Basic avec encodage password
-* [ ] Gestion des rôles & permissions d'accès   _(en cours)_
 * [ ] _[Optionnel] Sécurité avec JWT_
-* [ ] Contraintes de validation
-* [ ] Pagination
+* [ ] Gestion des rôles & permissions d'accès   _(en cours)_
+* [ ] Contraintes de validation (couche de validation)
+* [ ] _[Optionnel] Pagination_
 * [ ] _[Optionnel] Versionner l'API_
 
 
 ===== Tests / Recette
+* [ ] Cahier de tests
 * [ ] Tests fonctionnels   _(en cours)_
 * [ ] Tests d'intégration  _(en cours)_
 * [ ] Tests structurels
@@ -44,7 +47,7 @@ Suivi de l'état d'avancement des différentes tâches du projet :
 
 ===== Documentation technique
 * [ ] Tableau des URI   _(en cours)_
-* [ ] Documentation API Spring REST Docs  _(en cours)_
+* [ ] Documentation API Spring REST Docs _(en cours)_
 * [ ] Diagramme de classes final :
 ** [ ] à générer au format png
 ** [ ] à expliquer
