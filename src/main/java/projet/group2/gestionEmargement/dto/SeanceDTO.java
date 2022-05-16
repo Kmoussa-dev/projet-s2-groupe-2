@@ -27,8 +27,25 @@ public class SeanceDTO {
 
     private Promotion promotion;
 
-
     private String statutSeance;
+
+    private String idSalle;
+
+    public SeanceDTO() {
+    }
+
+    public SeanceDTO(String userID, String discipline, String enseignantID, String typeSeance, Groupe groupe, LocalDateTime heureDebut, LocalDateTime heureFin, Promotion promotion, String statutSeance, String idSalle) {
+        this.userID = userID;
+        this.discipline = discipline;
+        this.enseignantID = enseignantID;
+        this.typeSeance = typeSeance;
+        this.groupe = groupe;
+        this.heureDebut = heureDebut;
+        this.heureFin = heureFin;
+        this.promotion = promotion;
+        this.statutSeance = statutSeance;
+        this.idSalle = idSalle;
+    }
 
     public String getUserID() {
         return userID;
@@ -102,6 +119,14 @@ public class SeanceDTO {
         this.statutSeance = statutSeance;
     }
 
+    public String getIdSalle() {
+        return this.idSalle;
+    }
+
+    public void setIdSalle(String idSalle) {
+        this.idSalle = idSalle;
+    }
+
     public static Seance toEntity(SeanceDTO seanceDTO){
         if(Objects.isNull(seanceDTO))
             return null;
@@ -116,6 +141,7 @@ public class SeanceDTO {
             seance.setHeureFin(seanceDTO.getHeureFin());
             seance.setPromotion(seanceDTO.getPromotion());
             seance.setStatutSeance(seanceDTO.getStatutSeance());
+            seance.setIdSalle(seanceDTO.getIdSalle());
             return seance;
         }
     }
@@ -133,6 +159,7 @@ public class SeanceDTO {
             seance.setHeureFin(seanceDTO.getHeureFin());
             seance.setPromotion(seanceDTO.getPromotion());
             seance.setStatutSeance(seanceDTO.getStatutSeance());
+            seance.setIdSalle(seanceDTO.getIdSalle());
             return seance;
         }
     }

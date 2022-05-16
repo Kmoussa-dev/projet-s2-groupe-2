@@ -43,7 +43,7 @@ public class SecuriteConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST,"/api/emargement/etudiants").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/emargement/etudiants").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/emargement/enseignants").hasRole("PROF")
-                .antMatchers(HttpMethod.PUT,"/api/emargement/seances/**").permitAll()
+                .antMatchers(HttpMethod.PUT,"/seances/{id}/pointage/{numEtudant}/{dateExpire}**").permitAll()
                 .antMatchers(HttpMethod.POST,"/api/emargement/seances").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/emargement/seances").permitAll()
                 .antMatchers(HttpMethod.DELETE,"/api/emargement/seances/*").permitAll()

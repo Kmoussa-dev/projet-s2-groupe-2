@@ -11,6 +11,14 @@ public class Promotion {
     @Field(name = "annee")
     private String annee;
 
+    public Promotion() {
+    }
+
+    public Promotion(String niveau, String annee) {
+        this.niveau = niveau;
+        this.annee = annee;
+    }
+
     public String getNiveau() {
         return niveau;
     }

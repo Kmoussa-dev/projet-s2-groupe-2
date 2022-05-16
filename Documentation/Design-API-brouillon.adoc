@@ -77,3 +77,19 @@
 ** `403` (Forbiden) -> Un utilisateur non MEMBRE ADMINISTRATIF essaie de modifier la ressource.
 ** `404` (Not found) -> La séance n'existe pas.
 ** `400` (Not acceptable) -> Les informations fournies sont incorrectes.
+
+- GET /api/emargement/seances/{id}/etudiants-absents ->  Consultation des étudiants absents pour une séance donnée.
+* Nécessite d'être authentifié en tant que MEMBRE ADMINISTRATIF.
+* Requête nécessitant les paramètres :
+* Réponse :
+200 (OK) -> Le corps de la réponse doit contenir une liste d'objet Étudiants (au format JSON).
+403 (Forbidden) -> Un utilisateur non MEMBRE ADMINISTRATIF essaie de modifier la ressource.
+404 (Not found) -> La séance n'existe pas.
+
+- GET /api/emargement/seances/{id}/etudiants-presents ->  Consultation des étudiants présents lors d'une séance donnée.
+* Nécessite d'être authentifié en tant que MEMBRE ADMINISTRATIF.
+* Requête nécessitant les paramètres :
+* Réponse :
+200 (OK) -> Le corps de la réponse doit contenir une liste d'objet Étudiants (au format JSON).
+403 (Forbidden) -> Un utilisateur non MEMBRE ADMINISTRATIF essaie de modifier la ressource.
+404 (Not found) -> La séance n'existe pas.

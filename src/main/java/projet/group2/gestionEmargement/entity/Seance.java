@@ -43,6 +43,8 @@ public class Seance {
     private String statutSeance;
 
 
+    private String idSalle;
+
     public String getId() {
         return id;
     }
@@ -137,5 +139,13 @@ public class Seance {
 
     public void setStatutSeance(String statutSeance) {
         this.statutSeance = statutSeance;
+    }
+
+    public String getIdSalle() {
+        return idSalle;
+    }
+
+    public void setIdSalle(String idSalle) {
+        this.idSalle = idSalle;
     }
 }

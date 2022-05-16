@@ -4,6 +4,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import projet.group2.gestionEmargement.config.TokenGenerator;
@@ -141,7 +143,7 @@ public class SeanceController {
      * @param numEtudiant le numéro étudiant de l'élève qui va émarger
      * @return une image png contenant le QR Code généré
      */
-    @GetMapping(value = "/seances/token", produces = MediaType.IMAGE_PNG_VALUE)
+    @GetMapping (value = "/seances/token", produces = MediaType.IMAGE_PNG_VALUE)
     public ResponseEntity<BufferedImage> genarateToken(@RequestParam String idSeance, @RequestParam String numEtudiant){
         try {
             BufferedImage bufferedImage = TokenGenerator.generateQRCode(ServletUriComponentsBuilder
@@ -160,27 +162,27 @@ public class SeanceController {
      * La validation de l'émargement d'un étudiant pour une séance donnée
      * Par l'enseignant
      * @param id de la séance
-     * @param numEtudant numéro de l'étudiant
+     * @param numEtudiant numéro de l'étudiant
      * @param dateExpire date d'expiration pour émarger
      * @return
      */
-    @PutMapping("/seances/{id}/pointage/{numEtudant}/{dateExpire}")
-    public ResponseEntity<Seance> emarger(@PathVariable String id, @PathVariable String numEtudant,
+    @PutMapping("/seances/{id}/pointage/{numEtudiant}/{dateExpire}")
+    public ResponseEntity<Seance> emarger(@AuthenticationPrincipal User user, @RequestParam(required = false) String idSalle, @PathVariable String id, @PathVariable String numEtudiant,
                                           @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateExpire)
     {
-        if(!Duration.between(LocalDateTime.now(),dateExpire).isNegative()){
-            try {
-                Seance seance = this.seanceService.emarger(id,numEtudant);
-                return ResponseEntity.ok(seance);
-            } catch (EtudiantInexistantException | SeanceInexistanteException e) {
-                return ResponseEntity.notFound().build();
-            } catch (AppelNonPrisEnCompteException e) {
-                return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
-            }
-        }
-        else {
+        try {
+            Seance seance = this.seanceService.emarger(id,numEtudiant,user.getUsername(),dateExpire, idSalle);
+            return ResponseEntity.ok(seance);
+        } catch (EtudiantInexistantException | SeanceInexistanteException e) {
+            return ResponseEntity.notFound().build();
+        } catch (AppelNonPrisEnCompteException e) {
             return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
+        } catch (MauvaisScannerException e) {
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
+        } catch (TokenInValidException e) {
+            return ResponseEntity.status(498).build();
         }
+
     }
 
 

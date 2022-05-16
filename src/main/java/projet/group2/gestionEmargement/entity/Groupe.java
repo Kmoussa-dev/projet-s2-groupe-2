@@ -11,6 +11,14 @@ public class Groupe {
     @Field(name = "groupeDeTP")
     private String groupeDeTP;
 
+    public Groupe() {
+    }
+
+    public Groupe(String groupeDeTD, String groupeDeTP) {
+        this.groupeDeTD = groupeDeTD;
+        this.groupeDeTP = groupeDeTP;
+    }
+
     public String getGroupeDeTD() {
         return groupeDeTD;
     }

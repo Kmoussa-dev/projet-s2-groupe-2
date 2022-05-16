@@ -9,6 +9,7 @@ import projet.group2.gestionEmargement.exception.*;
 import projet.group2.gestionEmargement.repository.EtudiantRepository;
 import projet.group2.gestionEmargement.repository.SeanceRepository;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -159,29 +160,40 @@ public class SeanceService {
      * @param numEtudiant numéro étudiant de l'élève qui va émarger
      * @return
      */
-    public Seance emarger(String seanceid, String numEtudiant) throws EtudiantInexistantException, AppelNonPrisEnCompteException, SeanceInexistanteException
-    {
+    public Seance emarger(String seanceid, String numEtudiant, String loginProf, LocalDateTime dateExpire, String idSalle) throws EtudiantInexistantException, AppelNonPrisEnCompteException, SeanceInexistanteException, MauvaisScannerException, TokenInValidException {
 
         LocalDateTime now = LocalDateTime.now();
-        Seance seance = this.getSeanceById(seanceid);
-        if(this.etudiantRepository.existsEtudiantByNumeroEtudiant(numEtudiant) && Objects.nonNull(seance)){
-            if(now.isAfter(seance.getHeureDebut()) && now.isBefore(seance.getHeureFin()) && seance.getNumEtudiants().contains(numEtudiant)){
-              if(Objects.isNull(seance.getNumEtudiantsPresent())){
-                  seance.setNumEtudiantsPresent(List.of(new HeurePointage(now, numEtudiant)));
-              }
-              else {
-                  seance.getNumEtudiantsPresent().add(new HeurePointage(now, numEtudiant));
-              }
+        if(!Duration.between(now,dateExpire).isNegative()){
+            Seance seance = this.getSeanceById(seanceid);
+            if(this.etudiantRepository.existsEtudiantByNumeroEtudiant(numEtudiant) && Objects.nonNull(seance)){
+                if(seance.getEnseignantID().equals(loginProf) || seance.getIdSalle().equals(idSalle)){
+                    if(now.isAfter(seance.getHeureDebut()) && now.isBefore(seance.getHeureFin()) && seance.getNumEtudiants().contains(numEtudiant)){
+                        if(Objects.isNull(seance.getNumEtudiantsPresent())){
+                            seance.setNumEtudiantsPresent(List.of(new HeurePointage(now, numEtudiant)));
+                        }
+                        else {
+                            seance.getNumEtudiantsPresent().add(new HeurePointage(now, numEtudiant));
+                        }
 
-                return this.seanceRepository.save(seance);
+                        return this.seanceRepository.save(seance);
+                    }
+                    else {
+                        throw new AppelNonPrisEnCompteException();
+                    }
+                }
+                else
+                {
+                    throw new MauvaisScannerException();
+                }
             }
-            else {
-                throw new AppelNonPrisEnCompteException();
+            else{
+                throw new EtudiantInexistantException();
             }
         }
-        else{
-            throw new EtudiantInexistantException();
+        else {
+            throw new TokenInValidException();
         }
+
     }
 
 

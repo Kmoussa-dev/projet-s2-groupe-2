@@ -15,8 +15,8 @@ Content-Type: application/json
 
 {
   "userID": "624733dd522eca380ed8cd77",
-  "discipline": "Systeme répatition",
-  "enseignantID": "6247341b522eca380ed8cd78",
+  "discipline": "Test et Qualité",
+  "enseignantID": "yohan.boichut@univ-orleans.fr",
   "typeSeance": "TD",
   "groupe": {
     "groupeDeTD": "TD2",
@@ -26,15 +26,16 @@ Content-Type: application/json
     "niveau" : "MASTER 1",
     "annee" : "2022"
   },
-  "heureDebut": "2022-04-04T23:20:00",
-  "heureFin": "2022-04-05T01:55:00",
-  "statutSeance": "NON VALIDE"
+  "heureDebut": "2022-05-17T00:15:00",
+  "heureFin": "2022-05-17T02:55:00",
+  "statutSeance": "NON VALIDE",
+  "idSalle": "E18"
 }
 ###
 
-PUT http://localhost:8080/api/emargement/seances/6269d5250ad19b5db9a61248/pointage/o22000004
+PUT http://localhost:8080/api/emargement/seances/6282d1307a2e955e5d6a82c7/pointage/o22010238/2022-05-17T00:45:00?idSalle=E12
 Accept: application/json
-Authorization: Basic rachida.el-ouariachi@etu.univ-orleans.fr mdp
+Authorization: Basic robot@univ-orleans.fr salle
 
 ####
 GET http://localhost:8080/api/emargement/seances/624b6be231b295383b70f2c7/etudiants-presents
@@ -49,8 +50,8 @@ Content-Type: application/json
 
 {
   "userID": "624733dd522eca380ed8cd77",
-  "discipline": "Systeme répatition",
-  "enseignantID": "6247341b522eca380ed8cd78",
+  "discipline": "Système répatition",
+  "enseignantID": "martins.delacourt@univ-orleans.fr",
   "typeSeance": "TP",
   "groupe": {
     "groupeDeTD": "",
@@ -60,7 +61,8 @@ Content-Type: application/json
     "niveau": "MASTER 1",
     "annee": "2022"
   },
-  "heureDebut": "2022-04-28T01:20:00",
-  "heureFin": "2022-04-28T02:55:00",
-  "statutSeance": "NON VALIDE"
+  "heureDebut": "2022-05-17T00:15:00",
+  "heureFin": "2022-05-17T02:55:00",
+  "statutSeance": "NON VALIDE",
+  "idSalle": "E12"
 }
