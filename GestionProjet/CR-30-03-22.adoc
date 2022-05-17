@@ -1,0 +1,15 @@
+=== Compte Rendu du 30/03/2022
+
+=====  Réalisations :
+
+- Durée : 1h30
+- Validation de la stucture
+- Refactoring du code pour respecter le principe solid de Responsabilité Unique
+- Conception des URIs (en cours)
+
+===== Tâches à réaliser lors des prochaines séances
+=> Demain à 13h30 - 15h30
+
+- Gestion de la base de données Mongo
+- Implémentation de la phase des controlleur de l'api REST
+- Penser à la sécurisation

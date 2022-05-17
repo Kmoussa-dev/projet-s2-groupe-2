@@ -1,0 +1,27 @@
+
+=== Compte Rendu du 09/03/2022
+
+*Taches réalisées* :
+
+* refacto des entitées
+* ajout des repository
+* ajout des conroleurs
+* gestion de la base de données
+* test des endpoint
+
+Lien utile mémo asciidoc : https://tech.sgra.co.jp/memo/asciidoc/
+
+- *Tâches à accomplir au point suivant* :
+* Completer les URLs de l'api
+* Penser la configuration de docker compose
+* completer les autres fonctionnalités
+* faire la partie test
+* faire la partie securité
+
+
+
+
+
+
+
+
