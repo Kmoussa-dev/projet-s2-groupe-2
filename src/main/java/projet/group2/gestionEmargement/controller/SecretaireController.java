@@ -1,12 +1,16 @@
 package projet.group2.gestionEmargement.controller;
 
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import projet.group2.gestionEmargement.dto.SecretaireDTO;
 import projet.group2.gestionEmargement.entity.Secretaire;
+import projet.group2.gestionEmargement.entity.Utilisateur;
 import projet.group2.gestionEmargement.service.SecretaireService;
+import projet.group2.gestionEmargement.validator.UtilisateurValidator;
 
 import java.net.URI;
 import java.util.List;
@@ -25,18 +29,24 @@ public class SecretaireController {
     }
 
     @PostMapping("/secretaires")
-    public ResponseEntity<Secretaire> inscription(@RequestBody Secretaire secretaire) {
-        Secretaire se = this.secretaireService.getSecretaireByEmail(secretaire.getEmail());
-        if(Objects.isNull(se)){
-            secretaire.setMotDePasse(this.passwordEncoder.encode(secretaire.getMotDePasse()));
-            se = this.secretaireService.inscription(secretaire);
-            URI location = ServletUriComponentsBuilder
-                    .fromCurrentRequest().path("/{id}")
-                    .buildAndExpand(se.getEmail()).toUri();
-            return ResponseEntity.created(location).body(se);
+    public ResponseEntity<Secretaire> inscription(@RequestBody SecretaireDTO secretaire) {
+        List<String> errors= UtilisateurValidator.validate(secretaire);
+        if(!errors.isEmpty()){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
         else {
-            return ResponseEntity.badRequest().build();
+            Secretaire se = this.secretaireService.getSecretaireByEmail(secretaire.getEmail());
+            if(Objects.isNull(se)){
+                secretaire.setMotDePasse(this.passwordEncoder.encode(secretaire.getMotDePasse()));
+                se = this.secretaireService.inscription(SecretaireDTO.toEntity(secretaire));
+                URI location = ServletUriComponentsBuilder
+                        .fromCurrentRequest().path("/{id}")
+                        .buildAndExpand(se.getEmail()).toUri();
+                return ResponseEntity.created(location).body(se);
+            }
+            else {
+                return ResponseEntity.badRequest().build();
+            }
         }
 
     }

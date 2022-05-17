@@ -15,6 +15,8 @@ import projet.group2.gestionEmargement.entity.Seance;
 import projet.group2.gestionEmargement.exception.*;
 import projet.group2.gestionEmargement.service.EtudiantService;
 import projet.group2.gestionEmargement.service.SeanceService;
+import projet.group2.gestionEmargement.validator.SeanceValidator;
+import projet.group2.gestionEmargement.validator.UtilisateurValidator;
 
 import java.awt.image.BufferedImage;
 import java.net.URI;
@@ -47,15 +49,22 @@ public class SeanceController {
      */
     @PostMapping("/seances")
     public ResponseEntity<Seance> nouvelleSeance(@RequestBody SeanceDTO seance){
-        try {
-            Seance s = this.seanceService.creerSeance(SeanceDTO.toEntity(seance));
-            URI location = ServletUriComponentsBuilder
-                    .fromCurrentRequest().path("/{id}")
-                    .buildAndExpand(s.getId()).toUri();
-            return ResponseEntity.created(location).body(s);
-        } catch (SeanceDejaExistanteException e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        List<String> errors= SeanceValidator.validate(seance);
+        if(!errors.isEmpty()){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
+        else {
+            try {
+                Seance s = this.seanceService.creerSeance(SeanceDTO.toEntity(seance));
+                URI location = ServletUriComponentsBuilder
+                        .fromCurrentRequest().path("/{id}")
+                        .buildAndExpand(s.getId()).toUri();
+                return ResponseEntity.created(location).body(s);
+            } catch (SeanceDejaExistanteException e) {
+                return ResponseEntity.status(HttpStatus.CONFLICT).build();
+            }
+        }
+
     }
 
     /**

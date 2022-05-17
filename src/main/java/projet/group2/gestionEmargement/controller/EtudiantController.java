@@ -5,10 +5,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import projet.group2.gestionEmargement.dto.EtudiantDTO;
 import projet.group2.gestionEmargement.entity.Etudiant;
 import projet.group2.gestionEmargement.exception.EtudiantDejaExisteException;
 import projet.group2.gestionEmargement.exception.MotDePasseObligatoireException;
 import projet.group2.gestionEmargement.service.EtudiantService;
+import projet.group2.gestionEmargement.validator.EtudiantValidator;
+import projet.group2.gestionEmargement.validator.UtilisateurValidator;
 
 import java.net.URI;
 import java.util.List;
@@ -28,23 +31,28 @@ public class EtudiantController {
 
 
     @PostMapping("/etudiants")
-    public ResponseEntity<Etudiant> inscription(@RequestBody Etudiant etu) {
-        Etudiant etudiant = this.etudiantService.getEtudiantbyNumeroEtudiant(etu.getNumeroEtudiant());
-       try {
-           if (Objects.isNull(etudiant)) {
-               etu.setMotDePasse(this.passwordEncoder.encode(etu.getMotDePasse()));
-               etudiant = this.etudiantService.inscription(etu);
-               URI location = ServletUriComponentsBuilder
-                       .fromCurrentRequest().path("/{numeroEtudiant}")
-                       .buildAndExpand(etudiant.getEmail()).toUri();
-               return ResponseEntity.created(location).body(etudiant);
-           }
-       }catch (EtudiantDejaExisteException e) {
-           return ResponseEntity.status(HttpStatus.CONFLICT).build();
-       }catch (MotDePasseObligatoireException e) {
-           return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
-       }
-       return ResponseEntity.badRequest().build();
+    public ResponseEntity<Etudiant> inscription(@RequestBody EtudiantDTO etu) {
+        List<String> errors = EtudiantValidator.validate(etu);
+        if (!errors.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        } else {
+            Etudiant etudiant = this.etudiantService.getEtudiantbyNumeroEtudiant(etu.getNumeroEtudiant());
+            try {
+                if (Objects.isNull(etudiant)) {
+                    etu.setMotDePasse(this.passwordEncoder.encode(etu.getMotDePasse()));
+                    etudiant = this.etudiantService.inscription(EtudiantDTO.toEntity(etu));
+                    URI location = ServletUriComponentsBuilder
+                            .fromCurrentRequest().path("/{numeroEtudiant}")
+                            .buildAndExpand(etudiant.getEmail()).toUri();
+                    return ResponseEntity.created(location).body(etudiant);
+                }
+            } catch (EtudiantDejaExisteException e) {
+                return ResponseEntity.status(HttpStatus.CONFLICT).build();
+            } catch (MotDePasseObligatoireException e) {
+                return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
+            }
+            return ResponseEntity.badRequest().build();
+    }
     }
 
     @GetMapping("/etudiants/{numeroEtudiant}")

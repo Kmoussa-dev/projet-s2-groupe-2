@@ -1,11 +1,15 @@
 package projet.group2.gestionEmargement.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import projet.group2.gestionEmargement.dto.EnseignantDTO;
+import projet.group2.gestionEmargement.dto.UtilisateurDTO;
 import projet.group2.gestionEmargement.entity.Enseignant;
 import projet.group2.gestionEmargement.service.EnseignantService;
+import projet.group2.gestionEmargement.validator.UtilisateurValidator;
 
 import java.net.URI;
 import java.util.List;
@@ -24,18 +28,25 @@ public class EnseignantController {
     }
 
     @PostMapping("/enseignants")
-    public ResponseEntity<Enseignant> inscription(@RequestBody Enseignant enseignant) {
-        Enseignant ens = this.enseignantService.getEnseignantByEmail(enseignant.getEmail());
-        if(Objects.isNull(ens)){
-            enseignant.setMotDePasse(this.passwordEncoder.encode(enseignant.getMotDePasse()));
-            ens = this.enseignantService.inscription(enseignant);
-            URI location = ServletUriComponentsBuilder
-                    .fromCurrentRequest().path("/{id}")
-                    .buildAndExpand(ens.getEmail()).toUri();
-            return ResponseEntity.created(location).body(ens);
+    public ResponseEntity<Enseignant> inscription(@RequestBody EnseignantDTO enseignant) {
+        List<String> errors= UtilisateurValidator.validate(enseignant);
+        if(!errors.isEmpty()){
+           return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
         else {
-            return ResponseEntity.badRequest().build();
+            Enseignant ens = this.enseignantService.getEnseignantByEmail(enseignant.getEmail());
+            if(Objects.isNull(ens)){
+                enseignant.setMotDePasse(this.passwordEncoder.encode(enseignant.getMotDePasse()));
+                ens = this.enseignantService.inscription(EnseignantDTO.toEntity(enseignant));
+                URI location = ServletUriComponentsBuilder
+                        .fromCurrentRequest().path("/{id}")
+                        .buildAndExpand(ens.getEmail()).toUri();
+                return ResponseEntity.created(location).body(ens);
+            }
+            else {
+                return ResponseEntity.badRequest().build();
+
+            }
         }
     }
 
