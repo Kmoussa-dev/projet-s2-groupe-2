@@ -9,8 +9,9 @@ public interface DataSeanceTest {
 
     String mdpGeneral();
 
-    SeanceDTO seance1();
+    SeanceDTO seanceOK();
 
+    SeanceDTO seanceDejaExistante();
     String emailEtudiant();
     String emailEnseignant();
 

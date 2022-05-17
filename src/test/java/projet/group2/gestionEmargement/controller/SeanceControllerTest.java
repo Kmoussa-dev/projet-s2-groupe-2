@@ -50,7 +50,7 @@ public class SeanceControllerTest {
         this.mockMvc.perform(post(URI.create("/api/emargement/seances"))
                         .with(httpBasic(dataSeanceTest.emailMembreAdministratif(),dataSeanceTest.mdpGeneral()))
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(dataSeanceTest.seance1())))
+                        .content(objectMapper.writeValueAsString(dataSeanceTest.seanceOK())))
                 .andExpect(status().isCreated())
                 .andExpect(header().exists("Location"));
     }
@@ -71,7 +71,7 @@ public class SeanceControllerTest {
         this.mockMvc.perform(post(URI.create("/api/emargement/seances"))
                 .with(httpBasic(dataSeanceTest.emailEnseignant(),dataSeanceTest.mdpGeneral()))
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(dataSeanceTest.seance1())))
+                .content(objectMapper.writeValueAsString(dataSeanceTest.seanceOK())))
                 .andExpect(status().isForbidden());
     }
 
@@ -91,14 +91,14 @@ public class SeanceControllerTest {
         this.mockMvc.perform(post(URI.create("/api/emargement/seances"))
                         .with(httpBasic(dataSeanceTest.emailMembreAdministratif(),dataSeanceTest.mdpGeneral()))
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(dataSeanceTest.seance1())))
+                        .content(objectMapper.writeValueAsString(dataSeanceTest.seanceDejaExistante())))
                 .andExpect(status().isCreated());
 
         //recréer la même séance
         this.mockMvc.perform(post(URI.create("/api/emargement/seances"))
                         .with(httpBasic(dataSeanceTest.emailMembreAdministratif(),dataSeanceTest.mdpGeneral()))
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(dataSeanceTest.seance1())))
+                        .content(objectMapper.writeValueAsString(dataSeanceTest.seanceDejaExistante())))
                 .andExpect(status().isConflict());
     }
 

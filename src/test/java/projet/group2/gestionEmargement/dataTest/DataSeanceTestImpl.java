@@ -6,7 +6,9 @@ import projet.group2.gestionEmargement.dto.SeanceDTO;
 import projet.group2.gestionEmargement.entity.Groupe;
 import projet.group2.gestionEmargement.entity.Promotion;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Service
 public class DataSeanceTestImpl implements DataSeanceTest {
@@ -18,7 +20,7 @@ public class DataSeanceTestImpl implements DataSeanceTest {
     public String mdpGeneral() { return "mdp"; }
 
     @Override
-    public SeanceDTO seance1() {
+    public SeanceDTO seanceOK() {
 
         SeanceDTO seanceDTO = new SeanceDTO("000000000000","Système et Répartition",
                 "00000000001", "TD", new Groupe("TD2",""),
@@ -27,6 +29,17 @@ public class DataSeanceTestImpl implements DataSeanceTest {
 
         return seanceDTO ;
     }
+
+    @Override
+    public SeanceDTO seanceDejaExistante() {
+        SeanceDTO seanceDTO = new SeanceDTO("000000000000","Système et Répartition",
+                "00000000001", "TD", new Groupe("TD2",""),
+                LocalDateTime.of(LocalDate.parse("2022-01-01"), LocalTime.MIDNIGHT),LocalDateTime.of(LocalDate.parse("2022-01-01"), LocalTime.MIDNIGHT).plusHours(2),
+                new Promotion("MASTER 1","2021-2022"), "A VENIR","E18");
+
+        return seanceDTO ;
+    }
+
 
     @Override
     public String emailEtudiant() {

@@ -12,6 +12,7 @@ Accept: application/json
 ####
 POST http://localhost:8080/api/emargement/seances
 Content-Type: application/json
+Authorization: Basic brigitte.dupuy@univ-orleans.fr mdp
 
 {
   "userID": "624733dd522eca380ed8cd77",
