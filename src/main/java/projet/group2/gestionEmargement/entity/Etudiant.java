@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.UUID;
 
-@Document(collection="etudiants")
+//@Document(collection="etudiants")
 public class Etudiant extends Utilisateur {
 
     @Field(name = "numeroEtudiant")

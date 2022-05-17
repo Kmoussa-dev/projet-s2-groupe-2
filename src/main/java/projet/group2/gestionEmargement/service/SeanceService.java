@@ -160,7 +160,8 @@ public class SeanceService {
      * @param numEtudiant numéro étudiant de l'élève qui va émarger
      * @return
      */
-    public Seance emarger(String seanceid, String numEtudiant, String loginProf, LocalDateTime dateExpire, String idSalle) throws EtudiantInexistantException, AppelNonPrisEnCompteException, SeanceInexistanteException, MauvaisScannerException, TokenInValidException {
+    public Seance emarger(String seanceid, String numEtudiant, String loginProf, LocalDateTime dateExpire, String idSalle) throws
+            EtudiantInexistantException, AppelNonPrisEnCompteException, SeanceInexistanteException, MauvaisScannerException, TokenInValidException {
 
         LocalDateTime now = LocalDateTime.now();
         if(!Duration.between(now,dateExpire).isNegative()){

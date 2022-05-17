@@ -38,9 +38,9 @@ public class EtudiantControllerTest {
      */
    @Test
     public void testInscriptionEtudiant1() throws Exception {
-       this.mockMvc.perform(post("/api/emergement/etudiant")
+       this.mockMvc.perform(post("/api/emargement/etudiants")
                .contentType(MediaType.APPLICATION_JSON)
-               .content("{\"numeroEtudiant\": \"951354265265\", \"motDePasse\": \"951357\"}")
+               .content("{\"numeroEtudiant\": \"951354265264\", \"motDePasse\": \"951357\"}")
                        .with(csrf())
        )
                .andExpect(MockMvcResultMatchers.status().isCreated())
@@ -50,7 +50,7 @@ public class EtudiantControllerTest {
    @Test
     public void testGetEtudiants() throws Exception {
 
-       this.mockMvc.perform(get("/api/emergement/etudiants"))
+       this.mockMvc.perform(get("/api/emargement/etudiants"))
                .andExpect(status().isOk());
    }
 

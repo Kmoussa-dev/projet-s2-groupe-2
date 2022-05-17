@@ -1,5 +1,5 @@
 
-=== Design API
+=== Design API - Partie Séance
 
 - `POST /api/emargement/seances` ->  *création d'une nouvelle séance*.
 * Nécessite d'être authentifié en tant que MEMBRE ADMINISTRATIF.

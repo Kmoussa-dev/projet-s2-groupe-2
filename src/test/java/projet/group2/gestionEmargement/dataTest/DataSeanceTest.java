@@ -1,15 +1,17 @@
 package projet.group2.gestionEmargement.dataTest;
 
+
 import projet.group2.gestionEmargement.dto.SeanceDTO;
 
-public interface DataTest {
-    String numeroEtudiant();
-    String emailEtudiant();
-    String motDePasseEtudiant();
+public interface DataSeanceTest {
 
     String emailMembreAdministratif();
 
-    String mdpMembreAdministratif();
+    String mdpGeneral();
 
     SeanceDTO seance1();
+
+    String emailEtudiant();
+    String emailEnseignant();
+
 }

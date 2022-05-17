@@ -40,13 +40,15 @@ public class SecuriteConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
+//                .anyRequest().hasRole("ADMIN") //le rôle administrateur a tous les droits
                 .antMatchers(HttpMethod.POST,"/api/emargement/etudiants").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/emargement/etudiants").permitAll()
-                .antMatchers(HttpMethod.GET,"/api/emargement/enseignants").hasRole("PROF")
+                .antMatchers(HttpMethod.POST,"/api/emargement/enseignants").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/emargement/enseignants").hasRole("ENSEIGNANT") //a revoir
                 .antMatchers(HttpMethod.PUT,"/seances/{id}/pointage/{numEtudant}/{dateExpire}**").permitAll()
-                .antMatchers(HttpMethod.POST,"/api/emargement/seances").permitAll()
+                .antMatchers(HttpMethod.POST,"/api/emargement/seances").hasRole("MEMBRE_ADMINISTRATIF")
                 .antMatchers(HttpMethod.GET,"/api/emargement/seances").permitAll()
-                .antMatchers(HttpMethod.DELETE,"/api/emargement/seances/*").permitAll()
+                .antMatchers(HttpMethod.DELETE,"/api/emargement/seances/*").hasRole("MEMBRE_ADMINISTRATIF")
                 .antMatchers(HttpMethod.GET,"/api/emargement/seances/token**").permitAll()
                 //.anyRequest().authenticated()
                 .anyRequest().permitAll() // pour tests

@@ -10,7 +10,6 @@ import java.util.Objects;
 public class SeanceDTO {
     private String userID;
 
-
     private String discipline;
 
     private String enseignantID;

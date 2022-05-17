@@ -37,7 +37,6 @@ public class EnseignantController {
         else {
             return ResponseEntity.badRequest().build();
         }
-
     }
 
     @GetMapping("/enseignants/{id}")

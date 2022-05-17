@@ -2,12 +2,26 @@ POST http://localhost:8080/api/emargement/enseignants
 Content-Type: application/json
 
 {
+  "nom": "Admin",
+  "prenom": "",
+  "email": "administrateur@univ-orleans.fr",
+  "motDePasse": "admin",
+  "roles": [
+    "ADMIN"
+  ]
+}
+
+####
+POST http://localhost:8080/api/emargement/enseignants
+Content-Type: application/json
+
+{
   "nom": "DELACOURT",
   "prenom": "MARTINS",
   "email": "martins.delacourt@univ-orleans.fr",
   "motDePasse": "martins",
   "roles": [
-    "PROF", "MEMBRE_ADMINISTRATIF"
+    "ENSEIGNANT", "MEMBRE_ADMINISTRATIF"
   ]
 }
 
@@ -21,8 +35,41 @@ Content-Type: application/json
 "email": "yohan.boichut@univ-orleans.fr",
 "motDePasse": "mdp",
 "roles": [
-"PROF", "MEMBRE_ADMINISTRATIF"
+"ENSEIGNANT", "MEMBRE_ADMINISTRATIF"
 ]
+}
+
+
+
+
+###
+POST http://localhost:8080/api/emargement/enseignants
+Content-Type: application/json
+
+{
+  "nom": "Chapelle",
+  "prenom": "Mathieu",
+  "email": "mathieu.chapelle@univ-orleans.fr",
+  "motDePasse": "mdp",
+  "roles": [
+    "ENSEIGNANT"
+  ]
+}
+
+
+
+###
+POST http://localhost:8080/api/emargement/enseignants
+Content-Type: application/json
+
+{
+  "nom": "Moal",
+  "prenom": "Frederic",
+  "email": "frederic.moale@univ-orleans.fr",
+  "motDePasse": "mdp",
+  "roles": [
+    "ENSEIGNANT"
+  ]
 }
 
 ###
@@ -35,7 +82,7 @@ Content-Type: application/json
 "email": "robot@univ-orleans.fr",
 "motDePasse": "salle",
 "roles": [
-"PROF", "MEMBRE_ADMINISTRATIF"
+"ENSEIGNANT", "MEMBRE_ADMINISTRATIF"
 ]
 }
 

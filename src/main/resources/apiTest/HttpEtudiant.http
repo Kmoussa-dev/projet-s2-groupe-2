@@ -11,10 +11,10 @@ Content-Type: application/json
   },
   "promo": {
     "niveau": "MASTER 1",
-    "annee": "2022"
+    "annee": "2021-2022"
   },
   "email": "moussa.bakayoko@etu.univ-orleans.fr",
-  "motDePasse": "@Jason09",
+  "motDePasse": "mdp",
   "roles": [
     "ETUDIANT"
   ]
@@ -25,19 +25,19 @@ POST http://localhost:8080/api/emargement/etudiants
 Content-Type: application/json
 
 {
-  "numeroEtudiant": "o22002589",
-  "nom": "",
-  "prenom": "",
+  "numeroEtudiant": "o21000002",
+  "nom": "Alice",
+  "prenom": "Dupont",
   "groupe": {
     "groupeDeTD": "TD1",
     "groupeDeTP": "TP1"
   },
   "promo": {
     "niveau": "MASTER 1",
-    "annee": "2022"
+    "annee": "2021-2022"
   },
   "email": "15446645",
-  "motDePasse": "@Jason09",
+  "motDePasse": "mdp",
   "roles": [
     "ETUDIANT"
   ]
@@ -66,10 +66,10 @@ Content-Type: application/json
   },
   "promo": {
     "niveau": "MASTER 1",
-    "annee": "2022"
+    "annee": "2021-2022"
   },
   "email": "moussa.kone@etu.univ-orleans.fr",
-  "motDePasse": "@Jason09",
+  "motDePasse": "mdp",
   "roles": [
     "ETUDIANT"
   ]
@@ -91,7 +91,7 @@ Content-Type: application/json
   },
   "promo": {
     "niveau": "MASTER 1",
-    "annee": "2022"
+    "annee": "2021-2022"
   },
   "email": "solomon.lourdessamy@etu.univ-orleans.fr",
   "motDePasse": "blabla",
@@ -114,7 +114,7 @@ Content-Type: application/json
   },
   "promo": {
     "niveau": "MASTER 1",
-    "annee": "2022"
+    "annee": "2021-2022"
   },
   "email": "fatima.elbardi@etu.univ-orleans.fr",
   "motDePasse": "blabla",
@@ -137,7 +137,7 @@ Content-Type: application/json
   },
   "promo": {
     "niveau": "MASTER 1",
-    "annee": "2022"
+    "annee": "2021-2022"
   },
   "email": "rachida.el-ouariachi@etu.univ-orleans.fr",
   "motDePasse": "mdp",

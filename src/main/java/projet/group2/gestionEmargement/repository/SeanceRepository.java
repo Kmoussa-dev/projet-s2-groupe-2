@@ -19,7 +19,6 @@ public interface SeanceRepository extends MongoRepository<Seance,String> {
 
     Boolean existsSeanceById(String id);
 
-    Void deleteSeanceById(String id);
 
 
 }
