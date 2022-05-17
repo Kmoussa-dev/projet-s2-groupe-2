@@ -12,7 +12,13 @@ public interface DataSeanceTest {
     SeanceDTO seanceOK();
 
     SeanceDTO seanceDejaExistante();
+
     String emailEtudiant();
+
     String emailEnseignant();
+
+    String emailUtilisateurNonAuthentifie();
+
+    String idSeanceInexistant();
 
 }
