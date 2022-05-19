@@ -38,10 +38,5 @@ public class EtudiantService {
         return this.etudiantRepository.getEtudiantByEmail(email);
     }
 
-    public List<Etudiant> getEtudiantsByPromo(Promotion promotion){
-        return this.etudiantRepository.getEtudiantsByPromo(promotion);
-    }
-
-
 
 }

@@ -258,6 +258,21 @@ public class TestEnseignantService {
     }
 
     @Test
+    public void enregistrementEnseignantKOEmailDansLaBase(){
+        UtilisateurDTO expectedEnseignant = UtilisateurDTO.builder()
+                .email("yop@univ-orleans.fr")
+                .nom("yop")
+                .prenom("mous")
+                .motDePasse("mouss")
+                .build();
+
+        EnseignantException expectedException = Assert.assertThrows(EnseignantException.class, () -> enseignantService.inscription(expectedEnseignant));
+        Assert.assertEquals(ErrorCodes.ENSEIGANT_ALREADY_IN_USE, expectedException.getErrorCode());
+        Assert.assertEquals(5003, expectedException.getErrorCode().getCode());
+        Assert.assertEquals(1, expectedException.getErrors().size());
+    }
+
+    @Test
     public void recuperationEnseignantOK() throws EnseignantException {
 
         EnseignantDTO returnedEnseignant= enseignantService.getEnseignantByEmail("secretariat@univ-orleans.fr");
@@ -295,5 +310,7 @@ public class TestEnseignantService {
         List<EnseignantDTO> returnedEnseignant= enseignantService.getEnseignants();
         Assert.assertNotNull(returnedEnseignant.size());
     }
+
+
 
 }

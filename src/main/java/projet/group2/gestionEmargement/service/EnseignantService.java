@@ -16,6 +16,7 @@ import projet.group2.gestionEmargement.validator.UtilisateurValidator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,6 +31,11 @@ public class EnseignantService {
         List<String> errors = UtilisateurValidator.validate(utilisateurDTO);
         if (!errors.isEmpty()) {
             throw new EnseignantException("L'enseignant n'est pas valide", ErrorCodes.ENSEIGNANT_NOT_VALID, errors);
+        }
+        EnseignantDTO enseignantDTO=getEnseignantByEmail(utilisateurDTO.getEmail());
+        if (!Objects.isNull(enseignantDTO)) {
+            errors.add("L'enseignant existe déjà dans base");
+            throw new EnseignantException("L'enseignant existe déjà dans base",ErrorCodes.ENSEIGANT_ALREADY_IN_USE,errors);
         }
         utilisateurDTO.setMotDePasse(passwordEncoder.encode(utilisateurDTO.getMotDePasse()));
         return EnseignantDTO.fromEntity(
