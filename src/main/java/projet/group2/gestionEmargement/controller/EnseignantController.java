@@ -51,13 +51,13 @@ public class EnseignantController {
     }
 
     @GetMapping("/enseignants")
-    public ResponseEntity<List<Enseignant>> getEnseignants(){
-        List<Enseignant> enseignants =  this.enseignantService.getEnseignants();
-        if(enseignants.size() >0 ){
-            return ResponseEntity.ok(enseignants);
-        }
-        else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<List<EnseignantDTO>> getEnseignants(){
+       try{
+           List<EnseignantDTO> enseignants =  this.enseignantService.getEnseignants();
+           return ResponseEntity.ok(enseignants);
+       }catch (EnseignantException e){
+           return ResponseEntity.notFound().build();
+       }
+
     }
 }

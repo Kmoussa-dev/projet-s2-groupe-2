@@ -14,7 +14,9 @@ import projet.group2.gestionEmargement.repository.EnseignantRepository;
 import projet.group2.gestionEmargement.validator.IdValidator;
 import projet.group2.gestionEmargement.validator.UtilisateurValidator;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EnseignantService {
@@ -37,9 +39,14 @@ public class EnseignantService {
         );
     }
 
-    public List<Enseignant> getEnseignants()
-    {
-        return this.enseignantRepository.findAll();
+    public List<EnseignantDTO> getEnseignants() throws EnseignantException {
+        List<Enseignant> enseignants=this.enseignantRepository.findAll();
+        List<String> errors=new ArrayList<>();
+        if (enseignants.size()==0){
+            errors.add("Il n'y a pas d'enseignants");
+            throw new EnseignantException("Il n'y a pas d'enseignants", ErrorCodes.ENSEIGNANT_NOT_FOUND, errors);
+        }
+        return enseignants.stream().map(e->EnseignantDTO.fromEntity(e)).collect(Collectors.toList());
     }
 
     public EnseignantDTO getEnseignantByEmail(String id) throws EnseignantException {

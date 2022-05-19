@@ -12,6 +12,8 @@ import projet.group2.gestionEmargement.entity.Enseignant;
 import projet.group2.gestionEmargement.exception.enseignantException.EnseignantException;
 import projet.group2.gestionEmargement.exception.enseignantException.ErrorCodes;
 
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class TestEnseignantService {
@@ -22,8 +24,8 @@ public class TestEnseignantService {
     @Test
     public void enregistrementEnseignantOK() throws EnseignantException {
         UtilisateurDTO expectedEnseignant = UtilisateurDTO.builder()
-                .email("mos@univ-orleans.fr")
-                .nom("ko")
+                .email("yop@univ-orleans.fr")
+                .nom("yop")
                 .prenom("mous")
                 .motDePasse("mouss")
                 .build();
@@ -287,4 +289,11 @@ public class TestEnseignantService {
         Assert.assertEquals(0, expectedException.getErrors().size());
         Assert.assertEquals("Enseignant inexistant", expectedException.getMessage());
     }
+
+    @Test
+    public void recuperationTousLesEnseignantsOk() throws EnseignantException {
+        List<EnseignantDTO> returnedEnseignant= enseignantService.getEnseignants();
+        Assert.assertNotNull(returnedEnseignant.size());
+    }
+
 }
