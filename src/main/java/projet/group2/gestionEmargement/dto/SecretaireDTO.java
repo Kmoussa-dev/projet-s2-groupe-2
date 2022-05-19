@@ -1,21 +1,54 @@
 package projet.group2.gestionEmargement.dto;
 
+import lombok.Builder;
 import projet.group2.gestionEmargement.entity.Secretaire;
 
 import java.util.List;
 import java.util.Objects;
+@Builder
+public class SecretaireDTO  {
 
-public class SecretaireDTO extends UtilisateurDTO {
+    private String email;
 
-    public static Secretaire toEntity(SecretaireDTO secretaireDTO){
-        if(Objects.isNull(secretaireDTO))
+
+    private  String nom;
+
+
+    private  String prenom;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public static Secretaire toEntity(UtilisateurDTO utilisateurDTO){
+        if(Objects.isNull(utilisateurDTO))
             return null;
         else {
             Secretaire secretaire = new Secretaire();
-            secretaire.setEmail(secretaireDTO.getEmail());
-            secretaire.setNom(secretaireDTO.getNom());
-            secretaire.setPrenom(secretaireDTO.getPrenom());
-            secretaire.setMotDePasse(secretaireDTO.getMotDePasse());
+            secretaire.setEmail(utilisateurDTO.getEmail());
+            secretaire.setNom(utilisateurDTO.getNom());
+            secretaire.setPrenom(utilisateurDTO.getPrenom());
+            secretaire.setMotDePasse(utilisateurDTO.getEmail());
             secretaire.setRoles(List.of("SECRETAIRE"));
             return secretaire;
         }

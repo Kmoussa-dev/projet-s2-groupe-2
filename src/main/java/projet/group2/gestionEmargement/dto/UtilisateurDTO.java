@@ -1,12 +1,12 @@
 package projet.group2.gestionEmargement.dto;
 
+import lombok.Builder;
 import projet.group2.gestionEmargement.entity.Utilisateur;
 
 import java.util.List;
 import java.util.Objects;
-
+@Builder
 public class UtilisateurDTO {
-
 
     private String email;
 

@@ -16,6 +16,10 @@ public class EtudiantDTO extends UtilisateurDTO {
 
     private Promotion promo;
 
+    EtudiantDTO(String email, String nom, String prenom, String motDePasse) {
+        super(email, nom, prenom, motDePasse);
+    }
+
     public String getNumeroEtudiant() {
         return numeroEtudiant;
     }

@@ -8,8 +8,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import projet.group2.gestionEmargement.dto.EnseignantDTO;
 import projet.group2.gestionEmargement.dto.UtilisateurDTO;
 import projet.group2.gestionEmargement.entity.Enseignant;
+import projet.group2.gestionEmargement.exception.enseignantException.EnseignantException;
 import projet.group2.gestionEmargement.service.EnseignantService;
-import projet.group2.gestionEmargement.validator.UtilisateurValidator;
 
 import java.net.URI;
 import java.util.List;
@@ -28,35 +28,24 @@ public class EnseignantController {
     }
 
     @PostMapping("/enseignants")
-    public ResponseEntity<Enseignant> inscription(@RequestBody EnseignantDTO enseignant) {
-        List<String> errors= UtilisateurValidator.validate(enseignant);
-        if(!errors.isEmpty()){
-           return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
-        else {
-            Enseignant ens = this.enseignantService.getEnseignantByEmail(enseignant.getEmail());
-            if(Objects.isNull(ens)){
-                enseignant.setMotDePasse(this.passwordEncoder.encode(enseignant.getMotDePasse()));
-                ens = this.enseignantService.inscription(EnseignantDTO.toEntity(enseignant));
-                URI location = ServletUriComponentsBuilder
-                        .fromCurrentRequest().path("/{id}")
-                        .buildAndExpand(ens.getEmail()).toUri();
-                return ResponseEntity.created(location).body(ens);
-            }
-            else {
-                return ResponseEntity.badRequest().build();
-
-            }
+    public ResponseEntity<EnseignantDTO> inscription(@RequestBody UtilisateurDTO utilisateurDTO) {
+        try{
+            EnseignantDTO ens=this.enseignantService.inscription(utilisateurDTO);
+            URI location = ServletUriComponentsBuilder
+                    .fromCurrentRequest().path("/{id}")
+                    .buildAndExpand(ens.getEmail()).toUri();
+            return ResponseEntity.created(location).body(ens);
+        }catch (EnseignantException e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 
     @GetMapping("/enseignants/{id}")
-    public ResponseEntity<Enseignant> getEnseignantByEmail(@PathVariable String id){
-        Enseignant enseignant =  this.enseignantService.getEnseignantByEmail(id);
-        if(Objects.nonNull(enseignant)){
-            return ResponseEntity.ok(enseignant);
-        }
-        else {
+    public ResponseEntity<EnseignantDTO> getEnseignantByEmail(@PathVariable String id){
+        try{
+        EnseignantDTO enseignant =  this.enseignantService.getEnseignantByEmail(id);
+        return ResponseEntity.ok(enseignant);
+        }catch(EnseignantException e){
             return ResponseEntity.notFound().build();
         }
     }
