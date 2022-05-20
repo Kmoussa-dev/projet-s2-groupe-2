@@ -1,6 +1,7 @@
 package projet.group2.gestionEmargement.service;
 
 import org.junit.Assert;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import projet.group2.gestionEmargement.dto.UtilisateurDTO;
 import projet.group2.gestionEmargement.entity.Enseignant;
 import projet.group2.gestionEmargement.exception.enseignantException.EnseignantException;
 import projet.group2.gestionEmargement.exception.enseignantException.ErrorCodes;
+import projet.group2.gestionEmargement.exception.enseignantException.UtilisateurException;
 
 import java.util.List;
 
@@ -21,14 +23,16 @@ public class TestEnseignantService {
     @Autowired
     private EnseignantService enseignantService;
 
+
     @Test
-    public void enregistrementEnseignantOK() throws EnseignantException {
+    public void enregistrementEnseignantOK() throws EnseignantException, UtilisateurException {
         UtilisateurDTO expectedEnseignant = UtilisateurDTO.builder()
-                .email("yop@univ-orleans.fr")
+                .email("yopo@univ-orleans.fr")
                 .nom("yop")
                 .prenom("mous")
                 .motDePasse("mouss")
                 .build();
+
         EnseignantDTO savedEnseignant = enseignantService.inscription(expectedEnseignant);
         Assert.assertNotNull(savedEnseignant);
         Assert.assertNotNull(savedEnseignant.getEmail());
@@ -260,15 +264,15 @@ public class TestEnseignantService {
     @Test
     public void enregistrementEnseignantKOEmailDansLaBase(){
         UtilisateurDTO expectedEnseignant = UtilisateurDTO.builder()
-                .email("yop@univ-orleans.fr")
+                .email("yopo@univ-orleans.fr")
                 .nom("yop")
                 .prenom("mous")
                 .motDePasse("mouss")
                 .build();
 
-        EnseignantException expectedException = Assert.assertThrows(EnseignantException.class, () -> enseignantService.inscription(expectedEnseignant));
-        Assert.assertEquals(ErrorCodes.ENSEIGANT_ALREADY_IN_USE, expectedException.getErrorCode());
-        Assert.assertEquals(5003, expectedException.getErrorCode().getCode());
+        UtilisateurException expectedException = Assert.assertThrows(UtilisateurException.class, () -> enseignantService.inscription(expectedEnseignant));
+        Assert.assertEquals(ErrorCodes.UTILISATEUR_ALREADY_IN_USE, expectedException.getErrorCode());
+        Assert.assertEquals(7000, expectedException.getErrorCode().getCode());
         Assert.assertEquals(1, expectedException.getErrors().size());
     }
 

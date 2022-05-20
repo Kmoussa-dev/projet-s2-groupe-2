@@ -9,6 +9,7 @@ import projet.group2.gestionEmargement.dto.EnseignantDTO;
 import projet.group2.gestionEmargement.dto.UtilisateurDTO;
 import projet.group2.gestionEmargement.entity.Enseignant;
 import projet.group2.gestionEmargement.exception.enseignantException.EnseignantException;
+import projet.group2.gestionEmargement.exception.enseignantException.UtilisateurException;
 import projet.group2.gestionEmargement.service.EnseignantService;
 
 import java.net.URI;
@@ -37,6 +38,8 @@ public class EnseignantController {
             return ResponseEntity.created(location).body(ens);
         }catch (EnseignantException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        } catch (UtilisateurException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
     }
 

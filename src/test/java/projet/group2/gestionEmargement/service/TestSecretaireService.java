@@ -13,6 +13,7 @@ import projet.group2.gestionEmargement.entity.Secretaire;
 import projet.group2.gestionEmargement.exception.enseignantException.EnseignantException;
 import projet.group2.gestionEmargement.exception.enseignantException.ErrorCodes;
 import projet.group2.gestionEmargement.exception.enseignantException.SecretaireException;
+import projet.group2.gestionEmargement.exception.enseignantException.UtilisateurException;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class TestSecretaireService {
     private SecretaireService secretaireService;
 
     @Test
-    public void enregistrementSecretaireOK() throws SecretaireException {
+    public void enregistrementSecretaireOK() throws SecretaireException, UtilisateurException {
         UtilisateurDTO expectedSecretaire = UtilisateurDTO.builder()
                 .email("poyoiu0@univ-orleans.fr")
                 .nom("yop")
@@ -262,15 +263,15 @@ public class TestSecretaireService {
     @Test
     public void enregistrementSecretaireKOEmailDansLaBase(){
         UtilisateurDTO expectedSecretaire = UtilisateurDTO.builder()
-                .email("yop@univ-orleans.fr")
+                .email("poyoiu0@univ-orleans.fr")
                 .nom("yop")
                 .prenom("mous")
                 .motDePasse("mouss")
                 .build();
 
-        SecretaireException expectedException = Assert.assertThrows(SecretaireException.class, () -> secretaireService.inscription(expectedSecretaire));
-        Assert.assertEquals(ErrorCodes.SECRETAIRE_ALREADY_IN_USE, expectedException.getErrorCode());
-        Assert.assertEquals(6002, expectedException.getErrorCode().getCode());
+        UtilisateurException expectedException = Assert.assertThrows(UtilisateurException.class, () -> secretaireService.inscription(expectedSecretaire));
+        Assert.assertEquals(ErrorCodes.UTILISATEUR_ALREADY_IN_USE, expectedException.getErrorCode());
+        Assert.assertEquals(7000, expectedException.getErrorCode().getCode());
         Assert.assertEquals(1, expectedException.getErrors().size());
     }
 
@@ -301,7 +302,7 @@ public class TestSecretaireService {
 
     @Test
     public void recuperationSecretaireKOSecretaireInvalid() throws SecretaireException {
-        SecretaireException expectedException = Assert.assertThrows(SecretaireException.class, () -> secretaireService.getSecretaireByEmail("mathieu.chapeau@univ-orleans.fr"));
+        SecretaireException expectedException = Assert.assertThrows(SecretaireException.class, () -> secretaireService.getSecretaireByEmail("mathiesqiof.chapeau@univ-orleans.fr"));
         Assert.assertEquals(ErrorCodes.SECRETAIRE_NOT_FOUND, expectedException.getErrorCode());
         Assert.assertEquals(0, expectedException.getErrors().size());
         Assert.assertEquals("Sécretaire inexistante", expectedException.getMessage());

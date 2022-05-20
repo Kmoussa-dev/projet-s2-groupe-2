@@ -10,6 +10,7 @@ import projet.group2.gestionEmargement.dto.UtilisateurDTO;
 import projet.group2.gestionEmargement.entity.Enseignant;
 import projet.group2.gestionEmargement.exception.enseignantException.EnseignantException;
 import projet.group2.gestionEmargement.exception.enseignantException.ErrorCodes;
+import projet.group2.gestionEmargement.exception.enseignantException.UtilisateurException;
 import projet.group2.gestionEmargement.repository.EnseignantRepository;
 import projet.group2.gestionEmargement.validator.IdValidator;
 import projet.group2.gestionEmargement.validator.UtilisateurValidator;
@@ -27,15 +28,15 @@ public class EnseignantService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public EnseignantDTO inscription(UtilisateurDTO utilisateurDTO) throws EnseignantException {
+    public EnseignantDTO inscription(UtilisateurDTO utilisateurDTO) throws EnseignantException, UtilisateurException {
         List<String> errors = UtilisateurValidator.validate(utilisateurDTO);
         if (!errors.isEmpty()) {
             throw new EnseignantException("L'enseignant n'est pas valide", ErrorCodes.ENSEIGNANT_NOT_VALID, errors);
         }
-        EnseignantDTO enseignantDTO=getEnseignantByEmail(utilisateurDTO.getEmail());
-        if (!Objects.isNull(enseignantDTO)) {
+        Enseignant enseignant=this.enseignantRepository.getEnseignantByEmail(utilisateurDTO.getEmail());
+        if (!Objects.isNull(enseignant)) {
             errors.add("L'enseignant existe déjà dans base");
-            throw new EnseignantException("L'enseignant existe déjà dans base",ErrorCodes.ENSEIGANT_ALREADY_IN_USE,errors);
+            throw new UtilisateurException("L'enseignant existe déjà dans base",ErrorCodes.UTILISATEUR_ALREADY_IN_USE,errors);
         }
         utilisateurDTO.setMotDePasse(passwordEncoder.encode(utilisateurDTO.getMotDePasse()));
         return EnseignantDTO.fromEntity(

@@ -13,6 +13,7 @@ import projet.group2.gestionEmargement.entity.Secretaire;
 import projet.group2.gestionEmargement.exception.enseignantException.EnseignantException;
 import projet.group2.gestionEmargement.exception.enseignantException.ErrorCodes;
 import projet.group2.gestionEmargement.exception.enseignantException.SecretaireException;
+import projet.group2.gestionEmargement.exception.enseignantException.UtilisateurException;
 import projet.group2.gestionEmargement.repository.SecretaireRepository;
 import projet.group2.gestionEmargement.validator.IdValidator;
 import projet.group2.gestionEmargement.validator.UtilisateurValidator;
@@ -31,15 +32,15 @@ public class SecretaireService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public SecretaireDTO inscription(UtilisateurDTO utilisateurDTO) throws SecretaireException {
+    public SecretaireDTO inscription(UtilisateurDTO utilisateurDTO) throws SecretaireException, UtilisateurException {
         List<String> errors = UtilisateurValidator.validate(utilisateurDTO);
         if (!errors.isEmpty()) {
             throw new SecretaireException("Le sécrétaire n'est pas valide", ErrorCodes.SECRETAIRE_NOT_VALID, errors);
         }
-        SecretaireDTO secretaireDTO = getSecretaireByEmail(utilisateurDTO.getEmail());
-        if (!Objects.isNull(secretaireDTO)) {
+        Secretaire secretaire=this.secretaireRepository.getSecretaireByEmail(utilisateurDTO.getEmail());
+        if (!Objects.isNull(secretaire)) {
             errors.add("La sécrétaire existe déjà dans la base");
-            throw new SecretaireException("Le sécrétaire existe déjà dans base", ErrorCodes.SECRETAIRE_ALREADY_IN_USE, errors);
+            throw new UtilisateurException("Le sécrétaire existe déjà dans base", ErrorCodes.UTILISATEUR_ALREADY_IN_USE, errors);
         }
         utilisateurDTO.setMotDePasse(passwordEncoder.encode(utilisateurDTO.getMotDePasse()));
         return SecretaireDTO.fromEntity(
@@ -65,7 +66,7 @@ public class SecretaireService {
             throw new SecretaireException("L'ID de l'enseignant n'est pas valide",ErrorCodes.ID_SECRETAIRE_NOT_VALID,errors);
         }
         Secretaire secretaire=this.secretaireRepository.getSecretaireByEmail(id);
-        if (!Objects.isNull(secretaire)){
+        if (Objects.isNull(secretaire)){
             throw new SecretaireException("Sécretaire inexistante",ErrorCodes.SECRETAIRE_NOT_FOUND,errors);
         }
         return SecretaireDTO.fromEntity(this.secretaireRepository.getSecretaireByEmail(id));

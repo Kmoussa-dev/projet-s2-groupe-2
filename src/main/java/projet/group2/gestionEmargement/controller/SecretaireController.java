@@ -11,6 +11,7 @@ import projet.group2.gestionEmargement.dto.SecretaireDTO;
 import projet.group2.gestionEmargement.dto.UtilisateurDTO;
 
 import projet.group2.gestionEmargement.exception.enseignantException.SecretaireException;
+import projet.group2.gestionEmargement.exception.enseignantException.UtilisateurException;
 import projet.group2.gestionEmargement.service.SecretaireService;
 
 
@@ -40,9 +41,9 @@ public class SecretaireController {
             return ResponseEntity.created(location).body(secre);
         }catch (SecretaireException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        } catch (UtilisateurException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
-
-
     }
 
     @GetMapping("/secretaires/{email}")
