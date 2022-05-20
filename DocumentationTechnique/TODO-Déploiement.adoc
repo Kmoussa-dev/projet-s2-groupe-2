@@ -1,0 +1,5 @@
+
+=== Rappel CDC :
+
+    Comment déployer les différentes parties du projet
+    Le cas échéant, configurations requises (p.ex. versions minimales)

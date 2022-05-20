@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -17,6 +18,8 @@ import java.net.URI;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 
+import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
+import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -25,6 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@AutoConfigureRestDocs
 public class SeanceControllerTest {
 
     @Autowired
@@ -57,7 +61,12 @@ public class SeanceControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(dataSeanceTest.seanceOK())))
                 .andExpect(status().isCreated())
-                .andExpect(header().exists("Location"));
+                .andExpect(header().exists("Location"))
+                //lignes à ajouter pour générer la doc tech
+                .andDo(document("creer-seance",
+                        preprocessRequest(prettyPrint()),
+                        preprocessResponse(prettyPrint())
+                        ));
     }
 
 
@@ -77,7 +86,11 @@ public class SeanceControllerTest {
                 .with(httpBasic(dataSeanceTest.emailEnseignant(),dataSeanceTest.mdpGeneral()))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(dataSeanceTest.seanceOK())))
-                .andExpect(status().isForbidden());
+                .andExpect(status().isForbidden())
+                .andDo(document("creer-seance-KO-403",
+                    preprocessRequest(prettyPrint()),
+                    preprocessResponse(prettyPrint())
+                ));
     }
 
     /**
@@ -104,7 +117,11 @@ public class SeanceControllerTest {
                         .with(httpBasic(dataSeanceTest.emailMembreAdministratif(),dataSeanceTest.mdpGeneral()))
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(dataSeanceTest.seanceDejaExistante())))
-                .andExpect(status().isConflict());
+                .andExpect(status().isConflict())
+                .andDo(document("creer-seance-KO-409",
+                        preprocessRequest(prettyPrint()),
+                        preprocessResponse(prettyPrint())
+                ));
     }
 
 

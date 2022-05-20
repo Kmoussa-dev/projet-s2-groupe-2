@@ -1,0 +1,73 @@
+= Spring Rest Docs
+
+== Documentation technique de l'API Émargement
+
+
+=== Rappel CDC :
+
+[NOTE]
+Vous devez fournir une documentation technique, réalisée à l'aide de *“Spring REST Docs”*, à destination de l'utilisateur de votre service.
+Cette documentation doit notamment *fournir des exemples d'utilisation* des différents *points d'entrée* du service,
+à l'aide de *snippets*, qui doivent également faire office de *tests fonctionnels* du service (fonctionnalité proposée par Spring REST Docs).
+
+=== Partie I - Séance
+
+==== POST
+
+===== Création d'une seance -> OK
+
+HTTP Request :
+include::{snippets}/creer-seance/http-request.adoc[]
+
+HTTP Response :
+include::{snippets}/creer-seance/http-response.adoc[]
+
+Request body :
+include::{snippets}/creer-seance/request-body.adoc[]
+
+Response body :
+include::{snippets}/creer-seance/response-body.adoc[]
+
+
+===== Création d'une seance -> KO 403
+
+HTTP Request :
+include::{snippets}/creer-seance-KO-403/http-request.adoc[]
+
+HTTP Response :
+include::{snippets}/creer-seance-KO-403/http-response.adoc[]
+
+Request body :
+include::{snippets}/creer-seance-KO-403/request-body.adoc[]
+
+Response body :
+include::{snippets}/creer-seance-KO-403/response-body.adoc[]
+
+===== Création d'une seance -> KO 409
+
+
+HTTP Request :
+include::{snippets}/creer-seance-KO-409/http-request.adoc[]
+
+HTTP Response :
+include::{snippets}/creer-seance-KO-409/http-response.adoc[]
+
+Request body :
+include::{snippets}/creer-seance-KO-409/request-body.adoc[]
+
+Response body :
+include::{snippets}/creer-seance-KO-409/response-body.adoc[]
+
+
+==== GET
+
+===== Récupérer une seance
+
+
+=== Partie II - Fonctionnalité d'émargement
+
+=== Partie III - Utilisateurs
+
+
+
+
