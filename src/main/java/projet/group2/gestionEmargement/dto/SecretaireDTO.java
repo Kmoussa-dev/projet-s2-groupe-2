@@ -1,6 +1,7 @@
 package projet.group2.gestionEmargement.dto;
 
 import lombok.Builder;
+import projet.group2.gestionEmargement.entity.Enseignant;
 import projet.group2.gestionEmargement.entity.Secretaire;
 
 import java.util.List;
@@ -51,6 +52,18 @@ public class SecretaireDTO  {
             secretaire.setMotDePasse(utilisateurDTO.getEmail());
             secretaire.setRoles(List.of("SECRETAIRE"));
             return secretaire;
+        }
+    }
+
+    public static SecretaireDTO fromEntity(Secretaire secretaire){
+        if(Objects.isNull(secretaire))
+            return null;
+        else {
+            return SecretaireDTO.builder()
+                    .email(secretaire.getEmail())
+                    .nom(secretaire.getNom())
+                    .prenom(secretaire.getPrenom())
+                    .build();
         }
     }
 

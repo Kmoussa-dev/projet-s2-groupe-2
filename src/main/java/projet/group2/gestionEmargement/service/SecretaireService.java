@@ -14,6 +14,7 @@ import projet.group2.gestionEmargement.exception.enseignantException.EnseignantE
 import projet.group2.gestionEmargement.exception.enseignantException.ErrorCodes;
 import projet.group2.gestionEmargement.exception.enseignantException.SecretaireException;
 import projet.group2.gestionEmargement.repository.SecretaireRepository;
+import projet.group2.gestionEmargement.validator.IdValidator;
 import projet.group2.gestionEmargement.validator.UtilisateurValidator;
 
 import java.util.ArrayList;
@@ -30,15 +31,15 @@ public class SecretaireService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public SecretaireDTO inscription(UtilisateurDTO utilisateurDTO)throws SecretaireException {
+    public SecretaireDTO inscription(UtilisateurDTO utilisateurDTO) throws SecretaireException {
         List<String> errors = UtilisateurValidator.validate(utilisateurDTO);
         if (!errors.isEmpty()) {
             throw new SecretaireException("Le sécrétaire n'est pas valide", ErrorCodes.SECRETAIRE_NOT_VALID, errors);
         }
-        SecretaireDTO secretaireDTO=getSecretaireByEmail(utilisateurDTO.getEmail());
+        SecretaireDTO secretaireDTO = getSecretaireByEmail(utilisateurDTO.getEmail());
         if (!Objects.isNull(secretaireDTO)) {
             errors.add("La sécrétaire existe déjà dans la base");
-            throw new SecretaireException("Le sécrétariat existe déjà dans base",ErrorCodes.SECRETAIRE_ALREADY_IN_USE,errors);
+            throw new SecretaireException("Le sécrétaire existe déjà dans base", ErrorCodes.SECRETAIRE_ALREADY_IN_USE, errors);
         }
         utilisateurDTO.setMotDePasse(passwordEncoder.encode(utilisateurDTO.getMotDePasse()));
         return SecretaireDTO.fromEntity(
@@ -48,22 +49,30 @@ public class SecretaireService {
         );
     }
 
-    public List<SecretaireDTO> getSecretaires() {
-        List<Secretaire> secretaires=this.secretaireRepository.findAll();
-        List<String> errors=new ArrayList<>();
-        if (secretaires.size()==0){
+    public List<SecretaireDTO> getSecretaires() throws SecretaireException {
+        List<Secretaire> secretaires = this.secretaireRepository.findAll();
+        List<String> errors = new ArrayList<>();
+        if (secretaires.size() == 0) {
             errors.add("Il n'y a pas de secretaires");
-            throw new SecretaireException("Il n'y a pas de Secretaire", ErrorCodes.ENSEIGNANT_NOT_FOUND, errors);
+            throw new SecretaireException("Il n'y a pas de Secretaire", ErrorCodes.SECRETAIRE_NOT_FOUND, errors);
         }
-        return secretaires.stream().map(e->SecretaireDTO.fromEntity(e)).collect(Collectors.toList());
+        return secretaires.stream().map(e -> SecretaireDTO.fromEntity(e)).collect(Collectors.toList());
     }
 
-    public SecretaireDTO getSecretaireByEmail(String id)
-    {
-        return this.secretaireRepository.getSecretaireByEmail(id);
+    public SecretaireDTO getSecretaireByEmail(String id) throws SecretaireException {
+        List<String> errors= IdValidator.validate(id);
+        if (!errors.isEmpty()) {
+            throw new SecretaireException("L'ID de l'enseignant n'est pas valide",ErrorCodes.ID_SECRETAIRE_NOT_VALID,errors);
+        }
+        Secretaire secretaire=this.secretaireRepository.getSecretaireByEmail(id);
+        if (!Objects.isNull(secretaire)){
+            throw new SecretaireException("Sécretaire inexistante",ErrorCodes.SECRETAIRE_NOT_FOUND,errors);
+        }
+        return SecretaireDTO.fromEntity(this.secretaireRepository.getSecretaireByEmail(id));
     }
-
-
-
-
 }
+
+
+
+
+

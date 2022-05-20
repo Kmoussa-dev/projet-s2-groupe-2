@@ -6,19 +6,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import projet.group2.gestionEmargement.dto.EnseignantDTO;
+
 import projet.group2.gestionEmargement.dto.SecretaireDTO;
 import projet.group2.gestionEmargement.dto.UtilisateurDTO;
-import projet.group2.gestionEmargement.entity.Secretaire;
-import projet.group2.gestionEmargement.entity.Utilisateur;
-import projet.group2.gestionEmargement.exception.enseignantException.EnseignantException;
+
 import projet.group2.gestionEmargement.exception.enseignantException.SecretaireException;
 import projet.group2.gestionEmargement.service.SecretaireService;
-import projet.group2.gestionEmargement.validator.UtilisateurValidator;
+
 
 import java.net.URI;
 import java.util.List;
-import java.util.Objects;
+
 
 @RestController
 @RequestMapping("/api/emargement")
@@ -48,25 +46,24 @@ public class SecretaireController {
     }
 
     @GetMapping("/secretaires/{email}")
-    public ResponseEntity<Secretaire> getSecretaireById(@PathVariable String email){
-        Secretaire secretaire =  this.secretaireService.getSecretaireByEmail(email);
-        if(Objects.nonNull(secretaire)){
+    public ResponseEntity<SecretaireDTO> getSecretaireById(@PathVariable String email){
+        try{
+            SecretaireDTO secretaire =  this.secretaireService.getSecretaireByEmail(email);
             return ResponseEntity.ok(secretaire);
-        }
-        else {
+        }catch(SecretaireException e){
             return ResponseEntity.notFound().build();
         }
     }
 
     @GetMapping("/secretaires")
-    public ResponseEntity<List<Secretaire>> getSecretaires(){
-        List<Secretaire> secretaires =  this.secretaireService.getSecretaires();
-        if(secretaires.size() >0 ){
+    public ResponseEntity<List<SecretaireDTO>> getSecretaires(){
+        try{
+            List<SecretaireDTO> secretaires =  this.secretaireService.getSecretaires();
             return ResponseEntity.ok(secretaires);
-        }
-        else {
+        }catch (SecretaireException e){
             return ResponseEntity.notFound().build();
         }
+
     }
 
 
