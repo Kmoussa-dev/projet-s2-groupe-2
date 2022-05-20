@@ -10,11 +10,19 @@ import java.util.Objects;
 
 public class EtudiantDTO extends UtilisateurDTO {
 
+
     private String numeroEtudiant;
 
     private Groupe groupe;
 
     private Promotion promo;
+
+    public EtudiantDTO(String email, String nom, String prenom, String motDePasse, String numeroEtudiant, Groupe groupe, Promotion promo) {
+        super(email, nom, prenom, motDePasse);
+        this.numeroEtudiant = numeroEtudiant;
+        this.groupe = groupe;
+        this.promo = promo;
+    }
 
     public String getNumeroEtudiant() {
         return numeroEtudiant;

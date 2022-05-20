@@ -9,6 +9,10 @@ import java.util.Objects;
 public class EnseignantDTO extends UtilisateurDTO {
 
 
+    public EnseignantDTO(String email, String nom, String prenom, String motDePasse) {
+        super(email, nom, prenom, motDePasse);
+    }
+
     public static Enseignant toEntity(EnseignantDTO enseignantDTO){
         if(Objects.isNull(enseignantDTO))
             return null;

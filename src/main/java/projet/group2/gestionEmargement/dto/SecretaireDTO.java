@@ -7,6 +7,10 @@ import java.util.Objects;
 
 public class SecretaireDTO extends UtilisateurDTO {
 
+    public SecretaireDTO(String email, String nom, String prenom, String motDePasse) {
+        super(email, nom, prenom, motDePasse);
+    }
+
     public static Secretaire toEntity(SecretaireDTO secretaireDTO){
         if(Objects.isNull(secretaireDTO))
             return null;

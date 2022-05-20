@@ -32,27 +32,22 @@ public class EtudiantController {
 
     @PostMapping("/etudiants")
     public ResponseEntity<Etudiant> inscription(@RequestBody EtudiantDTO etu) {
-        List<String> errors = EtudiantValidator.validate(etu);
-        if (!errors.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        } else {
             Etudiant etudiant = this.etudiantService.getEtudiantbyNumeroEtudiant(etu.getNumeroEtudiant());
             try {
-                if (Objects.isNull(etudiant)) {
+
                     etu.setMotDePasse(this.passwordEncoder.encode(etu.getMotDePasse()));
                     etudiant = this.etudiantService.inscription(EtudiantDTO.toEntity(etu));
                     URI location = ServletUriComponentsBuilder
                             .fromCurrentRequest().path("/{numeroEtudiant}")
                             .buildAndExpand(etudiant.getEmail()).toUri();
                     return ResponseEntity.created(location).body(etudiant);
-                }
+
             } catch (EtudiantDejaExisteException e) {
                 return ResponseEntity.status(HttpStatus.CONFLICT).build();
             } catch (MotDePasseObligatoireException e) {
                 return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
             }
-            return ResponseEntity.badRequest().build();
-    }
+
     }
 
     @GetMapping("/etudiants/{numeroEtudiant}")
