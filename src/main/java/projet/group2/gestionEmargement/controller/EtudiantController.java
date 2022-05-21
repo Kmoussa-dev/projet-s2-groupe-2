@@ -46,7 +46,6 @@ public class EtudiantController {
             } catch (MotDePasseObligatoireException e) {
                 return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
             }
-
     }
 
     @GetMapping("/etudiant/{numeroEtudiant}")

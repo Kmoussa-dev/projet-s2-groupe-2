@@ -29,11 +29,7 @@ public class EnseignantController {
 
     @PostMapping("/enseignants")
     public ResponseEntity<Enseignant> inscription(@RequestBody EnseignantDTO enseignant) {
-        List<String> errors= UtilisateurValidator.validate(enseignant);
-        if(!errors.isEmpty()){
-           return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
-        else {
+
             Enseignant ens = this.enseignantService.getEnseignantByEmail(enseignant.getEmail());
             if(Objects.isNull(ens)){
                 enseignant.setMotDePasse(this.passwordEncoder.encode(enseignant.getMotDePasse()));
@@ -48,7 +44,7 @@ public class EnseignantController {
 
             }
         }
-    }
+
 
     @GetMapping("/enseignants/{id}")
     public ResponseEntity<Enseignant> getEnseignantByEmail(@PathVariable String id){
