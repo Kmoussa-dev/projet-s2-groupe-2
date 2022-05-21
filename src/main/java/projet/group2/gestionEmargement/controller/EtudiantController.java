@@ -34,7 +34,6 @@ public class EtudiantController {
     public ResponseEntity<Etudiant> inscription(@RequestBody EtudiantDTO etu) {
             Etudiant etudiant = this.etudiantService.getEtudiantbyNumeroEtudiant(etu.getNumeroEtudiant());
             try {
-
                     etu.setMotDePasse(this.passwordEncoder.encode(etu.getMotDePasse()));
                     etudiant = this.etudiantService.inscription(EtudiantDTO.toEntity(etu));
                     URI location = ServletUriComponentsBuilder
@@ -82,6 +81,4 @@ public class EtudiantController {
             return ResponseEntity.notFound().build();
         }
     }
-
-
 }
