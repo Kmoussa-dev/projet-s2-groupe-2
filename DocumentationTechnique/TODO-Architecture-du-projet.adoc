@@ -1,0 +1,3 @@
+==== Rappel CDC :
+
+    Où se trouvent les sources du projet, et comment elles s’organisent

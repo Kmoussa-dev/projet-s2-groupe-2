@@ -55,11 +55,11 @@ public class SeanceController {
      */
     @PostMapping("/seances")
     public ResponseEntity<Seance> nouvelleSeance(@RequestBody SeanceDTO seance){
-        List<String> errors= SeanceValidator.validate(seance);
-        if(!errors.isEmpty()){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
-        else {
+//        List<String> errors= SeanceValidator.validate(seance);
+//        if(!errors.isEmpty()){
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+//        }
+//        else {
             try {
                 Seance s = this.seanceService.creerSeance(SeanceDTO.toEntity(seance));
                 URI location = ServletUriComponentsBuilder
@@ -69,7 +69,7 @@ public class SeanceController {
             } catch (SeanceDejaExistanteException e) {
                 return ResponseEntity.status(HttpStatus.CONFLICT).build();
             }
-        }
+//        }
 
     }
 

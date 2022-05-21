@@ -32,13 +32,13 @@ Suivi de l'état d'avancement des différentes tâches du projet :
 * [x] Sécurité Basic avec encodage password
 * [ ] _[Optionnel] Sécurité avec JWT_
 * [ ] Gestion des rôles & permissions d'accès   _(en cours)_
-* [ ] Contraintes de validation (couche de validation)
+* [x] Contraintes de validation (couche de validation)
 * [ ] _[Optionnel] Pagination_
 * [ ] _[Optionnel] Versionner l'API_
 
 
 ===== Tests / Recette
-* [ ] Cahier de tests
+* [ ] _[Optionnel] Cahier de tests_
 * [ ] Tests fonctionnels   _(en cours)_
 * [ ] Tests d'intégration  _(en cours)_
 * [ ] Tests structurels
@@ -52,9 +52,9 @@ Suivi de l'état d'avancement des différentes tâches du projet :
 ** [ ] à générer au format png
 ** [ ] à expliquer
 * [ ] Description de l'architecture du projet
-* [ ] Description de la solution de sécurisation utilisée
+* [ ] Description de la solution de sécurisation utilisée _(en cours)_
 * [ ] Description des différentes solutions envisagées et celle retenue
-* [ ] Description détaillée de la solution technique du QR code
+* [ ] Description détaillée de la solution technique du QR code _(en cours)_
 
 * [ ] _[Optionnel] Retour sur les Refactoring majeurs effectués :_
 ** [ ] _Expliquer le changement de modélisation du SI (objectif : respecter principes SOLID)_

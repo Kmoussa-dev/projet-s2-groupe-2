@@ -1,6 +1,5 @@
 package projet.group2.gestionEmargement.dataTest;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import projet.group2.gestionEmargement.dto.SeanceDTO;
 import projet.group2.gestionEmargement.entity.Groupe;
@@ -32,14 +31,13 @@ public class DataSeanceTestImpl implements DataSeanceTest {
 
     @Override
     public SeanceDTO seanceDejaExistante() {
-        SeanceDTO seanceDTO = new SeanceDTO("000000000000","Système et Répartition",
+        SeanceDTO seanceDTO = new SeanceDTO("000000000001","Ingénérie des connaissances",
                 "00000000001", "TD", new Groupe("TD2",""),
                 LocalDateTime.of(LocalDate.parse("2022-01-01"), LocalTime.MIDNIGHT),LocalDateTime.of(LocalDate.parse("2022-01-01"), LocalTime.MIDNIGHT).plusHours(2),
                 new Promotion("MASTER 1","2021-2022"), "A VENIR","E18");
 
         return seanceDTO ;
     }
-
 
     @Override
     public String emailEtudiant() {
@@ -50,4 +48,10 @@ public class DataSeanceTestImpl implements DataSeanceTest {
     public String emailEnseignant() {
         return "mathieu.chapelle@univ-orleans.fr";
     }
+
+    @Override
+    public String emailUtilisateurNonAuthentifie() {return "user-non-auth@univ-orleans.fr";}
+
+    @Override
+    public String idSeanceInexistant() { return "xxxxxxx"; }
 }
