@@ -9,7 +9,7 @@ import projet.group2.gestionEmargement.entity.Promotion;
 public class DataEtudiantTestImpl implements DataEtudiantTest {
     @Override
     public EtudiantDTO inscriptionOk() {
-        EtudiantDTO etudiantDTO = new EtudiantDTO("Bfati.bardi1995@gmail.com","fatimaE","fatima","mdpss",
+        EtudiantDTO etudiantDTO = new EtudiantDTO("fatima.elbardi@etu.univ-orleans.fr","fatimaE","fatima","mdpss",
                 "1987654",new Groupe("TP1","TD1"),
                 new Promotion("MASTER 1","2021-2022"));
         return etudiantDTO;

@@ -88,26 +88,31 @@ class EtudiantControllerTest {
    }
 
 
-   // @Test
-//    public void testInscriptionEtudiantKO() throws Exception {
-//       ObjectMapper objectMapper = new ObjectMapper();
-//
-//       Etudiant etudiant = EtudiantDTO.toEntity(dataEtudiantTest.inscriptionOk());
-//       given(etudiantService.inscription(any(Etudiant.class))).willReturn(etudiant);
-//
-//        this.mockMvc.perform(post("/api/emargement/etudiants")
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .content(objectMapper.writeValueAsString(etudiant)))
-//                .andExpect(status().isCreated()).andExpect(header().exists("Location"));
-//
-//        //given(etudiantService.inscription(any(Etudiant.class))).willReturn(etudiant);
-//        this.mockMvc.perform(post("/api/emargement/etudiants")
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .content(objectMapper.writeValueAsString(etudiant)))
-//                .andExpect(status().isConflict());
-//    }
+    @Test
+    public void testInscriptionEtudiantKO() throws Exception {
+       ObjectMapper objectMapper = new ObjectMapper();
 
-   @Test
+       Etudiant etudiant = EtudiantDTO.toEntity(dataEtudiantTest.inscriptionOk());
+       given(etudiantService.inscription(any(Etudiant.class))).willReturn(etudiant);
+
+        this.mockMvc.perform(post("/api/emargement/etudiants")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(etudiant)))
+                .andExpect(status().isCreated()).andExpect(header().exists("Location"));
+
+        //given(etudiantService.inscription(any(Etudiant.class))).willReturn(etudiant);
+        this.mockMvc.perform(post("/api/emargement/etudiants")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(etudiant)))
+                .andExpect(status().isConflict());
+    }
+
+    /**
+     * get tout les étudiants
+     * 200
+     * @throws Exception
+     */
+  @Test
     public void testGetEtudiantsOK() throws Exception {
 
        EtudiantDTO etudiantDTO = new EtudiantDTO("fati.bardi1995@gmail.com","fatimaE","fatima","mdpss",
@@ -132,6 +137,11 @@ class EtudiantControllerTest {
                ;
    }
 
+    /**
+     * get tout les étudiants depuis une liste vide
+     * 404 not found
+     * @throws Exception
+     */
     @Test
     public void testGetEtudiantsKO() throws Exception {
 
@@ -150,20 +160,99 @@ class EtudiantControllerTest {
 
     }
 
-//    @Test
-//    public void testGetEtudiantByEmailOK() throws Exception {
-//
-//        ObjectMapper objectMapper = new ObjectMapper();
-//
-//        given(etudiantService.getEtudiantbyEmail(anyString())).willReturn(EtudiantDTO.toEntity(dataEtudiantTest.inscriptionOk()));
-//
-//        this.mockMvc.perform(get("/api/emargement/etudiants/"+EtudiantDTO.toEntity(dataEtudiantTest.inscriptionOk()).getEmail())
-//                        .content(objectMapper.writeValueAsString(EtudiantDTO.toEntity(dataEtudiantTest.inscriptionOk()))))
-//                .andExpect(status().isOk())
-//        ;
-//    }
+    /**
+     * test get etudiant par son email
+     * 200
+     * @throws Exception
+     */
+    @Test
+    public void testGetEtudiantByEmailOK() throws Exception {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        Etudiant etudiant = EtudiantDTO.toEntity(dataEtudiantTest.inscriptionOk());
+        given(etudiantService.getEtudiantbyEmail(anyString())).willReturn(etudiant);
+
+        this.mockMvc.perform(get("/api/emargement/etudiants/"+dataEtudiantTest.emailEtudiant())
+                        .content(objectMapper.writeValueAsString(etudiant)))
+                .andExpect(status().isOk())
+                .andDo(document("Get-etudiantByEmail-200",
+                        preprocessRequest(prettyPrint()),
+                        preprocessResponse(prettyPrint())))
+        ;
+    }
+
+    /**
+     * test get étudiant par son email KO
+     * 404 étudiant not found
+     * @throws Exception
+     */
+    @Test
+    public void testGetEtudiantByEmailKO() throws Exception {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        Etudiant etudiant = new Etudiant();
+        this.mockMvc.perform(get("/api/emargement/etudiants/"+etudiant.getEmail())
+                        .content(objectMapper.writeValueAsString(etudiant)))
+                .andExpect(status().isNotFound())
+                .andDo(document("Get-etudiantByEmail-404",
+                        preprocessRequest(prettyPrint()),
+                        preprocessResponse(prettyPrint())))
+        ;
+    }
+
+    /**
+     * test get etudiant par son numeroEtudiant
+     * 200
+     * @throws Exception
+     */
+    @Test
+    public void testGetEtudiantByNumeroEtudiantOK() throws Exception {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        Etudiant etudiant = EtudiantDTO.toEntity(dataEtudiantTest.inscriptionOk());
+        given(etudiantService.getEtudiantbyNumeroEtudiant(anyString())).willReturn(etudiant);
+
+        this.mockMvc.perform(get("/api/emargement/etudiant/"+dataEtudiantTest.numeroEtudiant())
+                        .content(objectMapper.writeValueAsString(etudiant)))
+                .andExpect(status().isOk())
+                .andDo(document("Get-etudiantByNumeroEtudiant-200",
+                        preprocessRequest(prettyPrint()),
+                        preprocessResponse(prettyPrint())))
+        ;
+    }
+
+    /**
+     * test get étudiant par son numeroEtudiant KO
+     * 404 étudiant not found
+     * @throws Exception
+     */
+    @Test
+    public void testGetEtudiantByNumeroEtudiantKO() throws Exception {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        Etudiant etudiant = new Etudiant();
+        this.mockMvc.perform(get("/api/emargement/etudiant/"+etudiant.getNumeroEtudiant())
+                        .content(objectMapper.writeValueAsString(etudiant)))
+                .andExpect(status().isNotFound())
+                .andDo(document("Get-etudiantByNumeroEtudiant-404",
+                        preprocessRequest(prettyPrint()),
+                        preprocessResponse(prettyPrint())))
+        ;
+    }
 
 
 
 
 }
+
+
+
+
+
+
+
+
+
+

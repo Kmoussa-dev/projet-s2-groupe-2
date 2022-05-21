@@ -74,17 +74,41 @@ include::{snippets}/Creer-etudiants-201/http-request.adoc[]
 
 include::{snippets}/Creer-etudiants-201/http-response.adoc[]
 
-===Récuperer tout les étudiants 200
+===GET tout les étudiants 200
 
 include::{snippets}/Get-etudiants-200/http-request.adoc[]
 
 include::{snippets}/Get-etudiants-200/http-response.adoc[]
 
-===Récuperer une liste vide des étudiants les étudiants 404
+===GET une liste vide des étudiants les étudiants KO 404
 
 include::{snippets}/Get-etudiants-404/http-request.adoc[]
 
 include::{snippets}/Get-etudiants-404/http-response.adoc[]
+
+===GET étudiant par Email 200
+
+include::{snippets}/Get-etudiantByEmail-200/http-request.adoc[]
+
+include::{snippets}/Get-etudiantByEmail-200/http-response.adoc[]
+
+===GET étudiant par Email KO 404
+
+include::{snippets}/Get-etudiantByEmail-404/http-request.adoc[]
+
+include::{snippets}/Get-etudiantByEmail-404/http-response.adoc[]
+
+===GET étudiant par NumeroEtudiant 200
+
+include::{snippets}/Get-etudiantByNumeroEtudiant-200/http-request.adoc[]
+
+include::{snippets}/Get-etudiantByNumeroEtudiant-200/http-response.adoc[]
+
+===GET étudiant par NumeroEtudiant KO 404
+
+include::{snippets}/Get-etudiantByNumeroEtudiant-404/http-request.adoc[]
+
+include::{snippets}/Get-etudiantByNumeroEtudiant-404/http-response.adoc[]
 
 
 

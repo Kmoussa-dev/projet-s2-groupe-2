@@ -49,7 +49,7 @@ public class EtudiantController {
 
     }
 
-    @GetMapping("/etudiants/{numeroEtudiant}")
+    @GetMapping("/etudiant/{numeroEtudiant}")
     public ResponseEntity<Etudiant> getEtudiantbyNumeroEtudiant(@PathVariable String numeroEtudiant){
         Etudiant etudiant =  this.etudiantService.getEtudiantbyNumeroEtudiant(numeroEtudiant);
         if(Objects.nonNull(etudiant)){
