@@ -8,6 +8,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -45,6 +46,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 //@RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
+@AutoConfigureRestDocs
 class EtudiantControllerTest {
 
     @Autowired
@@ -78,7 +80,11 @@ class EtudiantControllerTest {
                .contentType(MediaType.APPLICATION_JSON)
                        .content(objectMapper.writeValueAsString(EtudiantDTO.toEntity(dataEtudiantTest.inscriptionOk()))))
                .andExpectAll(status().isCreated())
-               .andExpect(header().exists("Location"));
+               .andExpect(header().exists("Location"))
+               .andDo(document("Creer-etudiants-201",
+                       preprocessRequest(prettyPrint()),
+                       preprocessResponse(prettyPrint())))
+       ;
    }
 
 
@@ -120,6 +126,9 @@ class EtudiantControllerTest {
        this.mockMvc.perform(get("/api/emargement/etudiants")
                .content(objectMapper.writeValueAsString(etudiants)))
                .andExpect(status().isOk())
+               .andDo(document("Get-etudiants-200",
+                       preprocessRequest(prettyPrint()),
+                       preprocessResponse(prettyPrint())))
                ;
    }
 
@@ -134,7 +143,11 @@ class EtudiantControllerTest {
         this.mockMvc.perform(get("/api/emargement/etudiants")
                         .content(objectMapper.writeValueAsString(etudiants)))
                 .andExpect(status().isNotFound())
-        ;
+                .andDo(document("Get-etudiants-404",
+                        preprocessRequest(prettyPrint()),
+                        preprocessResponse(prettyPrint())
+                ));
+
     }
 
 //    @Test
