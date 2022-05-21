@@ -16,7 +16,7 @@ import projet.group2.gestionEmargement.exception.enseignantException.Utilisateur
 
 import java.util.List;
 
-@RunWith(SpringRunner.class)
+
 @SpringBootTest
 public class TestEnseignantService {
 
