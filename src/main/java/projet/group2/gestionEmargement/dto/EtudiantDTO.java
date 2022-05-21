@@ -9,7 +9,18 @@ import projet.group2.gestionEmargement.entity.Promotion;
 import java.util.List;
 import java.util.Objects;
 @Builder
-public class EtudiantDTO extends UtilisateurDTO {
+public class EtudiantDTO {
+
+    private String email;
+
+
+    private  String nom;
+
+
+    private  String prenom;
+
+
+    private String  motDePasse;
 
     private String numeroEtudiant;
 
@@ -17,8 +28,46 @@ public class EtudiantDTO extends UtilisateurDTO {
 
     private Promotion promo;
 
-    EtudiantDTO(String email, String nom, String prenom, String motDePasse) {
-        super(email, nom, prenom, motDePasse);
+    public EtudiantDTO(String email, String nom, String prenom, String motDePasse, String numeroEtudiant, Groupe groupe, Promotion promo) {
+        this.email = email;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.motDePasse = motDePasse;
+        this.numeroEtudiant = numeroEtudiant;
+        this.groupe = groupe;
+        this.promo = promo;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public String getMotDePasse() {
+        return motDePasse;
+    }
+
+    public void setMotDePasse(String motDePasse) {
+        this.motDePasse = motDePasse;
     }
 
     public String getNumeroEtudiant() {

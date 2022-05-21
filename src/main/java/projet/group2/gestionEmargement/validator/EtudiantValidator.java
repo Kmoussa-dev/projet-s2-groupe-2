@@ -36,18 +36,6 @@ public class EtudiantValidator {
         if (!StringUtils.hasLength(etudiantDTO.getNumeroEtudiant())) {
             errors.add("Veuillez renseigner le numero étudiant");
         }
-        if (!StringUtils.hasLength(etudiantDTO.getGroupe().getGroupeDeTD())) {
-            errors.add("Veuillez renseigner le groupe de td");
-        }
-        if (!StringUtils.hasLength(etudiantDTO.getGroupe().getGroupeDeTP())) {
-            errors.add("Veuillez renseigner le groupe de tp");
-        }
-        if (!StringUtils.hasLength(etudiantDTO.getPromo().getNiveau())) {
-            errors.add("Veuillez renseigner le niveau");
-        }
-        if (!StringUtils.hasLength(etudiantDTO.getPromo().getAnnee())) {
-            errors.add("Veuillez renseigner l'année");
-        }
         return errors;
     }
 }

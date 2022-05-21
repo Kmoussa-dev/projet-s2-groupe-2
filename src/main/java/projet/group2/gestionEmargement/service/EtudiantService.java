@@ -39,7 +39,7 @@ public class EtudiantService {
         }
         Etudiant etudiant=this.etudiantRepository.findEtudiantByNumeroEtudiant(etudiantDTO.getNumeroEtudiant());
         if (!Objects.isNull(etudiant)) {
-            errors.add("L'enseignant existe déjà dans base");
+            errors.add("L'etudiant existe déjà dans base");
             throw new UtilisateurException("L'etudiant existe déjà dans base",ErrorCodes.UTILISATEUR_ALREADY_IN_USE,errors);
         }
         etudiantDTO.setMotDePasse(passwordEncoder.encode(etudiantDTO.getMotDePasse()));
