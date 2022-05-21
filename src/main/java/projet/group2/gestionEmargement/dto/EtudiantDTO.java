@@ -1,13 +1,14 @@
 package projet.group2.gestionEmargement.dto;
 
 
+import lombok.Builder;
 import projet.group2.gestionEmargement.entity.Etudiant;
 import projet.group2.gestionEmargement.entity.Groupe;
 import projet.group2.gestionEmargement.entity.Promotion;
 
 import java.util.List;
 import java.util.Objects;
-
+@Builder
 public class EtudiantDTO extends UtilisateurDTO {
 
     private String numeroEtudiant;
@@ -61,4 +62,17 @@ public class EtudiantDTO extends UtilisateurDTO {
             return etudiant;
         }
     }
+
+    public static EtudiantDTO fromEntity(Etudiant etudiant){
+        if(Objects.isNull(etudiant))
+            return null;
+        else {
+            return EtudiantDTO.builder()
+                    .numeroEtudiant(etudiant.getEmail())
+                    .groupe(etudiant.getGroupe())
+                    .promo(etudiant.getPromo())
+                    .build();
+        }
+    }
+
 }

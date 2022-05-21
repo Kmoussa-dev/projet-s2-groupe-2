@@ -28,22 +28,22 @@ public class TestEtudiantService {
     /**
      * inscription d'un etudiant avec un numero d'etudiant déja existant
      */
-    @Test void testInscriptionEtudiant1() {
-        String numeroEtudiant = dataEtudiantTest.numeroEtudiant();
-        String motDePasse = dataEtudiantTest.motDePasseEtudiant();
-
-        String numeroEtudiant1 = dataEtudiantTest.numeroEtudiant();
-        String motDePasse1 = dataEtudiantTest.motDePasseEtudiant();
-
-        Etudiant etudiant = new Etudiant();
-        etudiant.setNumeroEtudiant(numeroEtudiant);
-        etudiant.setMotDePasse(motDePasse);
-
-        Etudiant etudiant1 = new Etudiant();
-        etudiant.setNumeroEtudiant(numeroEtudiant1);
-        etudiant.setMotDePasse(motDePasse1);
-        Assertions.assertDoesNotThrow(()->this.instance.inscription(etudiant));
-        Assertions.assertThrows(NuneroEtudiantDejaExistException.class,()->this.instance.inscription(etudiant1));
-    }
+//    @Test void testInscriptionEtudiant1() {
+//        String numeroEtudiant = dataEtudiantTest.numeroEtudiant();
+//        String motDePasse = dataEtudiantTest.motDePasseEtudiant();
+//
+//        String numeroEtudiant1 = dataEtudiantTest.numeroEtudiant();
+//        String motDePasse1 = dataEtudiantTest.motDePasseEtudiant();
+//
+//        Etudiant etudiant = new Etudiant();
+//        etudiant.setNumeroEtudiant(numeroEtudiant);
+//        etudiant.setMotDePasse(motDePasse);
+//
+//        Etudiant etudiant1 = new Etudiant();
+//        etudiant.setNumeroEtudiant(numeroEtudiant1);
+//        etudiant.setMotDePasse(motDePasse1);
+//        Assertions.assertDoesNotThrow(()->this.instance.inscription(etudiant));
+//        Assertions.assertThrows(NuneroEtudiantDejaExistException.class,()->this.instance.inscription(etudiant1));
+//    }
 
 }

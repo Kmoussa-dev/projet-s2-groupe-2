@@ -1,5 +1,6 @@
 package projet.group2.gestionEmargement.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -9,10 +10,12 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import projet.group2.gestionEmargement.config.TokenGenerator;
+import projet.group2.gestionEmargement.dto.EtudiantDTO;
 import projet.group2.gestionEmargement.dto.SeanceDTO;
 import projet.group2.gestionEmargement.entity.Etudiant;
 import projet.group2.gestionEmargement.entity.Seance;
 import projet.group2.gestionEmargement.exception.*;
+import projet.group2.gestionEmargement.exception.enseignantException.EtudiantException;
 import projet.group2.gestionEmargement.service.EtudiantService;
 import projet.group2.gestionEmargement.service.SeanceService;
 import projet.group2.gestionEmargement.validator.SeanceValidator;
@@ -29,6 +32,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import static java.rmi.server.LogStream.log;
+
+@Slf4j
 @RestController
 @RequestMapping("/api/emargement")
 public class SeanceController {
@@ -89,14 +95,14 @@ public class SeanceController {
      * @return
      */
     @GetMapping("/seances/{id}/etudiants-presents")
-    public ResponseEntity<List<Etudiant>> getEtudiantsPresents(@PathVariable String id){
+    public ResponseEntity<List<EtudiantDTO>> getEtudiantsPresents(@PathVariable String id){
         try {
             Seance seance = this.seanceService.getSeanceById(id);
             List<String> lesNumEtudiantPresent = new ArrayList<>();
             if (Objects.nonNull(seance)){
                 seance.getNumEtudiantsPresent().forEach(h -> lesNumEtudiantPresent.add(h.getNumEtudiant()));
                 if(lesNumEtudiantPresent.size() > 0){
-                    List<Etudiant> lesEtuPresent =  this.etudiantService.getEtudiants().stream()
+                    List<EtudiantDTO> lesEtuPresent =  this.etudiantService.getEtudiants().stream()
                             .filter(e -> lesNumEtudiantPresent.contains(e.getNumeroEtudiant()))
                             .collect(Collectors.toList());
                     return ResponseEntity.ok(lesEtuPresent);
@@ -110,6 +116,9 @@ public class SeanceController {
             }
         } catch (SeanceInexistanteException e) {
             return ResponseEntity.notFound().build();
+        } catch (EtudiantException e) {
+            log.error("Il n'y a pas d'etudiants présents");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 
@@ -120,7 +129,7 @@ public class SeanceController {
      * @return
      */
     @GetMapping("/seances/{id}/etudiants-absents")
-    public ResponseEntity<List<Etudiant>> getEtudiantsAbsents(@PathVariable String id){
+    public ResponseEntity<List<EtudiantDTO>> getEtudiantsAbsents(@PathVariable String id){
         try {
             Seance seance = this.seanceService.getSeanceById(id);
             List<String> lesNumEtudiantPresent = new ArrayList<>();
@@ -129,19 +138,22 @@ public class SeanceController {
                 List<String> numEtudiantsAbsents = seance.getNumEtudiants().stream()
                         .filter(e -> !lesNumEtudiantPresent.contains(e))
                         .collect(Collectors.toList());
-                List<Etudiant> lesEtuAbsent =  this.etudiantService.getEtudiants().stream()
+                List<EtudiantDTO> lesEtuAbsent =  this.etudiantService.getEtudiants().stream()
                         .filter(e -> numEtudiantsAbsents.contains(e.getNumeroEtudiant()))
                         .collect(Collectors.toList());
                 return ResponseEntity.ok(lesEtuAbsent);
             }
             else {
-                List<Etudiant> lesEtuAbsent = this.etudiantService.getEtudiants().stream()
+                List<EtudiantDTO> lesEtuAbsent = this.etudiantService.getEtudiants().stream()
                         .filter(e -> seance.getNumEtudiants().contains(e.getNumeroEtudiant()))
                         .collect(Collectors.toList());
                 return ResponseEntity.ok(lesEtuAbsent);
             }
         } catch (SeanceInexistanteException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } catch (EtudiantException e) {
+            log.error("Il n'y a pas d'etudiants présents");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 
