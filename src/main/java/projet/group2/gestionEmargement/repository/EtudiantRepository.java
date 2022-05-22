@@ -12,13 +12,15 @@ import java.util.List;
 public interface EtudiantRepository extends MongoRepository<Etudiant, String> {
 
 
-    Etudiant findEtudiantByNumeroEtudiant(String numeroEtudiant);
+    Etudiant getEtudiantByNumeroEtudiant(String numeroEtudiant);
 
     Etudiant getEtudiantByEmail(String email);
 
     List<Etudiant> getEtudiantsByPromo(Promotion promo);
 
     boolean existsEtudiantByNumeroEtudiant(String numeroEtudiant);
+
+    boolean existsEtudiantByEmail(String email);
 
     List<Etudiant> getEtudiantsByPromoNiveauAndGroupeGroupeDeTD(String niveau, String groupeDeTD);
     List<Etudiant> getEtudiantsByPromoNiveauAndGroupeGroupeDeTP(String niveau, String groupeDeTP);

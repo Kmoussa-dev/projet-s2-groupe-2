@@ -47,8 +47,8 @@ public class EnseignantDTO {
             enseignant.setEmail(utilisateurDTO.getEmail());
             enseignant.setNom(utilisateurDTO.getNom());
             enseignant.setPrenom(utilisateurDTO.getPrenom());
-            enseignant.setMotDePasse(utilisateurDTO.getEmail());
-            enseignant.setRoles(List.of("PROFESSEUR"));
+            enseignant.setMotDePasse(utilisateurDTO.getMotDePasse());
+            enseignant.setRoles(List.of("ENSEIGNANT"));
             return enseignant;
         }
     }

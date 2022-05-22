@@ -10,7 +10,9 @@ import projet.group2.gestionEmargement.entity.Enseignant;
 import projet.group2.gestionEmargement.entity.Etudiant;
 import projet.group2.gestionEmargement.entity.Promotion;
 import projet.group2.gestionEmargement.exception.EtudiantDejaExisteException;
+import projet.group2.gestionEmargement.exception.EtudiantInexistantException;
 import projet.group2.gestionEmargement.exception.MotDePasseObligatoireException;
+import projet.group2.gestionEmargement.exception.PermissionDejaAccordeeException;
 import projet.group2.gestionEmargement.exception.enseignantException.EnseignantException;
 import projet.group2.gestionEmargement.exception.enseignantException.ErrorCodes;
 import projet.group2.gestionEmargement.exception.enseignantException.EtudiantException;
@@ -37,7 +39,7 @@ public class EtudiantService {
         if (!errors.isEmpty()) {
             throw new EtudiantException("L'etudiant n'est pas valide", ErrorCodes.ETUDIANT_NOT_VALID, errors);
         }
-        Etudiant etudiant=this.etudiantRepository.findEtudiantByNumeroEtudiant(etudiantDTO.getNumeroEtudiant());
+        Etudiant etudiant=this.etudiantRepository.getEtudiantByNumeroEtudiant(etudiantDTO.getNumeroEtudiant());
         if (!Objects.isNull(etudiant)) {
             errors.add("L'etudiant existe déjà dans base");
             throw new UtilisateurException("L'etudiant existe déjà dans base",ErrorCodes.UTILISATEUR_ALREADY_IN_USE,errors);
@@ -60,12 +62,24 @@ public class EtudiantService {
         return etudiants.stream().map(e->EtudiantDTO.fromEntity(e)).collect(Collectors.toList());
     }
 
+    public EtudiantDTO getEtudiantbyId(String id) throws EtudiantException {
+        if (this.etudiantRepository.existsEtudiantByNumeroEtudiant(id)){
+            return this.getEtudiantbyNumeroEtudiant(id);
+        }
+        else if (this.etudiantRepository.existsEtudiantByEmail(id)){
+            return this.getEtudiantbyEmail(id);
+        }
+        else {
+            throw new EtudiantException("Etudiant inexistant",ErrorCodes.ETUDIANT_NOT_FOUND,List.of("Etudiant inexistant"));
+        }
+    }
+
     public EtudiantDTO getEtudiantbyNumeroEtudiant(String numeroEtudiant) throws EtudiantException {
         List<String> errors= IdValidator.validate(numeroEtudiant);
         if (!errors.isEmpty()) {
             throw new EtudiantException("Le numero etudiant n'est pas valide",ErrorCodes.ID_ETUDIANT_NOT_VALID,errors);
         }
-        Etudiant etudiant=this.etudiantRepository.findEtudiantByNumeroEtudiant(numeroEtudiant);
+        Etudiant etudiant=this.etudiantRepository.getEtudiantByNumeroEtudiant(numeroEtudiant);
         if (etudiant==null){
             throw new EtudiantException("Etudiant inexistant",ErrorCodes.ETUDIANT_NOT_FOUND,errors);
         }
@@ -82,6 +96,44 @@ public class EtudiantService {
             throw new EtudiantException("Etudiant inexistant",ErrorCodes.ETUDIANT_NOT_FOUND,errors);
         }
         return EtudiantDTO.fromEntity(etudiant);
+    }
+
+    public boolean permissionTOGenerateQrCode(String adresseMAC, String numEtudiant) throws EtudiantInexistantException, EtudiantException {
+        if(this.etudiantRepository.existsEtudiantByNumeroEtudiant(numEtudiant)){
+            Etudiant etu = this.etudiantRepository.getEtudiantByNumeroEtudiant(numEtudiant);
+            if(etu.getAdresseMAC().equals(adresseMAC)){
+                return true;
+            }
+            else if (etu.isOtp()){
+                etu.setAdresseMAC(adresseMAC);
+                etu.setOtp(false);
+                this.etudiantRepository.save(etu);
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            throw new EtudiantInexistantException();
+        }
+
+    }
+
+    public void givePermissonNewDevice(String numEtudiant) throws EtudiantInexistantException, PermissionDejaAccordeeException, EtudiantException {
+        if(this.etudiantRepository.existsEtudiantByNumeroEtudiant(numEtudiant)) {
+            Etudiant etu = this.etudiantRepository.getEtudiantByNumeroEtudiant(numEtudiant);
+            if (!etu.isOtp()){
+                etu.setOtp(true);
+                this.etudiantRepository.save(etu);
+            }
+            else {
+                throw new PermissionDejaAccordeeException();
+            }
+        }
+        else {
+            throw new EtudiantInexistantException();
+        }
     }
 
 }

@@ -1,7 +1,9 @@
 package projet.group2.gestionEmargement.dto;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 import projet.group2.gestionEmargement.entity.Etudiant;
 import projet.group2.gestionEmargement.entity.Groupe;
 import projet.group2.gestionEmargement.entity.Promotion;
@@ -28,15 +30,13 @@ public class EtudiantDTO {
 
     private Promotion promo;
 
-    public EtudiantDTO(String email, String nom, String prenom, String motDePasse, String numeroEtudiant, Groupe groupe, Promotion promo) {
-        this.email = email;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.motDePasse = motDePasse;
-        this.numeroEtudiant = numeroEtudiant;
-        this.groupe = groupe;
-        this.promo = promo;
-    }
+    private boolean otp;
+
+    private String adresseMAC;
+
+
+
+
 
     public String getEmail() {
         return email;
@@ -94,6 +94,21 @@ public class EtudiantDTO {
         this.promo = promo;
     }
 
+    public boolean isOtp() {
+        return otp;
+    }
+
+    public void setOtp(boolean otp) {
+        this.otp = otp;
+    }
+
+    public String getAdresseMAC() {
+        return adresseMAC;
+    }
+
+    public void setAdresseMAC(String adresseMAC) {
+        this.adresseMAC = adresseMAC;
+    }
 
     public static Etudiant toEntity(EtudiantDTO etudiantDTO){
         if(Objects.isNull(etudiantDTO))
@@ -107,7 +122,9 @@ public class EtudiantDTO {
             etudiant.setRoles(List.of("ETUDIANT"));
             etudiant.setNumeroEtudiant(etudiantDTO.getNumeroEtudiant());
             etudiant.setGroupe(etudiantDTO.getGroupe());
-            etudiant.setPromo(etudiant.getPromo());
+            etudiant.setPromo(etudiantDTO.getPromo());
+            etudiant.setOtp(false);
+            etudiant.setAdresseMAC("");
             return etudiant;
         }
     }

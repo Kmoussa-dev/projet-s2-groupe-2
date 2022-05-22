@@ -157,22 +157,39 @@ public class SeanceController {
         }
     }
 
+    @PatchMapping("/permission/etudiant/{numEtudiant}/new-device")
+    public ResponseEntity givePermission(@PathVariable String numEtudiant){
+        try {
+            this.etudiantService.givePermissonNewDevice(numEtudiant);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+        } catch (EtudiantInexistantException | PermissionDejaAccordeeException | EtudiantException e) {
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
+        }
+    }
+
     /**
      *  Fonctionnalité émarger - étape 1
      *  Génère le token pour permettre à l'étudiant d'émarger
      * @param idSeance id de la séance
      * @param numEtudiant le numéro étudiant de l'élève qui va émarger
+     * @param adresseMAC l'adresse MAC de l'élève qui va émarger
      * @return une image png contenant le QR Code généré
      */
-    @GetMapping (value = "/seances/token", produces = MediaType.IMAGE_PNG_VALUE)
-    public ResponseEntity<BufferedImage> genarateToken(@RequestParam String idSeance, @RequestParam String numEtudiant){
+    @PostMapping (value = "/seances/token", produces = MediaType.IMAGE_PNG_VALUE)
+    public ResponseEntity<BufferedImage> genarateToken(@RequestParam String idSeance, @RequestParam String numEtudiant, @RequestParam String adresseMAC){
         try {
-            BufferedImage bufferedImage = TokenGenerator.generateQRCode(ServletUriComponentsBuilder
-                    .fromCurrentContextPath()
-                    .path("/api/emergement/seance/{id}/pointage/{numEtudant}/{dateExpire}")
-                    .buildAndExpand(idSeance,numEtudiant,LocalDateTime.now().plusSeconds(5).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME))
-                    .toUriString());
-            return ResponseEntity.ok(bufferedImage);
+            if (this.etudiantService.permissionTOGenerateQrCode(adresseMAC,numEtudiant)){
+                BufferedImage bufferedImage = TokenGenerator.generateQRCode(ServletUriComponentsBuilder
+                        .fromCurrentContextPath()
+                        .path("/api/emergement/seance/{id}/pointage/{numEtudant}/{dateExpire}")
+                        .buildAndExpand(idSeance,numEtudiant,LocalDateTime.now().plusSeconds(5).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME))
+                        .toUriString());
+                return ResponseEntity.ok(bufferedImage);
+            }
+            else {
+                return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
+            }
+
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }

@@ -67,3 +67,10 @@ Content-Type: application/json
   "statutSeance": "NON VALIDE",
   "idSalle": "E12"
 }
+
+
+###
+POST http://localhost:8080/api/emargement/seances/token?idSeance=62707ca87754620c29af3d8c&numEtudiant=o22009067&adresseMAC=yfffuyfufuffuf
+
+###
+PATCH http://localhost:8080/api/emargement/permission/etudiant/o22009067/new-device

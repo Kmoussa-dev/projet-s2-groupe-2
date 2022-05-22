@@ -17,23 +17,11 @@ public class Etudiant extends Utilisateur {
     @Field(name = "promo")
     private Promotion promo;
 
+    @Field(name = "otp")
+    private boolean otp; // one time pad => autoristion unique
+    @Field(name = "adresseMAC")
+    private String adresseMAC;
 
-    public Groupe getGroupe() {
-        return groupe;
-    }
-
-    public void setGroupe(Groupe groupe) {
-        this.groupe = groupe;
-    }
-
-
-    public Promotion getPromo() {
-        return promo;
-    }
-
-    public void setPromo(Promotion promo) {
-        this.promo = promo;
-    }
 
     public String getNumeroEtudiant() {
         return numeroEtudiant;
@@ -43,5 +31,35 @@ public class Etudiant extends Utilisateur {
         this.numeroEtudiant = numeroEtudiant;
     }
 
+    public Groupe getGroupe() {
+        return groupe;
+    }
 
+    public void setGroupe(Groupe groupe) {
+        this.groupe = groupe;
+    }
+
+    public Promotion getPromo() {
+        return promo;
+    }
+
+    public void setPromo(Promotion promo) {
+        this.promo = promo;
+    }
+
+    public boolean isOtp() {
+        return otp;
+    }
+
+    public void setOtp(boolean otp) {
+        this.otp = otp;
+    }
+
+    public String getAdresseMAC() {
+        return adresseMAC;
+    }
+
+    public void setAdresseMAC(String adresseMAC) {
+        this.adresseMAC = adresseMAC;
+    }
 }
