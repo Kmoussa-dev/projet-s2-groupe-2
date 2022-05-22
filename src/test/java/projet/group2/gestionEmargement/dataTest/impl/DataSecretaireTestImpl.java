@@ -51,4 +51,44 @@ public class DataSecretaireTestImpl implements DataSecretaireTest {
     public String motDePasseSecretaire2() {
         return "florence";
     }
+
+    @Override
+    public String emailSecretaire3() {
+        return "brigitte.dupuis2@univ-orleans.fr";
+    }
+
+    @Override
+    public String nomSecretaire3() {
+        return "Dupuis2";
+    }
+
+    @Override
+    public String prenomSecretaire3() {
+        return "Brigitte2";
+    }
+
+    @Override
+    public String motDePasseSecretaire3() {
+        return "dupuis2";
+    }
+
+    @Override
+    public String emailSecretaire4() {
+        return "florence.maubert2@univ-orleans.fr";
+    }
+
+    @Override
+    public String nomSecretaire4() {
+        return "Maubert2";
+    }
+
+    @Override
+    public String prenomSecretaire4() {
+        return "Florence2";
+    }
+
+    @Override
+    public String motDePasseSecretaire4() {
+        return "maubert2";
+    }
 }

@@ -21,4 +21,21 @@ public interface DataEnseignantTest {
     String prenomEnseignant2();
 
     String motDePasseEnseignant2();
+
+
+    String emailEnseignant3();
+
+    String nomEnseignant3();
+
+    String prenomEnseignant3();
+
+    String motDePasseEnseignant3();
+
+    String emailEnseignant4();
+
+    String nomEnseignant4();
+
+    String prenomEnseignant4();
+
+    String motDePasseEnseignant4();
 }

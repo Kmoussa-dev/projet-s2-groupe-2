@@ -45,4 +45,44 @@ public class DataEnseignantTestImpl implements DataEnseignantTest {
         return "fred";
     }
 
+    @Override
+    public String emailEnseignant3() {
+        return "mathieu.chapelle@univ-orleans.fr";
+    }
+
+    @Override
+    public String nomEnseignant3() {
+        return "Chapelle";
+    }
+
+    @Override
+    public String prenomEnseignant3() {
+        return "mathieu";
+    }
+
+    @Override
+    public String motDePasseEnseignant3() {
+        return "mathieu";
+    }
+
+    @Override
+    public String emailEnseignant4() {
+        return "jean-michel.couvreur@univ-orleans.fr";
+    }
+
+    @Override
+    public String nomEnseignant4() {
+        return "Couvreur";
+    }
+
+    @Override
+    public String prenomEnseignant4() {
+        return "Jean-michel";
+    }
+
+    @Override
+    public String motDePasseEnseignant4() {
+        return "Jean-michel";
+    }
+
 }

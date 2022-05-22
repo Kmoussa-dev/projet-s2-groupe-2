@@ -284,9 +284,16 @@ public class TestEnseignantService {
     }
 
     @Test
-    public void recuperationEnseignantOK() throws EnseignantException {
+    public void recuperationEnseignantOK() throws EnseignantException, UtilisateurException {
+        UtilisateurDTO expectedEnseignant1 = UtilisateurDTO.builder()
+                .email(dataEnseignantTest.emailEnseignant3())
+                .nom(dataEnseignantTest.nomEnseignant3())
+                .prenom(dataEnseignantTest.prenomEnseignant3())
+                .motDePasse(dataEnseignantTest.motDePasseEnseignant3())
+                .build();
+        EnseignantDTO savedEnseignant = enseignantService.inscription(expectedEnseignant1);
 
-        EnseignantDTO returnedEnseignant= enseignantService.getEnseignantByEmail("secretariat@univ-orleans.fr");
+        EnseignantDTO returnedEnseignant= enseignantService.getEnseignantByEmail(savedEnseignant.getEmail());
 
         Assert.assertNotNull(returnedEnseignant.getEmail());
         Assert.assertNotNull(returnedEnseignant.getPrenom());
@@ -317,7 +324,15 @@ public class TestEnseignantService {
     }
 
     @Test
-    public void recuperationTousLesEnseignantsOk() throws EnseignantException {
+    public void recuperationTousLesEnseignantsOk() throws EnseignantException, UtilisateurException {
+        UtilisateurDTO expectedEnseignant1 = UtilisateurDTO.builder()
+                .email(dataEnseignantTest.emailEnseignant4())
+                .nom(dataEnseignantTest.nomEnseignant4())
+                .prenom(dataEnseignantTest.prenomEnseignant4())
+                .motDePasse(dataEnseignantTest.motDePasseEnseignant4())
+                .build();
+
+        EnseignantDTO savedEnseignant = enseignantService.inscription(expectedEnseignant1);
         List<EnseignantDTO> returnedEnseignant= enseignantService.getEnseignants();
         Assert.assertNotNull(returnedEnseignant.size());
     }

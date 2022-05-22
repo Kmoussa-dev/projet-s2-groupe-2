@@ -83,5 +83,40 @@ public class DataEtudiantTestImpl implements DataEtudiantTest {
     public Promotion promoEtudiant2() {
         return new Promotion("MASTER 1","2020-2021");
     }
+
+    @Override
+    public String emailEtudiant3() {
+        return "rachida.elouariachi@etu.univ-orleans.fr";
+    }
+
+    @Override
+    public String nomEtudiant3() {
+        return "El Ouariachi";
+    }
+
+    @Override
+    public String prenomEtudiant3() {
+        return "Rachida";
+    }
+
+    @Override
+    public String motDePasseEtudiant3() {
+        return "rachida";
+    }
+
+    @Override
+    public String numeroEtudiant3() {
+        return "o256489";
+    }
+
+    @Override
+    public Groupe groupeEtudiant3() {
+        return new Groupe("TD2","TP3");
+    }
+
+    @Override
+    public Promotion promoEtudiant3() {
+        return new Promotion("MASTER 1","2021-2022");
+    }
 }
 

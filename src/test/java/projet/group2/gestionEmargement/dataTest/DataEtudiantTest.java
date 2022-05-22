@@ -23,4 +23,17 @@ public interface DataEtudiantTest {
     Groupe groupeEtudiant2();
     Promotion promoEtudiant2();
 
+    String emailEtudiant3();
+
+    String nomEtudiant3();
+
+    String prenomEtudiant3();
+
+    String motDePasseEtudiant3();
+
+    String numeroEtudiant3();
+
+    Groupe groupeEtudiant3();
+
+    Promotion promoEtudiant3();
 }

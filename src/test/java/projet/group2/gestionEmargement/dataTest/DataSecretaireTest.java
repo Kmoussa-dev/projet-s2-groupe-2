@@ -22,4 +22,20 @@ public interface DataSecretaireTest {
     String prenomSecretaire2();
 
     String motDePasseSecretaire2();
+
+    String emailSecretaire3();
+
+    String nomSecretaire3();
+
+    String prenomSecretaire3();
+
+    String motDePasseSecretaire3();
+
+    String emailSecretaire4();
+
+    String nomSecretaire4();
+
+    String prenomSecretaire4();
+
+    String motDePasseSecretaire4();
 }

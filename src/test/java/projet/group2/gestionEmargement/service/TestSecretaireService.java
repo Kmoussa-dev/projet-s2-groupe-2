@@ -283,9 +283,16 @@ public class TestSecretaireService {
     }
 
     @Test
-    public void recuperationSecretaireOK() throws SecretaireException {
+    public void recuperationSecretaireOK() throws SecretaireException, UtilisateurException {
+        UtilisateurDTO expectedSecretaire = UtilisateurDTO.builder()
+                .email(dataSecretaireTest.emailSecretaire3())
+                .nom(dataSecretaireTest.nomSecretaire3())
+                .prenom(dataSecretaireTest.prenomSecretaire3())
+                .motDePasse(dataSecretaireTest.motDePasseSecretaire3())
+                .build();
+        SecretaireDTO savedSecretaire = secretaireService.inscription(expectedSecretaire);
 
-        SecretaireDTO returnedSecretaire= secretaireService.getSecretaireByEmail("secretariat@univ-orleans.fr");
+        SecretaireDTO returnedSecretaire= secretaireService.getSecretaireByEmail(dataSecretaireTest.emailSecretaire3());
 
         Assert.assertNotNull(returnedSecretaire.getEmail());
         Assert.assertNotNull(returnedSecretaire.getPrenom());
@@ -316,7 +323,14 @@ public class TestSecretaireService {
     }
 
     @Test
-    public void recuperationToutesLesSecretairesOk() throws  SecretaireException {
+    public void recuperationToutesLesSecretairesOk() throws SecretaireException, UtilisateurException {
+        UtilisateurDTO expectedSecretaire = UtilisateurDTO.builder()
+                .email(dataSecretaireTest.emailSecretaire4())
+                .nom(dataSecretaireTest.nomSecretaire4())
+                .prenom(dataSecretaireTest.prenomSecretaire4())
+                .motDePasse(dataSecretaireTest.motDePasseSecretaire4())
+                .build();
+        SecretaireDTO savedSecretaire = secretaireService.inscription(expectedSecretaire);
         List<SecretaireDTO> returnedSecretaire= secretaireService.getSecretaires();
         Assert.assertNotNull(returnedSecretaire.size());
     }

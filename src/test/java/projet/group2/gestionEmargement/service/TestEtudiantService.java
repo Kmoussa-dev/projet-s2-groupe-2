@@ -284,9 +284,22 @@ public class TestEtudiantService {
     }
 
     @Test
-    public void recuperationEtudiantOK() throws EtudiantException {
+    public void recuperationEtudiantOK() throws EtudiantException, UtilisateurException {
 
-        EtudiantDTO returnedEtudiant= etudiantService.getEtudiantbyEmail("moussa.bakayoko@etu.univ-orleans.fr");
+        EtudiantDTO expectedEtudiant = EtudiantDTO.builder()
+                .email(dataEtudiantTest.emailEtudiant3())
+                .nom(dataEtudiantTest.nomEtudiant3())
+                .prenom(dataEtudiantTest.prenomEtudiant3())
+                .motDePasse(dataEtudiantTest.motDePasseEtudiant3())
+                .numeroEtudiant(dataEtudiantTest.numeroEtudiant3())
+                .groupe(dataEtudiantTest.groupeEtudiant3())
+                .promo(dataEtudiantTest.promoEtudiant3())
+                .build();
+
+        EtudiantDTO savedEtudiant = etudiantService.inscription(expectedEtudiant);
+
+
+        EtudiantDTO returnedEtudiant= etudiantService.getEtudiantbyEmail(dataEtudiantTest.emailEtudiant3());
 
         Assert.assertNotNull(returnedEtudiant.getNumeroEtudiant());
         Assert.assertNotNull(returnedEtudiant.getGroupe().getGroupeDeTD());
