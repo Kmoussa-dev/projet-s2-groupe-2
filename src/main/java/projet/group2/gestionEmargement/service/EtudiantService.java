@@ -2,25 +2,17 @@ package projet.group2.gestionEmargement.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import projet.group2.gestionEmargement.dto.EnseignantDTO;
 import projet.group2.gestionEmargement.dto.EtudiantDTO;
-import projet.group2.gestionEmargement.entity.Enseignant;
 import projet.group2.gestionEmargement.entity.Etudiant;
-import projet.group2.gestionEmargement.entity.Promotion;
-import projet.group2.gestionEmargement.exception.EtudiantDejaExisteException;
 import projet.group2.gestionEmargement.exception.EtudiantInexistantException;
-import projet.group2.gestionEmargement.exception.MotDePasseObligatoireException;
 import projet.group2.gestionEmargement.exception.PermissionDejaAccordeeException;
-import projet.group2.gestionEmargement.exception.enseignantException.EnseignantException;
-import projet.group2.gestionEmargement.exception.enseignantException.ErrorCodes;
-import projet.group2.gestionEmargement.exception.enseignantException.EtudiantException;
-import projet.group2.gestionEmargement.exception.enseignantException.UtilisateurException;
+import projet.group2.gestionEmargement.exception.generalException.ErrorCodes;
+import projet.group2.gestionEmargement.exception.generalException.EtudiantException;
+import projet.group2.gestionEmargement.exception.generalException.UtilisateurException;
 import projet.group2.gestionEmargement.repository.EtudiantRepository;
 import projet.group2.gestionEmargement.validator.EtudiantValidator;
 import projet.group2.gestionEmargement.validator.IdValidator;
-import projet.group2.gestionEmargement.validator.UtilisateurValidator;
 
 import java.util.*;
 import java.util.stream.Collectors;

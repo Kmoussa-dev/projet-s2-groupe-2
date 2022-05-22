@@ -1,16 +1,14 @@
 package projet.group2.gestionEmargement.service;
 
-import ch.qos.logback.core.encoder.EchoEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import projet.group2.gestionEmargement.dto.EnseignantDTO;
 import projet.group2.gestionEmargement.dto.UtilisateurDTO;
 import projet.group2.gestionEmargement.entity.Enseignant;
-import projet.group2.gestionEmargement.exception.enseignantException.EnseignantException;
-import projet.group2.gestionEmargement.exception.enseignantException.ErrorCodes;
-import projet.group2.gestionEmargement.exception.enseignantException.UtilisateurException;
+import projet.group2.gestionEmargement.exception.generalException.EnseignantException;
+import projet.group2.gestionEmargement.exception.generalException.ErrorCodes;
+import projet.group2.gestionEmargement.exception.generalException.UtilisateurException;
 import projet.group2.gestionEmargement.repository.EnseignantRepository;
 import projet.group2.gestionEmargement.validator.IdValidator;
 import projet.group2.gestionEmargement.validator.UtilisateurValidator;

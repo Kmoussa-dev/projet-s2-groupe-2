@@ -1,6 +1,4 @@
-package projet.group2.gestionEmargement.exception.enseignantException;
-
-import projet.group2.gestionEmargement.entity.Secretaire;
+package projet.group2.gestionEmargement.exception.generalException;
 
 import java.util.List;
 

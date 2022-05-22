@@ -1,6 +1,7 @@
-package projet.group2.gestionEmargement.dataTest;
+package projet.group2.gestionEmargement.dataTest.impl;
 
 import org.springframework.stereotype.Service;
+import projet.group2.gestionEmargement.dataTest.DataSeanceTest;
 import projet.group2.gestionEmargement.dto.SeanceDTO;
 import projet.group2.gestionEmargement.entity.Groupe;
 import projet.group2.gestionEmargement.entity.Promotion;

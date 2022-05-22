@@ -1,4 +1,4 @@
-package projet.group2.gestionEmargement.exception.enseignantException;
+package projet.group2.gestionEmargement.exception.generalException;
 
 public enum ErrorCodes {
    //les différentes Erreurs pour les enseignants

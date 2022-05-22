@@ -12,27 +12,20 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import projet.group2.gestionEmargement.config.TokenGenerator;
 import projet.group2.gestionEmargement.dto.EtudiantDTO;
 import projet.group2.gestionEmargement.dto.SeanceDTO;
-import projet.group2.gestionEmargement.entity.Etudiant;
 import projet.group2.gestionEmargement.entity.Seance;
 import projet.group2.gestionEmargement.exception.*;
-import projet.group2.gestionEmargement.exception.enseignantException.EtudiantException;
+import projet.group2.gestionEmargement.exception.generalException.EtudiantException;
 import projet.group2.gestionEmargement.service.EtudiantService;
 import projet.group2.gestionEmargement.service.SeanceService;
-import projet.group2.gestionEmargement.validator.SeanceValidator;
-import projet.group2.gestionEmargement.validator.UtilisateurValidator;
 
 import java.awt.image.BufferedImage;
 import java.net.URI;
-import java.security.Principal;
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
-import static java.rmi.server.LogStream.log;
 
 @Slf4j
 @RestController

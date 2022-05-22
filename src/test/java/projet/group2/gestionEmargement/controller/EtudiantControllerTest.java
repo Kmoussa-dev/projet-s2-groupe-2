@@ -61,7 +61,7 @@ class EtudiantControllerTest {
    @Test
     public void testInscriptionEtudiantOk() throws Exception {
 
-       given(etudiantService.inscription(any(Etudiant.class))).willReturn(EtudiantDTO.toEntity(dataEtudiantTest.inscriptionOk()));
+       given(etudiantService.inscription(any(EtudiantDTO.class))).willReturn(any(EtudiantDTO.class));
 
        ObjectMapper objectMapper = new ObjectMapper();
        this.mockMvc.perform(post("/api/emargement/etudiants")
@@ -105,13 +105,13 @@ class EtudiantControllerTest {
 
        EtudiantDTO etudiantDTO = new EtudiantDTO("fati.bardi1995@gmail.com","fatimaE","fatima","mdpss",
                "1987654",new Groupe("TP1","TD1"),
-               new Promotion("MASTER 1","2021-2022"));
+               new Promotion("MASTER 1","2021-2022"),false,"");
        EtudiantDTO etudiantDTO2 = new EtudiantDTO("Bfati.bardi1995@gmail.com","fatimaE","fatima","mdpss",
                "1987654",new Groupe("TP1","TD1"),
-               new Promotion("MASTER 1","2021-2022"));
-       List<Etudiant> etudiants = new ArrayList<>();
-       etudiants.add(EtudiantDTO.toEntity(etudiantDTO));
-       etudiants.add(EtudiantDTO.toEntity(etudiantDTO2));
+               new Promotion("MASTER 1","2021-2022"),false,"");
+       List<EtudiantDTO> etudiants = new ArrayList<>();
+       etudiants.add(etudiantDTO);
+       etudiants.add(etudiantDTO2);
        ObjectMapper objectMapper = new ObjectMapper();
 
        given(etudiantService.getEtudiants()).willReturn(etudiants);
@@ -133,7 +133,7 @@ class EtudiantControllerTest {
     @Test
     public void testGetEtudiantsKO() throws Exception {
 
-        List<Etudiant> etudiants = new ArrayList<>();
+        List<EtudiantDTO> etudiants = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
 
         given(etudiantService.getEtudiants()).willReturn(etudiants);
@@ -158,11 +158,11 @@ class EtudiantControllerTest {
 
         ObjectMapper objectMapper = new ObjectMapper();
 
-        Etudiant etudiant = EtudiantDTO.toEntity(dataEtudiantTest.inscriptionOk());
-        given(etudiantService.getEtudiantbyEmail(anyString())).willReturn(etudiant);
+
+        given(etudiantService.getEtudiantbyEmail(anyString())).willReturn(dataEtudiantTest.inscriptionOk());
 
         this.mockMvc.perform(get("/api/emargement/etudiants/"+dataEtudiantTest.emailEtudiant())
-                        .content(objectMapper.writeValueAsString(etudiant)))
+                        .content(objectMapper.writeValueAsString(dataEtudiantTest.inscriptionOk())))
                 .andExpect(status().isOk())
                 .andDo(document("Get-etudiantByEmail-200",
                         preprocessRequest(prettyPrint()),
@@ -199,11 +199,11 @@ class EtudiantControllerTest {
 
         ObjectMapper objectMapper = new ObjectMapper();
 
-        Etudiant etudiant = EtudiantDTO.toEntity(dataEtudiantTest.inscriptionOk());
-        given(etudiantService.getEtudiantbyNumeroEtudiant(anyString())).willReturn(etudiant);
+
+        given(etudiantService.getEtudiantbyNumeroEtudiant(anyString())).willReturn(dataEtudiantTest.inscriptionOk());
 
         this.mockMvc.perform(get("/api/emargement/etudiant/"+dataEtudiantTest.numeroEtudiant())
-                        .content(objectMapper.writeValueAsString(etudiant)))
+                        .content(objectMapper.writeValueAsString(dataEtudiantTest.inscriptionOk())))
                 .andExpect(status().isOk())
                 .andDo(document("Get-etudiantByNumeroEtudiant-200",
                         preprocessRequest(prettyPrint()),

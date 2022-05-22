@@ -1,27 +1,14 @@
 package projet.group2.gestionEmargement.service;
 
 import org.junit.Assert;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 import projet.group2.gestionEmargement.dataTest.DataEtudiantTest;
-import projet.group2.gestionEmargement.dataTest.DataEtudiantTestImpl;
-import projet.group2.gestionEmargement.dto.EnseignantDTO;
 import projet.group2.gestionEmargement.dto.EtudiantDTO;
-import projet.group2.gestionEmargement.dto.UtilisateurDTO;
-import projet.group2.gestionEmargement.entity.Etudiant;
-import projet.group2.gestionEmargement.entity.Groupe;
-import projet.group2.gestionEmargement.entity.Promotion;
-import projet.group2.gestionEmargement.exception.NuneroEtudiantDejaExistException;
-import projet.group2.gestionEmargement.exception.enseignantException.EnseignantException;
-import projet.group2.gestionEmargement.exception.enseignantException.ErrorCodes;
-import projet.group2.gestionEmargement.exception.enseignantException.EtudiantException;
-import projet.group2.gestionEmargement.exception.enseignantException.UtilisateurException;
-import projet.group2.gestionEmargement.repository.EtudiantRepository;
+import projet.group2.gestionEmargement.exception.generalException.ErrorCodes;
+import projet.group2.gestionEmargement.exception.generalException.EtudiantException;
+import projet.group2.gestionEmargement.exception.generalException.UtilisateurException;
 
 import java.util.List;
 @SpringBootTest
@@ -30,19 +17,18 @@ public class TestEtudiantService {
     @Autowired
     private EtudiantService etudiantService;
 
-
+    @Autowired
+    private DataEtudiantTest dataEtudiantTest;
     @Test
     public void enregistrementEtudiantOK() throws UtilisateurException, EtudiantException {
-        Groupe groupe=new Groupe("TD1","TP1");
-        Promotion promo=new Promotion("MASTER","2021");
         EtudiantDTO expectedEtudiant = EtudiantDTO.builder()
-                .email("ahmed56@univ-orleans.fr")
-                .nom("yop")
-                .prenom("mous")
-                .motDePasse("mouss")
-                .numeroEtudiant("o237589")
-                .groupe(groupe)
-                .promo(promo)
+                .email(dataEtudiantTest.emailEtudiant())
+                .nom(dataEtudiantTest.nomEtudiant())
+                .prenom(dataEtudiantTest.prenomEtudiant())
+                .motDePasse(dataEtudiantTest.motDePasseEtudiant())
+                .numeroEtudiant(dataEtudiantTest.numeroEtudiant())
+                .groupe(dataEtudiantTest.groupeEtudiant())
+                .promo(dataEtudiantTest.promoEtudiant())
                 .build();
 
         EtudiantDTO savedEtudiant = etudiantService.inscription(expectedEtudiant);
@@ -270,17 +256,28 @@ public class TestEtudiantService {
     }
 
     @Test
-    public void enregistrementEtudiantKOEmailDansLaBase(){
+    public void enregistrementEtudiantKOEmailDansLaBase() throws UtilisateurException, EtudiantException {
         EtudiantDTO expectedEtudiant = EtudiantDTO.builder()
-                .email("yopo@univ-orleans.fr")
-                .nom("yop")
-                .prenom("mous")
-                .motDePasse("mouss")
-                .groupe(new Groupe("TD1","TP1"))
-                .numeroEtudiant("o237589")
-                .promo(new Promotion("MASTER","2021"))
+                .email(dataEtudiantTest.emailEtudiant2())
+                .nom(dataEtudiantTest.nomEtudiant2())
+                .prenom(dataEtudiantTest.prenomEtudiant2())
+                .motDePasse(dataEtudiantTest.motDePasseEtudiant2())
+                .numeroEtudiant(dataEtudiantTest.numeroEtudiant2())
+                .groupe(dataEtudiantTest.groupeEtudiant2())
+                .promo(dataEtudiantTest.promoEtudiant2())
                 .build();
-        UtilisateurException expectedException = Assert.assertThrows(UtilisateurException.class, () -> etudiantService.inscription(expectedEtudiant));
+        EtudiantDTO savedEtudiant = etudiantService.inscription(expectedEtudiant);
+
+        EtudiantDTO expectedEtudiant2 = EtudiantDTO.builder()
+                .email(dataEtudiantTest.emailEtudiant2())
+                .nom(dataEtudiantTest.nomEtudiant2())
+                .prenom(dataEtudiantTest.prenomEtudiant2())
+                .motDePasse(dataEtudiantTest.motDePasseEtudiant2())
+                .numeroEtudiant(dataEtudiantTest.numeroEtudiant2())
+                .groupe(dataEtudiantTest.groupeEtudiant2())
+                .promo(dataEtudiantTest.promoEtudiant2())
+                .build();
+        UtilisateurException expectedException = Assert.assertThrows(UtilisateurException.class, () -> etudiantService.inscription(expectedEtudiant2));
         Assert.assertEquals(ErrorCodes.UTILISATEUR_ALREADY_IN_USE, expectedException.getErrorCode());
         Assert.assertEquals(7000, expectedException.getErrorCode().getCode());
         Assert.assertEquals(1, expectedException.getErrors().size());

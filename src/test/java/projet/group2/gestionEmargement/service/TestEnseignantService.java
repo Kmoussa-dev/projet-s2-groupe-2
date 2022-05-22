@@ -1,18 +1,15 @@
 package projet.group2.gestionEmargement.service;
 
 import org.junit.Assert;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import projet.group2.gestionEmargement.dataTest.DataEnseignantTest;
 import projet.group2.gestionEmargement.dto.EnseignantDTO;
 import projet.group2.gestionEmargement.dto.UtilisateurDTO;
-import projet.group2.gestionEmargement.entity.Enseignant;
-import projet.group2.gestionEmargement.exception.enseignantException.EnseignantException;
-import projet.group2.gestionEmargement.exception.enseignantException.ErrorCodes;
-import projet.group2.gestionEmargement.exception.enseignantException.UtilisateurException;
+import projet.group2.gestionEmargement.exception.generalException.EnseignantException;
+import projet.group2.gestionEmargement.exception.generalException.ErrorCodes;
+import projet.group2.gestionEmargement.exception.generalException.UtilisateurException;
 
 import java.util.List;
 
@@ -23,14 +20,16 @@ public class TestEnseignantService {
     @Autowired
     private EnseignantService enseignantService;
 
+    @Autowired
+    private DataEnseignantTest dataEnseignantTest;
 
     @Test
     public void enregistrementEnseignantOK() throws EnseignantException, UtilisateurException {
         UtilisateurDTO expectedEnseignant = UtilisateurDTO.builder()
-                .email("yopo@univ-orleans.fr")
-                .nom("yop")
-                .prenom("mous")
-                .motDePasse("mouss")
+                .email(dataEnseignantTest.emailEnseignant2())
+                .nom(dataEnseignantTest.nomEnseignant2())
+                .prenom(dataEnseignantTest.prenomEnseignant2())
+                .motDePasse(dataEnseignantTest.motDePasseEnseignant2())
                 .build();
 
         EnseignantDTO savedEnseignant = enseignantService.inscription(expectedEnseignant);
@@ -262,15 +261,23 @@ public class TestEnseignantService {
     }
 
     @Test
-    public void enregistrementEnseignantKOEmailDansLaBase(){
-        UtilisateurDTO expectedEnseignant = UtilisateurDTO.builder()
-                .email("yopo@univ-orleans.fr")
-                .nom("yop")
-                .prenom("mous")
-                .motDePasse("mouss")
+    public void enregistrementEnseignantKOEmailDansLaBase() throws UtilisateurException, EnseignantException {
+        UtilisateurDTO expectedEnseignant1 = UtilisateurDTO.builder()
+                .email(dataEnseignantTest.emailEnseignant())
+                .nom(dataEnseignantTest.nomEnseignant())
+                .prenom(dataEnseignantTest.prenomEnseignant())
+                .motDePasse(dataEnseignantTest.motDePasseEnseignant())
+                .build();
+        EnseignantDTO savedEnseignant = enseignantService.inscription(expectedEnseignant1);
+
+        UtilisateurDTO expectedEnseignant2 = UtilisateurDTO.builder()
+                .email(dataEnseignantTest.emailEnseignant())
+                .nom(dataEnseignantTest.nomEnseignant())
+                .prenom(dataEnseignantTest.prenomEnseignant())
+                .motDePasse(dataEnseignantTest.motDePasseEnseignant())
                 .build();
 
-        UtilisateurException expectedException = Assert.assertThrows(UtilisateurException.class, () -> enseignantService.inscription(expectedEnseignant));
+        UtilisateurException expectedException = Assert.assertThrows(UtilisateurException.class, () -> enseignantService.inscription(expectedEnseignant2));
         Assert.assertEquals(ErrorCodes.UTILISATEUR_ALREADY_IN_USE, expectedException.getErrorCode());
         Assert.assertEquals(7000, expectedException.getErrorCode().getCode());
         Assert.assertEquals(1, expectedException.getErrors().size());
@@ -314,7 +321,5 @@ public class TestEnseignantService {
         List<EnseignantDTO> returnedEnseignant= enseignantService.getEnseignants();
         Assert.assertNotNull(returnedEnseignant.size());
     }
-
-
 
 }

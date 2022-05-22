@@ -11,6 +11,7 @@ import projet.group2.gestionEmargement.entity.Promotion;
 import java.util.List;
 import java.util.Objects;
 @Builder
+@AllArgsConstructor
 public class EtudiantDTO {
 
     private String email;
@@ -134,7 +135,7 @@ public class EtudiantDTO {
             return null;
         else {
             return EtudiantDTO.builder()
-                    .numeroEtudiant(etudiant.getEmail())
+                    .numeroEtudiant(etudiant.getNumeroEtudiant())
                     .groupe(etudiant.getGroupe())
                     .promo(etudiant.getPromo())
                     .build();

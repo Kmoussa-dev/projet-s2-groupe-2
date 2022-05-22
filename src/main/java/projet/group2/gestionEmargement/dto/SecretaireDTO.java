@@ -1,12 +1,16 @@
 package projet.group2.gestionEmargement.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 import projet.group2.gestionEmargement.entity.Enseignant;
 import projet.group2.gestionEmargement.entity.Secretaire;
 
 import java.util.List;
 import java.util.Objects;
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class SecretaireDTO  {
 
     private String email;

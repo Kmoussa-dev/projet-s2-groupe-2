@@ -1,5 +1,6 @@
 package projet.group2.gestionEmargement.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import projet.group2.gestionEmargement.entity.Enseignant;
 import projet.group2.gestionEmargement.entity.Utilisateur;
@@ -7,6 +8,7 @@ import projet.group2.gestionEmargement.entity.Utilisateur;
 import java.util.List;
 import java.util.Objects;
 @Builder
+@AllArgsConstructor
 public class EnseignantDTO {
 
     private String email;

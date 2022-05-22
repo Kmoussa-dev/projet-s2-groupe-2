@@ -10,8 +10,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import projet.group2.gestionEmargement.dto.SecretaireDTO;
 import projet.group2.gestionEmargement.dto.UtilisateurDTO;
 
-import projet.group2.gestionEmargement.exception.enseignantException.SecretaireException;
-import projet.group2.gestionEmargement.exception.enseignantException.UtilisateurException;
+import projet.group2.gestionEmargement.exception.generalException.SecretaireException;
+import projet.group2.gestionEmargement.exception.generalException.UtilisateurException;
 import projet.group2.gestionEmargement.service.SecretaireService;
 
 

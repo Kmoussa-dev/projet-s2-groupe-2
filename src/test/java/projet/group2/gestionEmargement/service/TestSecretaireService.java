@@ -2,18 +2,14 @@ package projet.group2.gestionEmargement.service;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-import projet.group2.gestionEmargement.dto.EnseignantDTO;
+import projet.group2.gestionEmargement.dataTest.DataSecretaireTest;
 import projet.group2.gestionEmargement.dto.SecretaireDTO;
 import projet.group2.gestionEmargement.dto.UtilisateurDTO;
-import projet.group2.gestionEmargement.entity.Secretaire;
-import projet.group2.gestionEmargement.exception.enseignantException.EnseignantException;
-import projet.group2.gestionEmargement.exception.enseignantException.ErrorCodes;
-import projet.group2.gestionEmargement.exception.enseignantException.SecretaireException;
-import projet.group2.gestionEmargement.exception.enseignantException.UtilisateurException;
+import projet.group2.gestionEmargement.exception.generalException.ErrorCodes;
+import projet.group2.gestionEmargement.exception.generalException.SecretaireException;
+import projet.group2.gestionEmargement.exception.generalException.UtilisateurException;
 
 import java.util.List;
 
@@ -23,13 +19,16 @@ public class TestSecretaireService {
     @Autowired
     private SecretaireService secretaireService;
 
+    @Autowired
+    private DataSecretaireTest dataSecretaireTest;
+
     @Test
     public void enregistrementSecretaireOK() throws SecretaireException, UtilisateurException {
         UtilisateurDTO expectedSecretaire = UtilisateurDTO.builder()
-                .email("poyoiu0@univ-orleans.fr")
-                .nom("yop")
-                .prenom("mous")
-                .motDePasse("mouss")
+                .email(dataSecretaireTest.emailSecretaire())
+                .nom(dataSecretaireTest.nomSecretaire())
+                .prenom(dataSecretaireTest.prenomSecretaire())
+                .motDePasse(dataSecretaireTest.motDePasseSecretaire())
                 .build();
         SecretaireDTO savedSecretaire = secretaireService.inscription(expectedSecretaire);
         Assert.assertNotNull(savedSecretaire);
@@ -260,15 +259,24 @@ public class TestSecretaireService {
     }
 
     @Test
-    public void enregistrementSecretaireKOEmailDansLaBase(){
+    public void enregistrementSecretaireKOEmailDansLaBase() throws SecretaireException, UtilisateurException {
         UtilisateurDTO expectedSecretaire = UtilisateurDTO.builder()
-                .email("poyoiu0@univ-orleans.fr")
-                .nom("yop")
-                .prenom("mous")
-                .motDePasse("mouss")
+                .email(dataSecretaireTest.emailSecretaire2())
+                .nom(dataSecretaireTest.nomSecretaire2())
+                .prenom(dataSecretaireTest.prenomSecretaire2())
+                .motDePasse(dataSecretaireTest.motDePasseSecretaire2())
                 .build();
 
-        UtilisateurException expectedException = Assert.assertThrows(UtilisateurException.class, () -> secretaireService.inscription(expectedSecretaire));
+        SecretaireDTO savedSecretaire = secretaireService.inscription(expectedSecretaire);
+
+        UtilisateurDTO expectedSecretaire2 = UtilisateurDTO.builder()
+                .email(dataSecretaireTest.emailSecretaire2())
+                .nom(dataSecretaireTest.nomSecretaire2())
+                .prenom(dataSecretaireTest.prenomSecretaire2())
+                .motDePasse(dataSecretaireTest.motDePasseSecretaire2())
+                .build();
+
+        UtilisateurException expectedException = Assert.assertThrows(UtilisateurException.class, () -> secretaireService.inscription(expectedSecretaire2));
         Assert.assertEquals(ErrorCodes.UTILISATEUR_ALREADY_IN_USE, expectedException.getErrorCode());
         Assert.assertEquals(7000, expectedException.getErrorCode().getCode());
         Assert.assertEquals(1, expectedException.getErrors().size());

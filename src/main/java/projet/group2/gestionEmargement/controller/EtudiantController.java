@@ -5,22 +5,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import projet.group2.gestionEmargement.dto.EnseignantDTO;
 import projet.group2.gestionEmargement.dto.EtudiantDTO;
-import projet.group2.gestionEmargement.entity.Etudiant;
-import projet.group2.gestionEmargement.entity.Utilisateur;
-import projet.group2.gestionEmargement.exception.EtudiantDejaExisteException;
-import projet.group2.gestionEmargement.exception.MotDePasseObligatoireException;
-import projet.group2.gestionEmargement.exception.enseignantException.EnseignantException;
-import projet.group2.gestionEmargement.exception.enseignantException.EtudiantException;
-import projet.group2.gestionEmargement.exception.enseignantException.UtilisateurException;
+import projet.group2.gestionEmargement.exception.generalException.EtudiantException;
+import projet.group2.gestionEmargement.exception.generalException.UtilisateurException;
 import projet.group2.gestionEmargement.service.EtudiantService;
-import projet.group2.gestionEmargement.validator.EtudiantValidator;
-import projet.group2.gestionEmargement.validator.UtilisateurValidator;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/emargement")
