@@ -1,6 +1,7 @@
 package projet.group2.gestionEmargement.service;
 
 import org.junit.Assert;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,6 +11,7 @@ import projet.group2.gestionEmargement.dto.UtilisateurDTO;
 import projet.group2.gestionEmargement.exception.generalException.EnseignantException;
 import projet.group2.gestionEmargement.exception.generalException.ErrorCodes;
 import projet.group2.gestionEmargement.exception.generalException.UtilisateurException;
+import projet.group2.gestionEmargement.repository.SeanceRepository;
 
 import java.util.List;
 

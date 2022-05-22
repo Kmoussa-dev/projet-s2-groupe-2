@@ -67,7 +67,7 @@ public class UtilisateurDTO {
             utilisateur.setNom(utilisateurDTO.getNom());
             utilisateur.setPrenom(utilisateurDTO.getPrenom());
             utilisateur.setMotDePasse(utilisateurDTO.getMotDePasse());
-            utilisateur.setRoles(List.of("PROFESSEUR","ETUDIANT","SECRETAIRE"));
+            utilisateur.setRoles(List.of("ENSEIGNANT","ETUDIANT","MEMBRE_ADMINISTRATIF"));
             return utilisateur;
         }
     }

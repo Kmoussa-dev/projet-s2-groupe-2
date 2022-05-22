@@ -24,6 +24,18 @@ public class Utilisateur {
     @Field(name = "roles")
     protected List<String> roles;
 
+    public Utilisateur() {
+    }
+
+    public Utilisateur(String email, String nom, String prenom, String motDePasse, List<String> roles) {
+        this.email = email;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.motDePasse = motDePasse;
+        this.roles = roles;
+    }
+
+
     public String getNom() {
         return nom;
     }

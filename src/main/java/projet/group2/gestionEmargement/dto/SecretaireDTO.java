@@ -54,7 +54,7 @@ public class SecretaireDTO  {
             secretaire.setNom(utilisateurDTO.getNom());
             secretaire.setPrenom(utilisateurDTO.getPrenom());
             secretaire.setMotDePasse(utilisateurDTO.getEmail());
-            secretaire.setRoles(List.of("SECRETAIRE"));
+            secretaire.setRoles(List.of("MEMBRE_ADMINISTRATIF"));
             return secretaire;
         }
     }

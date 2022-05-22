@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import projet.group2.gestionEmargement.dataTest.DataSeanceTest;
 import projet.group2.gestionEmargement.entity.Seance;
+import projet.group2.gestionEmargement.repository.SeanceRepository;
 import projet.group2.gestionEmargement.service.SeanceService;
 
 import java.net.URI;
@@ -39,9 +40,13 @@ public class SeanceControllerTest {
     @Autowired
     DataSeanceTest dataSeanceTest;
 
+    @Autowired
+    private SeanceRepository seanceRepository;
+
     @BeforeEach
     public void init() {
         this.seanceService = new SeanceService();
+        this.seanceRepository.deleteAll();
     }
 
     /**

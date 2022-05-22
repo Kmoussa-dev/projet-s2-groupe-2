@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.List;
 import java.util.UUID;
 
 //@Document(collection="etudiants")
@@ -21,6 +22,18 @@ public class Etudiant extends Utilisateur {
     private boolean otp; // one time pad => autoristion unique
     @Field(name = "adresseMAC")
     private String adresseMAC;
+
+
+    public Etudiant() {
+    }
+
+    public Etudiant(String email, String nom, String prenom, String motDePasse,
+                    List<String> roles, String numeroEtudiant, Groupe groupe, Promotion promo) {
+        super(email, nom, prenom, motDePasse, roles);
+        this.numeroEtudiant = numeroEtudiant;
+        this.groupe = groupe;
+        this.promo = promo;
+    }
 
 
     public String getNumeroEtudiant() {

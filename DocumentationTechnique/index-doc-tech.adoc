@@ -1,0 +1,18 @@
+= Documentations Projet Emargement
+
+:doctype: book
+:toc: left
+:toc-title: Sommaire
+:sectanchors:
+:sectlinks:
+:sectnums:
+:masterdoc: // chapters are embedded in a master document
+
+
+// chapters
+
+:leveloffset: +1
+
+include::API-Design-tableau-des-uris.adoc[]
+
+:leveloffset: -1

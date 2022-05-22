@@ -1,0 +1,101 @@
+==== API Design
+
+===== Tableau des URIs (résumé)
+
+[cols="1,5,4"]
+|===
+|Méthode HTTP | URI | Action
+
+
+| POST
+| /api/emargement/etudiants
+| Inscription d'un étudiant
+
+| GET
+| /api/emargement/etudiants/{email}
+| Consultation d'un étudiant
+
+| GET
+| /api/emargement/etudiants/{numeroEtudiant}
+| Consultation d'un étudiant
+
+| GET
+| /api/emargement/etudiants
+| Liste de tous les étudiants
+
+| POST
+| /api/emargement/seances
+| Création d'une séance
+
+| GET
+| /api/emargement/seances/{id}
+| Consultation d'une séance
+
+| PUT
+| */api/emargement/seances/{id}/pointage/
+{numEtudant}/{dateExpire}*
+| Validation d'un émargement par un enseignant
+ou par un scanner d'une salle de classe donnée
+
+| POST
+| */api/emargement/seances/token*
+| Génération d'un token QR CODE permettant
+à l'étudiant d'émarger pour une séance
+
+| GET
+| /api/emargement/seances
+| Liste de toutes les séances
+
+| GET
+| /api/emargement/seances/periode
+| Consultation des séances sur une période donnée
+
+
+| PUT
+| /api/emargement/seances/{id}
+| Modification d'une séance
+
+| DELETE
+| /api/emargement/seances/{id}
+| Suppression d'une séance
+
+
+| GET
+| /api/emargement/seances/{id}/etudiants-absents
+| Consultation des étudiants absents pour une séance donnée
+
+
+| GET
+| /api/emargement/seances/{id}/etudiants-presents
+| Consultation des étudiants présents lors d'une séance donnée
+
+| POST
+| /api/emargement/enseignants
+| Inscription d'un enseignant
+
+
+| GET
+| /api/emargement/enseignants/{id}
+| Consultation d'un enseignant
+
+
+| GET
+| /api/emargement/enseignants
+| Liste de tous les enseignants
+
+| POST
+| /api/emargement/secretaires
+| Inscription d'un membre administratif
+
+
+| GET
+| /api/emargement/secretaires/{id}
+| Consultation d'un membre administratif
+
+
+| GET
+| /api/emargement/secretaires
+| Liste de tous les membres administratifs
+
+
+|===
