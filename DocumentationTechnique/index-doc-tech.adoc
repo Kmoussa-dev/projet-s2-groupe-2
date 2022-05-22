@@ -16,3 +16,43 @@
 include::API-Design-tableau-des-uris.adoc[]
 
 :leveloffset: -1
+
+
+
+
+
+
+
+
+
+=== PLAN Doc Tech
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

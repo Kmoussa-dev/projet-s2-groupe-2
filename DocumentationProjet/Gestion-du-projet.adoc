@@ -18,7 +18,7 @@ La gestion du projet de conception d'une API d'émargement s'est organisé en pl
 
 ===== Diagramme de Gantt prévisionnel
 
-image::../images/Gantt.png[]
+image::images/Gantt.png[]
 
 [IMPORTANT]
 
@@ -44,6 +44,6 @@ lors des périodes d'entreprise, révisions et d'examens, nous avons mal évalu�
 [NOTE]
 La matrice RACI nous a permis d'identifier les tâches et de définir les responsabilités de chaque membre de l'équipe.
 
-image::../images/Matrice-Raci.png[]
+image::images/Matrice-Raci.png[]
 
 

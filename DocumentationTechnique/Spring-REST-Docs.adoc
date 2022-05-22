@@ -113,3 +113,5 @@ include::{snippets}/Get-etudiantByNumeroEtudiant-404/http-response.adoc[]
 
 
 
+
+

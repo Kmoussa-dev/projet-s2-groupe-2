@@ -46,7 +46,7 @@ public class SeanceControllerTest {
     @BeforeEach
     public void init() {
         this.seanceService = new SeanceService();
-        this.seanceRepository.deleteAll();
+//        this.seanceRepository.deleteAll();
     }
 
     /**

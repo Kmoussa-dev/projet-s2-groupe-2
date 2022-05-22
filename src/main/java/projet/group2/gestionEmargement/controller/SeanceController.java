@@ -174,7 +174,7 @@ public class SeanceController {
             if (this.etudiantService.permissionTOGenerateQrCode(adresseMAC,numEtudiant)){
                 BufferedImage bufferedImage = TokenGenerator.generateQRCode(ServletUriComponentsBuilder
                         .fromCurrentContextPath()
-                        .path("/api/emergement/seance/{id}/pointage/{numEtudant}/{dateExpire}")
+                        .path("/api/emargement/seances/{id}/pointage/{numEtudant}/{dateExpire}")
                         .buildAndExpand(idSeance,numEtudiant,LocalDateTime.now().plusSeconds(5).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME))
                         .toUriString());
                 return ResponseEntity.ok(bufferedImage);

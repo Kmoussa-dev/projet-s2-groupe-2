@@ -1,0 +1,11 @@
+
+
+
+
+
+
+
+L'interface utilisateur Swagger permet à l'équipe de développement de visualiser et d'interagir avec
+les ressources de l'API sans avoir aucune logique de mise en œuvre en place.
+Lien de l'interface utilisateur Swagger pour interagir avec les Ressources de l'API Rest Emargement :
+http://localhost:8080/swagger-ui/index.html
